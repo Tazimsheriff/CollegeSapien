@@ -90,6 +90,10 @@ fonts/*.zip
 # Coverage
 coverage/
 
+# Local test credentials — never commit real account secrets
+.env
+.env.local
+
 # Exceptions to above rules.
 !/packages/flutter_tools/test/data/dart_dependencies_test/**/.packages
 

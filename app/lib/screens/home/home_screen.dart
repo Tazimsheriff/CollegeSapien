@@ -1,9 +1,8 @@
-import 'dart:convert';
 import 'dart:math' as math;
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
+import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:provider/provider.dart';
@@ -14,11 +13,10 @@ import '../../models/event_models.dart';
 import '../../services/api_service.dart';
 import '../../services/attendance_service.dart';
 import '../../services/auth_service.dart';
-import '../../services/college_service.dart';
+import '../../providers/reference_data_store.dart';
 import '../profile/profile_screen.dart';
 import '../../models/syllabus_models.dart';
 import '../../services/syllabus_service.dart';
-import '../../utils/app_colors.dart';
 import '../../utils/app_theme.dart';
 import '../../utils/app_spacing.dart';
 import '../../widgets/responsive_layout.dart';
@@ -59,11 +57,7 @@ String _todayCode() {
   return days[DateTime.now().weekday - 1];
 }
 
-String _dateKey(DateTime date) {
-  return '${date.year.toString().padLeft(4, '0')}-'
-      '${date.month.toString().padLeft(2, '0')}-'
-      '${date.day.toString().padLeft(2, '0')}';
-}
+String _dateKey(DateTime date) => DateFormat('yyyy-MM-dd').format(date);
 
 int _toMin(String t) {
   final p = t.split(':');
@@ -104,7 +98,6 @@ class _HomeScreenState extends State<HomeScreen> {
   List<EventItem> _shownEvents = [];
   bool _loadingTimetable = true;
   bool _loadingEvents = true;
-  bool _hasMoreEvents = false;
   int _semester = 0;
   final Set<String> _markedSlots = {};
   List<SavedSubject> _savedSubjects = [];
@@ -221,7 +214,6 @@ class _HomeScreenState extends State<HomeScreen> {
         setState(() {
           _allEvents = appState.events!;
           _shownEvents = _allEvents.take(2).toList();
-          _hasMoreEvents = _allEvents.length > 2;
           _loadingEvents = false;
         });
       }
@@ -252,7 +244,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Future<void> _loadProfile() async {
     final appState = Provider.of<AppStateNotifier>(context, listen: false);
-    var user = appState.userProfile ?? AuthService.instance.profile;
+    var user = appState.userProfileStale;
 
     if (user != null) {
       if (mounted) {
@@ -331,9 +323,9 @@ class _HomeScreenState extends State<HomeScreen> {
         // No saved subjects — try curriculum fallback
         var fallbackApplied = false;
         try {
-          final collegeService = CollegeService();
-          final colleges = await collegeService.listColleges();
-          final departmentsList = await collegeService.listDepartments();
+          final colleges = await ReferenceDataStore.instance.listColleges();
+          final departmentsList =
+              await ReferenceDataStore.instance.listDepartments();
           final college =
               colleges.where((c) => c.id == freshUser.collegeId).firstOrNull;
           final collegeCode = college?.code;
@@ -474,7 +466,6 @@ class _HomeScreenState extends State<HomeScreen> {
         setState(() {
           _allEvents = appState.events!;
           _shownEvents = _allEvents.take(2).toList();
-          _hasMoreEvents = _allEvents.length > 2;
           _loadingEvents = false;
         });
       }
@@ -482,49 +473,31 @@ class _HomeScreenState extends State<HomeScreen> {
     }
 
     try {
-      final res = await http
-          .get(Uri.parse(
-            'https://raw.githubusercontent.com/FOSSUChennai/Communities/'
-            'c809df4bc58b5b6265a99a91124acd2352a418f8/src/data/events.json',
-          ))
-          .timeout(const Duration(seconds: 10));
-      if (res.statusCode == 200) {
-        final raw = jsonDecode(res.body) as List<dynamic>;
-        final all = raw
-            .map((e) => EventItem.fromJson(e as Map<String, dynamic>))
-            .where((e) => e.eventName.isNotEmpty)
-            .toList();
+      final raw = await ApiService.instance.get('/events') as List<dynamic>;
+      final all = raw
+          .map((e) => EventItem.fromJson(e as Map<String, dynamic>))
+          .where((e) => e.eventName.isNotEmpty)
+          .toList();
 
-        // Sort: upcoming first (date >= today), then past most-recent first
-        final today = DateTime.now();
-        final todayDate = DateTime(today.year, today.month, today.day);
+      // Only upcoming events (date >= today), earliest first.
+      final today = DateTime.now();
+      final todayDate = DateTime(today.year, today.month, today.day);
 
-        final upcoming = all.where((e) {
-          final d = DateTime.tryParse(e.eventDate);
-          return d != null && !d.isBefore(todayDate);
-        }).toList()
-          ..sort((a, b) => DateTime.parse(a.eventDate)
-              .compareTo(DateTime.parse(b.eventDate)));
+      final shown = all.where((e) {
+        final d = DateTime.tryParse(e.eventDate);
+        return d != null && !d.isBefore(todayDate);
+      }).toList()
+        ..sort((a, b) => DateTime.parse(a.eventDate)
+            .compareTo(DateTime.parse(b.eventDate)));
 
-        final shown = upcoming.isNotEmpty ? upcoming : all
-          ..sort((a, b) {
-            final da = DateTime.tryParse(a.eventDate);
-            final db = DateTime.tryParse(b.eventDate);
-            if (da == null && db == null) return 0;
-            if (da == null) return 1;
-            if (db == null) return -1;
-            return db.compareTo(da);
-          });
-
-        appState.setEvents(shown);
-        if (mounted) {
-          setState(() {
-            _allEvents = shown;
-            _shownEvents = shown.take(2).toList();
-            _hasMoreEvents = shown.length > 2;
-            _loadingEvents = false;
-          });
-        }
+      appState.setEvents(shown);
+      if (mounted) {
+        setState(() {
+          _allEvents = shown;
+          _shownEvents = shown.take(2).toList();
+          _loadingEvents = false;
+        });
+      }
     } catch (_) {
       if (mounted) setState(() => _loadingEvents = false);
     }
@@ -565,20 +538,9 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       backgroundColor: AppColors.background,
       body: SafeArea(
-              if (_semester >= 4) ...[
-                const SizedBox(height: 24),
-                _sectionHeader('AI Features'),
-                const SizedBox(height: 12),
-                _resumeRoastCard(),
-              ],
-              const SizedBox(height: 80),
-            ],
-          ),
-=======
         child: ResponsiveLayout(
           mobile: (_) => _mobileBody(context),
           desktop: (_) => _desktopBody(context),
->>>>>>> origin/main
         ),
       ),
     );
@@ -674,8 +636,16 @@ class _HomeScreenState extends State<HomeScreen> {
   List<Widget> _timetableSection(BuildContext context) {
     return [
       _sectionHeader("Today's Timetable", onShowAll: () {
-        Navigator.push(context,
-            MaterialPageRoute(builder: (_) => const TimetableListScreen()));
+        // Switch the persistent bottom nav / rail to the Timetable tab
+        // instead of pushing a new route on top of it, so the nav chrome
+        // stays visible (same screen MainNavigation already shows at
+        // index 2 — see main_navigation.dart's _navItems).
+        if (widget.onTabSwitch != null) {
+          widget.onTabSwitch!(2);
+        } else {
+          Navigator.push(context,
+              MaterialPageRoute(builder: (_) => const TimetableListScreen()));
+        }
       }),
       const SizedBox(height: 12),
       _timetableCarousel(),
@@ -747,7 +717,7 @@ class _HomeScreenState extends State<HomeScreen> {
   List<Widget> _eventsSectionWithHeader(BuildContext context) {
     return [
       _sectionHeader(
-        "Events Near You",
+        "Upcoming Events",
         trailing: GestureDetector(
           onTap: () => Navigator.push(
             context,
@@ -782,14 +752,14 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
         ),
-        onShowAll: _hasMoreEvents
-            ? () => Navigator.push(
+        onShowAll: _allEvents.isEmpty
+            ? null
+            : () => Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (_) => EventsAllScreen(events: _allEvents),
                   ),
-                )
-            : null,
+                ),
       ),
       const SizedBox(height: 12),
       _eventsSection(),
@@ -1525,6 +1495,12 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
+  String? _formatEventDate(String raw) {
+    final d = DateTime.tryParse(raw);
+    if (d == null) return null;
+    return DateFormat('EEE, d MMM yyyy').format(d);
+  }
+
   Widget _eventCard(EventItem event) {
     return GestureDetector(
       onTap: () async {
@@ -1593,6 +1569,18 @@ class _HomeScreenState extends State<HomeScreen> {
                       height: 1.2,
                     ),
                   ),
+                  if (_formatEventDate(event.eventDate) != null) ...[
+                    const SizedBox(height: 6),
+                    Text(
+                      _formatEventDate(event.eventDate)!,
+                      style: TextStyle(
+                        fontFamily: 'Public Sans',
+                        fontSize: 13,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.black.withValues(alpha: 0.6),
+                      ),
+                    ),
+                  ],
                   const SizedBox(height: 16),
                   Row(
                     children: [

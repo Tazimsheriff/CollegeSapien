@@ -1,23 +1,13 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import '../../models/cgpa_models.dart';
+import '../../providers/app_state_notifier.dart';
 import '../../utils/app_theme.dart';
-import '../../utils/app_colors.dart';
 import '../../utils/app_constants.dart';
 import '../../utils/app_spacing.dart';
 import '../../widgets/responsive_layout.dart';
 import '../../services/academic_service.dart';
 import '../../services/api_service.dart';
-
-class _SemesterEntry {
-  int semester;
-  double gpa;
-  int credits;
-  _SemesterEntry(
-      {required this.semester, required this.gpa, required this.credits});
-}
 
 class CgpaCalculatorScreen extends StatefulWidget {
   const CgpaCalculatorScreen({super.key});
@@ -29,9 +19,7 @@ class CgpaCalculatorScreen extends StatefulWidget {
 class _CgpaCalculatorScreenState extends State<CgpaCalculatorScreen> {
   bool _isScanning = false;
   final _academicService = AcademicService();
-  final List<_SemesterEntry> _semesters = [];
-
-  static const _semestersKey = 'cgpa_semesters_v1';
+  final List<CgpaSemesterEntry> _semesters = [];
 
   @override
   void initState() {
@@ -57,19 +45,17 @@ class _CgpaCalculatorScreenState extends State<CgpaCalculatorScreen> {
     return _semesters.fold(0.0, (s, e) => s + e.gpa * e.credits) / totalCredits;
   }
 
-  List<_SemesterEntry> _parseSemesterList(List<dynamic> list) {
-    return list.map((item) {
-      final m = item as Map<String, dynamic>;
-      return _SemesterEntry(
-        semester: (m['semester'] as num).toInt(),
-        gpa: (m['gpa'] as num).toDouble(),
-        credits: (m['credits'] as num).toInt(),
-      );
-    }).toList();
+  List<CgpaSemesterEntry> _parseSemesterList(List<dynamic> list) {
+    return list
+        .map((item) =>
+            CgpaSemesterEntry.fromJson(item as Map<String, dynamic>))
+        .toList();
   }
 
   Future<void> _loadSemesters() async {
-    // Try API first; fall back to local cache.
+    final box = AppStateNotifier.instance.cgpaSemestersBox;
+
+    // Try API first; fall back to the local cache.
     try {
       final json = await ApiService.instance.get('/cgpa/semesters')
           as Map<String, dynamic>;
@@ -81,43 +67,31 @@ class _CgpaCalculatorScreenState extends State<CgpaCalculatorScreen> {
           ..clear()
           ..addAll(entries);
       });
-      // Update local cache
-      final prefs = await SharedPreferences.getInstance();
-      await prefs.setString(_semestersKey, jsonEncode(list));
+      box.set(entries.map((e) => e.copy()).toList());
       return;
     } catch (_) {}
 
-    // Fallback: local SharedPreferences cache
-    try {
-      final prefs = await SharedPreferences.getInstance();
-      final raw = prefs.getString(_semestersKey);
-      if (raw == null) return;
-      final list = jsonDecode(raw) as List<dynamic>;
-      if (!mounted) return;
-      setState(() {
-        _semesters
-          ..clear()
-          ..addAll(_parseSemesterList(list));
-      });
-    } catch (_) {}
+    // Fallback: local cache, even if stale (offline-tolerant).
+    if (!box.hasValue) await box.hydrate();
+    final cached = box.staleValueOrNull;
+    if (cached == null || !mounted) return;
+    setState(() {
+      _semesters
+        ..clear()
+        ..addAll(cached.map((e) => e.copy()));
+    });
   }
 
   Future<void> _saveCgpa() async {
-    final list = _semesters
-        .map(
-            (e) => {'semester': e.semester, 'gpa': e.gpa, 'credits': e.credits})
-        .toList();
+    final snapshot = _semesters.map((e) => e.copy()).toList();
 
-    // Persist locally first (instant, no network)
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setString(_semestersKey, jsonEncode(list));
-    if (_semesters.isNotEmpty) {
-      await prefs.setString('last_cgpa', _computedCgpa.toStringAsFixed(2));
-    }
+    // Persist locally first (instant, no network).
+    await AppStateNotifier.instance.cgpaSemestersBox.set(snapshot);
 
-    // Sync to Firebase (fire-and-forget; failures are silent)
-    ApiService.instance
-        .post('/cgpa/semesters', {'semesters': list}).catchError((_) {});
+    // Sync to Firebase (fire-and-forget; failures are silent).
+    ApiService.instance.post('/cgpa/semesters', {
+      'semesters': snapshot.map((e) => e.toJson()).toList(),
+    }).catchError((_) {});
   }
 
   Future<void> _uploadGradeSheet() async {
@@ -137,7 +111,7 @@ class _CgpaCalculatorScreenState extends State<CgpaCalculatorScreen> {
       // If AI returns a CGPA, add it as a single entry if list is empty
       if (cgpa > 0 && _semesters.isEmpty) {
         setState(() {
-          _semesters.add(_SemesterEntry(semester: 1, gpa: cgpa, credits: 25));
+          _semesters.add(CgpaSemesterEntry(semester: 1, gpa: cgpa, credits: 25));
           _isScanning = false;
         });
         await _saveCgpa();
@@ -228,7 +202,7 @@ class _CgpaCalculatorScreenState extends State<CgpaCalculatorScreen> {
             onPressed: () {
               if (!formKey.currentState!.validate()) return;
               setState(() {
-                _semesters.add(_SemesterEntry(
+                _semesters.add(CgpaSemesterEntry(
                   semester: _semesters.length + 1,
                   gpa: double.parse(gpaController.text),
                   credits: int.parse(creditsController.text),

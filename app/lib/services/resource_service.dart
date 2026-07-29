@@ -26,12 +26,10 @@ class ResourceService {
 
   Future<List<HubResource>> listHubResources(
     String category, {
-    String? department,
     String? regulation,
     String? subjectCode,
   }) async {
     final params = <String, String>{'category': category};
-    if (department != null) params['department'] = department;
     if (regulation != null) params['regulation'] = regulation;
     if (subjectCode != null) params['subjectId'] = subjectCode;
 
@@ -146,6 +144,13 @@ class ResourceService {
         .patch('/resources/$resourceId', {'fileUrl': downloadUrl});
 
     return resourceId;
+  }
+
+  Future<void> renameResource({
+    required String resourceId,
+    required String name,
+  }) async {
+    await ApiService.instance.patch('/resources/$resourceId', {'name': name});
   }
 
   Future<void> reportResource({

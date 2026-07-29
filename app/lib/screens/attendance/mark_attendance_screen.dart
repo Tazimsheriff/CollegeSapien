@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '../../utils/app_theme.dart';
-import '../../utils/app_colors.dart';
 import 'package:intl/intl.dart';
 import '../../models/timetable_models.dart';
 import '../../services/attendance_service.dart';
@@ -64,11 +63,7 @@ class _MarkAttendanceScreenState extends State<MarkAttendanceScreen> {
     _loadSubjects();
   }
 
-  String _dateKey(DateTime date) {
-    return '${date.year.toString().padLeft(4, '0')}-'
-        '${date.month.toString().padLeft(2, '0')}-'
-        '${date.day.toString().padLeft(2, '0')}';
-  }
+  String _dateKey(DateTime date) => DateFormat('yyyy-MM-dd').format(date);
 
   DateTime _dateFromKey(String dateKey) {
     final parts = dateKey.split('-').map(int.tryParse).toList();

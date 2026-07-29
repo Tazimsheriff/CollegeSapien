@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../models/api_models.dart';
+import '../providers/app_state_notifier.dart';
 import '../services/attendance_service.dart';
-import '../services/cache_service.dart';
-import '../utils/app_colors.dart';
 import '../utils/app_theme.dart';
 import '../utils/breakpoints.dart';
 import '../utils/app_spacing.dart';
@@ -29,8 +28,9 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
   @override
   void initState() {
     super.initState();
-    final cached = CacheService.instance
-        .get<List<AttendanceSummary>>('attendance_summary');
+    // Instant paint from the same cache AppStateNotifier already maintains —
+    // no separate copy of this data to keep in sync.
+    final cached = AppStateNotifier.instance.attendanceSummary;
     if (cached != null) {
       _summaries = cached;
       _isLoading = false;
@@ -49,7 +49,7 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
   Future<void> _loadSummary() async {
     try {
       final fresh = await _attendanceService.getSummary();
-      CacheService.instance.set('attendance_summary', fresh);
+      AppStateNotifier.instance.setAttendanceSummary(fresh);
       if (mounted) {
         setState(() {
           _summaries = fresh;

@@ -4,10 +4,9 @@ import 'package:provider/provider.dart';
 import '../../models/api_models.dart';
 import '../../models/syllabus_models.dart';
 import '../../providers/app_state_notifier.dart';
+import '../../providers/reference_data_store.dart';
 import '../../services/auth_service.dart';
-import '../../services/college_service.dart';
 import '../../services/syllabus_service.dart';
-import '../../utils/app_colors.dart';
 import '../../utils/app_theme.dart';
 import '../../widgets/responsive_layout.dart';
 import '../../widgets/subjects_editor.dart';
@@ -27,7 +26,6 @@ class SyllabusSelectionScreen extends StatefulWidget {
 
 class _SyllabusSelectionScreenState extends State<SyllabusSelectionScreen> {
   final _syllabusService = SyllabusService();
-  final _collegeService = CollegeService();
   final _editorController = SubjectsEditorController();
 
   bool _isLoading = true;
@@ -83,8 +81,9 @@ class _SyllabusSelectionScreenState extends State<SyllabusSelectionScreen> {
       String? courseCode;
       CurriculumBundle? bundle;
       try {
-        final colleges = await _collegeService.listColleges();
-        final departmentsList = await _collegeService.listDepartments();
+        final colleges = await ReferenceDataStore.instance.listColleges();
+        final departmentsList =
+            await ReferenceDataStore.instance.listDepartments();
         final college =
             colleges.where((c) => c.id == profile.collegeId).firstOrNull;
         collegeCode = college?.code;

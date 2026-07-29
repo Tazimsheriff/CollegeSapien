@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
-import 'package:provider/provider.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import '../../models/api_models.dart';
+import '../../services/api_service.dart';
 import '../../services/auth_service.dart';
 import '../../providers/app_state_notifier.dart';
+import '../../providers/session_action.dart';
 import '../home/main_navigation.dart';
 import '../onboarding/onboarding_screen.dart';
-import 'login_screen.dart';
+import 'college_selection_screen.dart';
 
 /// Splash Screen - App launch screen
 class SplashScreen extends StatefulWidget {
@@ -20,7 +23,11 @@ class _SplashScreenState extends State<SplashScreen>
   late AnimationController _controller;
   late Animation<double> _fadeAnimation;
   late Animation<double> _scaleAnimation;
-  Timer? _navigationTimer;
+
+  // Minimum time the branded splash stays visible, purely cosmetic — real
+  // work (cache hydration) runs concurrently with this, not after it.
+  static const _minDwell = Duration(milliseconds: 700);
+  Timer? _dwellTimer;
 
   @override
   void initState() {
@@ -43,69 +50,150 @@ class _SplashScreenState extends State<SplashScreen>
     // Start animation
     _controller.forward();
 
-    // Navigate after delay
-    _navigationTimer = Timer(const Duration(seconds: 3), _navigateToNext);
+    _init();
   }
 
-  Future<void> _navigateToNext() async {
+  Future<void> _init() async {
+    final appState = AppStateNotifier.instance;
+    await Future.wait([
+      _dwell(),
+      appState.loadFromLocalCache(),
+    ]);
     if (!mounted) return;
+    await _navigateToNext(appState);
+  }
 
+  // A cancelable stand-in for Future.delayed — dispose() cancels the
+  // underlying Timer so no pending timer outlives this widget.
+  Future<void> _dwell() {
+    final completer = Completer<void>();
+    _dwellTimer = Timer(_minDwell, () {
+      if (!completer.isCompleted) completer.complete();
+    });
+    return completer.future;
+  }
+
+  Future<void> _navigateToNext(AppStateNotifier appState) async {
     final user = AuthService.instance.currentUser;
     if (user == null) {
-      _replaceWith(const LoginScreen());
+      _replaceWith(const CollegeSelectionScreen());
       return;
     }
 
+    final cachedProfile = appState.userProfileStale;
+    final hasUsableSession = cachedProfile != null &&
+        cachedProfile.collegeId != null &&
+        cachedProfile.department != null;
+
+    if (hasUsableSession) {
+      // We already know who this user is — show Home immediately and
+      // reconcile with the backend in the background. If reconciliation
+      // finds the session is no longer valid, SessionGuard will redirect.
+      _replaceWith(const MainNavigation());
+      unawaited(_reconcile(user, appState, blocking: false));
+      return;
+    }
+
+    // No usable local cache (first launch, cleared data, or logged out
+    // elsewhere) — we have to wait for the network before we know where
+    // to send the user.
+    await _reconcile(user, appState, blocking: true);
+  }
+
+  Future<void> _reconcile(
+    User user,
+    AppStateNotifier appState, {
+    required bool blocking,
+  }) async {
     try {
-      final appState = Provider.of<AppStateNotifier>(context, listen: false);
-      await appState.loadFromLocalCache();
-
-      await user.reload();
-      await AuthService.instance.currentUser?.getIdToken(true);
+      // Independent Firebase SDK calls — neither depends on the other's
+      // result, so run them concurrently instead of sequentially.
+      await Future.wait([
+        user.reload(),
+        user.getIdToken(true),
+      ]);
       final result = await AuthService.instance.syncProfile();
+      _applySyncResult(appState, result);
 
-      if (result.user != null) {
-        appState.setUserProfile(result.user);
-      }
-      // Persist the rest of the sync payload too, so the home screen finds
-      // fresh cached data on mount instead of hitting /auth/sync again.
-      if (result.attendanceSummary != null) {
-        appState.setAttendanceSummary(result.attendanceSummary!);
-      }
-      if (result.timetableSubjects != null) {
-        appState.setTimetableSubjects(result.timetableSubjects!);
-      }
-      final savedSubjects = result.savedSubjects?.subjects;
-      if (savedSubjects != null && savedSubjects.isNotEmpty) {
-        appState.setSavedSubjects(savedSubjects);
+      if (!blocking) {
+        if (!result.emailVerified) {
+          appState.requestSessionAction(SessionAction.requireLogin);
+        } else if (result.onboardingRequired) {
+          appState.requestSessionAction(SessionAction.requireOnboarding);
+        }
+        return;
       }
 
       if (!mounted) return;
       if (!result.emailVerified) {
-        _replaceWith(const LoginScreen());
+        _replaceWith(const CollegeSelectionScreen());
       } else if (result.onboardingRequired) {
         _replaceWith(const OnboardingScreen());
       } else {
         _replaceWith(const MainNavigation());
       }
-    } catch (e) {
-      if (mounted) {
-        debugPrint('SplashScreen navigation error: $e');
-        final appState = Provider.of<AppStateNotifier>(context, listen: false);
-        final profile = appState.userProfile;
-        if (profile != null &&
-            profile.collegeId != null &&
-            profile.department != null) {
-          // Navigate to main screen offline if we have cached details
-          _replaceWith(const MainNavigation());
-        } else {
-          _replaceWith(const LoginScreen());
-        }
+    } on FirebaseAuthException catch (e) {
+      // e.g. user-not-found / user-disabled — the account itself is no
+      // longer valid, not merely offline. Must not fall back to stale
+      // cached Home.
+      debugPrint('SplashScreen auth error: $e');
+      _routeToLogin(blocking: blocking, appState: appState);
+    } on ApiException catch (e) {
+      if (e.statusCode == 401 || e.statusCode == 403 || e.statusCode == 404) {
+        debugPrint('SplashScreen auth rejected by server: $e');
+        _routeToLogin(blocking: blocking, appState: appState);
+      } else {
+        _handleOfflineFallback(appState, blocking: blocking);
       }
+    } catch (e) {
+      debugPrint('SplashScreen reconciliation error: $e');
+      _handleOfflineFallback(appState, blocking: blocking);
+    }
+  }
+
+  void _applySyncResult(AppStateNotifier appState, AuthSyncResult result) {
+    if (result.user != null) {
+      appState.setUserProfile(result.user);
+    }
+    // Persist the rest of the sync payload too, so the home screen finds
+    // fresh cached data on mount instead of hitting /auth/sync again.
+    if (result.attendanceSummary != null) {
+      appState.setAttendanceSummary(result.attendanceSummary!);
+    }
+    if (result.timetableSubjects != null) {
+      appState.setTimetableSubjects(result.timetableSubjects!);
+    }
+    final savedSubjects = result.savedSubjects?.subjects;
+    if (savedSubjects != null && savedSubjects.isNotEmpty) {
+      appState.setSavedSubjects(savedSubjects);
+    }
+  }
+
+  void _routeToLogin({required bool blocking, required AppStateNotifier appState}) {
+    if (blocking) {
+      if (mounted) _replaceWith(const CollegeSelectionScreen());
+    } else {
+      appState.requestSessionAction(SessionAction.requireLogin);
+    }
+  }
+
+  void _handleOfflineFallback(AppStateNotifier appState, {required bool blocking}) {
+    // Background reconciliation failing offline is a no-op — Home is
+    // already showing from cache, nothing to change.
+    if (!blocking) return;
+    if (!mounted) return;
+    final profile = appState.userProfileStale;
+    if (profile != null &&
+        profile.collegeId != null &&
+        profile.department != null) {
+      _replaceWith(const MainNavigation());
+    } else {
+      _replaceWith(const CollegeSelectionScreen());
     }
   }
 
   void _replaceWith(Widget screen) {
+    if (!mounted) return;
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(builder: (context) => screen),
@@ -114,7 +202,7 @@ class _SplashScreenState extends State<SplashScreen>
 
   @override
   void dispose() {
-    _navigationTimer?.cancel();
+    _dwellTimer?.cancel();
     _controller.dispose();
     super.dispose();
   }

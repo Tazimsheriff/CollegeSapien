@@ -1,9 +1,9 @@
-class CachedData<T> {
+class CachedEntry<T> {
   final T data;
   final DateTime cachedAt;
   final Duration ttl;
 
-  CachedData({
+  CachedEntry({
     required this.data,
     required this.ttl,
     DateTime? cachedAt,

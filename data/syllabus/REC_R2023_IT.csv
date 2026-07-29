@@ -1,0 +1,104 @@
+college,college_code,course,course_code,regulation,semester,subject_code,subject_name,credits,category,elective_type,record_type
+Rajalakshmi Engineering College,REC,Information Technology,IT,R2023,1,HS23111,Technical Communication I,2,HS,,core
+Rajalakshmi Engineering College,REC,Information Technology,IT,R2023,1,MA23111,Linear Algebra and Calculus,4,BS,,core
+Rajalakshmi Engineering College,REC,Information Technology,IT,R2023,1,GE23117,தமிழர் மரபு / Heritage of Tamils,1,HS,,core
+Rajalakshmi Engineering College,REC,Information Technology,IT,R2023,1,GE23111,Engineering Graphics,4,ES,,core
+Rajalakshmi Engineering College,REC,Information Technology,IT,R2023,1,EE23133,Basic Electrical and Electronics Engineering,4,ES,,core
+Rajalakshmi Engineering College,REC,Information Technology,IT,R2023,1,GE23131,Programming using C,4,ES,,core
+Rajalakshmi Engineering College,REC,Information Technology,IT,R2023,1,GE23122,Engineering Practices-Electrical and Electronics,1,ES,,core
+Rajalakshmi Engineering College,REC,Information Technology,IT,R2023,1,MC23112,Environmental Science and Engineering,0,MC,,core
+Rajalakshmi Engineering College,REC,Information Technology,IT,R2023,2,MA23213,Discrete Mathematical Structures,4,BS,,core
+Rajalakshmi Engineering College,REC,Information Technology,IT,R2023,2,GE23217,தமிழரும் தொழில்நுட்பமும் / Tamils and Technology,1,HS,,core
+Rajalakshmi Engineering College,REC,Information Technology,IT,R2023,2,PH23132,Physics for Information Science,4,BS,,core
+Rajalakshmi Engineering College,REC,Information Technology,IT,R2023,2,EC23331,Microprocessors and Microcontroller,4,ES,,core
+Rajalakshmi Engineering College,REC,Information Technology,IT,R2023,2,CS23231,Data Structures,5,PC,,core
+Rajalakshmi Engineering College,REC,Information Technology,IT,R2023,2,GE23121,Engineering Practices-Civil and Mechanical,1,ES,,core
+Rajalakshmi Engineering College,REC,Information Technology,IT,R2023,2,CS23221,Python Programming Lab,2,PC,,core
+Rajalakshmi Engineering College,REC,Information Technology,IT,R2023,2,HS23221,Technical Communication II / English for Professional Competence,1,HS,,core
+Rajalakshmi Engineering College,REC,Information Technology,IT,R2023,2,MC23111,Indian Constitution and Freedom Movement,0,MC,,core
+Rajalakshmi Engineering College,REC,Information Technology,IT,R2023,3,MA23312,Fourier Series and Number Theory,4,BS,,core
+Rajalakshmi Engineering College,REC,Information Technology,IT,R2023,3,EC23314,Analog and Digital Communication,3,ES,,core
+Rajalakshmi Engineering College,REC,Information Technology,IT,R2023,3,CS23331,Design and Analysis of Algorithms,4,PC,,core
+Rajalakshmi Engineering College,REC,Information Technology,IT,R2023,3,CS23332,Database Management Systems,5,PC,,core
+Rajalakshmi Engineering College,REC,Information Technology,IT,R2023,3,CS23333,Object Oriented Programming using Java,4,PC,,core
+Rajalakshmi Engineering College,REC,Information Technology,IT,R2023,3,IT23331,Digital Logic and Computer Architecture,4,PC,,core
+Rajalakshmi Engineering College,REC,Information Technology,IT,R2023,4,GE23311,Fundamentals of Management for Engineers,3,HS,,core
+Rajalakshmi Engineering College,REC,Information Technology,IT,R2023,4,,Open Elective I,3,OE,Open Elective,elective
+Rajalakshmi Engineering College,REC,Information Technology,IT,R2023,4,MA23435,"Probability, Statistics and Simulation",4,BS,,core
+Rajalakshmi Engineering College,REC,Information Technology,IT,R2023,4,CS23431,Operating Systems,5,PC,,core
+Rajalakshmi Engineering College,REC,Information Technology,IT,R2023,4,CS23432,Software Construction,4,PC,,core
+Rajalakshmi Engineering College,REC,Information Technology,IT,R2023,4,IT23431,MongoDB Essentials,3,PC,,core
+Rajalakshmi Engineering College,REC,Information Technology,IT,R2023,4,GE23421,Soft Skills-I,1,EEC,,core
+Rajalakshmi Engineering College,REC,Information Technology,IT,R2023,4,IT23421,Internship,1,EEC,,core
+Rajalakshmi Engineering College,REC,Information Technology,IT,R2023,5,,Professional Elective I,3,PE,Programme Elective,elective
+Rajalakshmi Engineering College,REC,Information Technology,IT,R2023,5,IT23511,Automata Theory and Compiler Design,3,PC,,core
+Rajalakshmi Engineering College,REC,Information Technology,IT,R2023,5,IT23531,Computer Vision,4,PC,,core
+Rajalakshmi Engineering College,REC,Information Technology,IT,R2023,5,CS23531,Web Programming,4,PC,,core
+Rajalakshmi Engineering College,REC,Information Technology,IT,R2023,5,AI23231,Principles of Artificial Intelligence,4,PC,,core
+Rajalakshmi Engineering College,REC,Information Technology,IT,R2023,5,CS23532,Computer Networks,5,PC,,core
+Rajalakshmi Engineering College,REC,Information Technology,IT,R2023,5,GE23521,Soft Skills-II,1,EEC,,core
+Rajalakshmi Engineering College,REC,Information Technology,IT,R2023,6,,Professional Elective II,3,PE,Programme Elective,elective
+Rajalakshmi Engineering College,REC,Information Technology,IT,R2023,6,,Open Elective II,3,OE,Open Elective,elective
+Rajalakshmi Engineering College,REC,Information Technology,IT,R2023,6,CS23512,Fundamentals of Mobile Computing,3,PC,,core
+Rajalakshmi Engineering College,REC,Information Technology,IT,R2023,6,CS23632,Cryptography and Network Security,3,PC,,core
+Rajalakshmi Engineering College,REC,Information Technology,IT,R2023,6,AI23331,Fundamentals of Machine Learning,4,PC,,core
+Rajalakshmi Engineering College,REC,Information Technology,IT,R2023,6,GE23627,Design Thinking and Innovation,2,EEC,,core
+Rajalakshmi Engineering College,REC,Information Technology,IT,R2023,6,CS23621,Mobile Application Development Laboratory,2,PC,,core
+Rajalakshmi Engineering College,REC,Information Technology,IT,R2023,6,GE23621,Problem Solving Techniques,1,EEC,,core
+Rajalakshmi Engineering College,REC,Information Technology,IT,R2023,7,,Professional Elective III,3,PE,Programme Elective,elective
+Rajalakshmi Engineering College,REC,Information Technology,IT,R2023,7,,Professional Elective IV,3,PE,Programme Elective,elective
+Rajalakshmi Engineering College,REC,Information Technology,IT,R2023,7,IT23731,Cloud and Big Data Architecture,4,PC,,core
+Rajalakshmi Engineering College,REC,Information Technology,IT,R2023,7,IT23721,Data Science using R,2,PC,,core
+Rajalakshmi Engineering College,REC,Information Technology,IT,R2023,7,IT23722,Project Phase I,3,EEC,,core
+Rajalakshmi Engineering College,REC,Information Technology,IT,R2023,8,,Professional Elective V,3,PE,Programme Elective,elective
+Rajalakshmi Engineering College,REC,Information Technology,IT,R2023,8,,Professional Elective VI,3,PE,Programme Elective,elective
+Rajalakshmi Engineering College,REC,Information Technology,IT,R2023,8,IT23821,Project Phase II,6,EEC,,core
+Rajalakshmi Engineering College,REC,Information Technology,IT,R2023,,IT23A11,Internet of Things,3,Emerging Technologies,Programme Elective,option
+Rajalakshmi Engineering College,REC,Information Technology,IT,R2023,,CS23A32,Robotic Process Automation,3,Emerging Technologies,Programme Elective,option
+Rajalakshmi Engineering College,REC,Information Technology,IT,R2023,,CB23G11,Quantum Computation and Quantum Information,3,Emerging Technologies,Programme Elective,option
+Rajalakshmi Engineering College,REC,Information Technology,IT,R2023,,IT23A13,Edge Computing,3,Emerging Technologies,Programme Elective,option
+Rajalakshmi Engineering College,REC,Information Technology,IT,R2023,,IT23A32,AI based Conversational System,3,Emerging Technologies,Programme Elective,option
+Rajalakshmi Engineering College,REC,Information Technology,IT,R2023,,IT23A12,Introduction to Drone,3,Emerging Technologies,Programme Elective,option
+Rajalakshmi Engineering College,REC,Information Technology,IT,R2023,,AI23B32,Soft Computing,3,Emerging Technologies,Programme Elective,option
+Rajalakshmi Engineering College,REC,Information Technology,IT,R2023,,IT23B31,C# and .Net Programming,3,Full Stack Development,Programme Elective,option
+Rajalakshmi Engineering College,REC,Information Technology,IT,R2023,,CS23A34,User Interface Design,3,Full Stack Development,Programme Elective,option
+Rajalakshmi Engineering College,REC,Information Technology,IT,R2023,,IT23B32,Advanced Web Programming,3,Full Stack Development,Programme Elective,option
+Rajalakshmi Engineering College,REC,Information Technology,IT,R2023,,IT23B33,DevOps,3,Full Stack Development,Programme Elective,option
+Rajalakshmi Engineering College,REC,Information Technology,IT,R2023,,CS23A35,Web Application Security,3,Full Stack Development,Programme Elective,option
+Rajalakshmi Engineering College,REC,Information Technology,IT,R2023,,IT23B14,Advanced Java Programming,3,Full Stack Development,Programme Elective,option
+Rajalakshmi Engineering College,REC,Information Technology,IT,R2023,,IT23C11,Business Intelligence,3,Software Technology Management,Programme Elective,option
+Rajalakshmi Engineering College,REC,Information Technology,IT,R2023,,IT23C12,Software Project Management,3,Software Technology Management,Programme Elective,option
+Rajalakshmi Engineering College,REC,Information Technology,IT,R2023,,IT23C13,Startup Management,3,Software Technology Management,Programme Elective,option
+Rajalakshmi Engineering College,REC,Information Technology,IT,R2023,,IT23C14,Lateral Thinking Techniques,3,Software Technology Management,Programme Elective,option
+Rajalakshmi Engineering College,REC,Information Technology,IT,R2023,,IT23C15,Software Quality Assurance,3,Software Technology Management,Programme Elective,option
+Rajalakshmi Engineering College,REC,Information Technology,IT,R2023,,IT23C16,Green Computing,3,Software Technology Management,Programme Elective,option
+Rajalakshmi Engineering College,REC,Information Technology,IT,R2023,,IT23C17,Ubiquitous Computing,3,Software Technology Management,Programme Elective,option
+Rajalakshmi Engineering College,REC,Information Technology,IT,R2023,,IT23C18,Agile Methodologies,3,Software Technology Management,Programme Elective,option
+Rajalakshmi Engineering College,REC,Information Technology,IT,R2023,,IT23C31,Software Testing,3,Software Technology Management,Programme Elective,option
+Rajalakshmi Engineering College,REC,Information Technology,IT,R2023,,CS23A37,Augmented Reality and Virtual Reality,3,Virtual and Augmented Reality,Programme Elective,option
+Rajalakshmi Engineering College,REC,Information Technology,IT,R2023,,CD23C22,Data Visualization,3,Virtual and Augmented Reality,Programme Elective,option
+Rajalakshmi Engineering College,REC,Information Technology,IT,R2023,,AI23B11,Information Visualization,3,Virtual and Augmented Reality,Programme Elective,option
+Rajalakshmi Engineering College,REC,Information Technology,IT,R2023,,CS23A38,Digital Marketing,3,Virtual and Augmented Reality,Programme Elective,option
+Rajalakshmi Engineering College,REC,Information Technology,IT,R2023,,CD23721,Visual Effects,3,Virtual and Augmented Reality,Programme Elective,option
+Rajalakshmi Engineering College,REC,Information Technology,IT,R2023,,CD23731,Film Making and Radio Production,3,Virtual and Augmented Reality,Programme Elective,option
+Rajalakshmi Engineering College,REC,Information Technology,IT,R2023,,CS23A34,User Interface Design,3,Virtual and Augmented Reality,Programme Elective,option
+Rajalakshmi Engineering College,REC,Information Technology,IT,R2023,,IT23E31,Graphics and Multimedia,3,Virtual and Augmented Reality,Programme Elective,option
+Rajalakshmi Engineering College,REC,Information Technology,IT,R2023,,AD23A31,Customer Analytics and Opinion Mining,3,Data Science,Programme Elective,option
+Rajalakshmi Engineering College,REC,Information Technology,IT,R2023,,AD23A32,Explorative and Forecasting Analytics,3,Data Science,Programme Elective,option
+Rajalakshmi Engineering College,REC,Information Technology,IT,R2023,,AD23A33,Bio Informatics Systems,3,Data Science,Programme Elective,option
+Rajalakshmi Engineering College,REC,Information Technology,IT,R2023,,IT23D11,Deep Learning Concepts,3,Data Science,Programme Elective,option
+Rajalakshmi Engineering College,REC,Information Technology,IT,R2023,,AD23B32,Text and Speech Analysis,3,Data Science,Programme Elective,option
+Rajalakshmi Engineering College,REC,Information Technology,IT,R2023,,CS23A31,Business Analytics,3,Data Science,Programme Elective,option
+Rajalakshmi Engineering College,REC,Information Technology,IT,R2023,,AI23B34,Human Computer Interaction,3,Data Science,Programme Elective,option
+Rajalakshmi Engineering College,REC,Information Technology,IT,R2023,,AI23B12,Cognitive Science,3,Data Science,Programme Elective,option
+Rajalakshmi Engineering College,REC,Information Technology,IT,R2023,,AI23B31,Knowledge Representation and Reasoning,3,Data Science,Programme Elective,option
+Rajalakshmi Engineering College,REC,Information Technology,IT,R2023,,CR23A11,Security Assessment and Risk Analysis,3,Cyber Security,Programme Elective,option
+Rajalakshmi Engineering College,REC,Information Technology,IT,R2023,,CS23A11,Malware Detection and Analysis,3,Cyber Security,Programme Elective,option
+Rajalakshmi Engineering College,REC,Information Technology,IT,R2023,,CR23A31,Ethical Hacking and Security,3,Cyber Security,Programme Elective,option
+Rajalakshmi Engineering College,REC,Information Technology,IT,R2023,,CR23A32,Digital and Mobile Forensics,3,Cyber Security,Programme Elective,option
+Rajalakshmi Engineering College,REC,Information Technology,IT,R2023,,CR23A33,Cryptocurrency and Blockchain Technologies,3,Cyber Security,Programme Elective,option
+Rajalakshmi Engineering College,REC,Information Technology,IT,R2023,,CR23A34,Security and Privacy in Cloud,3,Cyber Security,Programme Elective,option
+Rajalakshmi Engineering College,REC,Information Technology,IT,R2023,,CR23A35,Social Network Security,3,Cyber Security,Programme Elective,option
+Rajalakshmi Engineering College,REC,Information Technology,IT,R2023,,CS23A35,Web Application Security,3,Cyber Security,Programme Elective,option
+Rajalakshmi Engineering College,REC,Information Technology,IT,R2023,,CR23A36,Information Security and Management,3,Cyber Security,Programme Elective,option
+Rajalakshmi Engineering College,REC,Information Technology,IT,R2023,,IT23O31,Data Science using Python,3,Open Elective,Open Elective,option

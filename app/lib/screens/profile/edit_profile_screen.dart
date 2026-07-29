@@ -6,10 +6,9 @@ import '../../models/api_models.dart';
 import '../../models/syllabus_models.dart';
 import '../../services/api_service.dart';
 import '../../services/auth_service.dart';
-import '../../services/college_service.dart';
 import '../../services/syllabus_service.dart';
 import '../../providers/app_state_notifier.dart';
-import '../../utils/app_colors.dart';
+import '../../providers/reference_data_store.dart';
 import '../../utils/app_theme.dart';
 import '../../utils/department_constants.dart';
 import '../../widgets/responsive_layout.dart';
@@ -77,8 +76,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     // Prefill instantly from the cache /auth/sync already populated (splash,
     // home screen, ...) instead of blocking this screen on a fresh sync.
     _applyProfile(
-      Provider.of<AppStateNotifier>(context, listen: false).userProfile ??
-          AuthService.instance.profile,
+      Provider.of<AppStateNotifier>(context, listen: false).userProfileStale,
       markAsInitial: true,
     );
     _loadProfile();
@@ -102,10 +100,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     // Colleges list gates the dropdowns (an id/name alone can't render a
     // selection without it) — that's the only thing worth a loading state.
     try {
-      final collegeService = CollegeService();
-      _colleges = await collegeService.listColleges();
+      _colleges = await ReferenceDataStore.instance.listColleges();
       _colleges.sort((a, b) => a.name.compareTo(b.name));
-      _departments = await collegeService.listDepartments();
+      _departments = await ReferenceDataStore.instance.listDepartments();
       _departments.sort((a, b) => a.name.compareTo(b.name));
     } catch (_) {}
     if (mounted) setState(() => _isLoading = false);

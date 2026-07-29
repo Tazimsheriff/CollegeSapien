@@ -1,0 +1,104 @@
+college,college_code,course,course_code,regulation,semester,subject_code,subject_name,credits,category,elective_type,record_type
+Rajalakshmi Engineering College,REC,Computer Science and Business Systems,CSBS,R2023,1,HS23112,Business Communication and Value Science I,2,HS,,core
+Rajalakshmi Engineering College,REC,Computer Science and Business Systems,CSBS,R2023,1,MA23115,Discrete Mathematics,4,BS,,core
+Rajalakshmi Engineering College,REC,Computer Science and Business Systems,CSBS,R2023,1,MA23114,Probability and Calculus,4,BS,,core
+Rajalakshmi Engineering College,REC,Computer Science and Business Systems,CSBS,R2023,1,GE23117,தமிழர் மரபு / Heritage of Tamils,1,HS,,core
+Rajalakshmi Engineering College,REC,Computer Science and Business Systems,CSBS,R2023,1,CB23131,Fundamentals of Computer Science,4,PC,,core
+Rajalakshmi Engineering College,REC,Computer Science and Business Systems,CSBS,R2023,1,EE23131,Principles of Electrical Engineering,3,ES,,core
+Rajalakshmi Engineering College,REC,Computer Science and Business Systems,CSBS,R2023,1,PH23133,Physics for Computing Science,4,BS,,core
+Rajalakshmi Engineering College,REC,Computer Science and Business Systems,CSBS,R2023,1,MC23111,Indian Constitution and Freedom Movement,0,MC,,core
+Rajalakshmi Engineering College,REC,Computer Science and Business Systems,CSBS,R2023,2,MA23211,Linear Algebra,4,BS,,core
+Rajalakshmi Engineering College,REC,Computer Science and Business Systems,CSBS,R2023,2,BA23217,Fundamentals of Economics,2,MS,,core
+Rajalakshmi Engineering College,REC,Computer Science and Business Systems,CSBS,R2023,2,GE23217,தமிழரும் தொழில்நுட்பமும் / Tamils and Technology,1,HS,,core
+Rajalakshmi Engineering College,REC,Computer Science and Business Systems,CSBS,R2023,2,MA23231,Statistical Modeling,4,BS,,core
+Rajalakshmi Engineering College,REC,Computer Science and Business Systems,CSBS,R2023,2,CB23231,Data Structures and Algorithms,5,PC,,core
+Rajalakshmi Engineering College,REC,Computer Science and Business Systems,CSBS,R2023,2,EC23242,Principles of Electronics,3,ES,,core
+Rajalakshmi Engineering College,REC,Computer Science and Business Systems,CSBS,R2023,2,CS23221,Python Programming Lab,2,PC,,core
+Rajalakshmi Engineering College,REC,Computer Science and Business Systems,CSBS,R2023,2,HS23223,Business Communication and Value Science II,2,HS,,core
+Rajalakshmi Engineering College,REC,Computer Science and Business Systems,CSBS,R2023,3,CB23311,Formal Language and Automata Theory,3,PC,,core
+Rajalakshmi Engineering College,REC,Computer Science and Business Systems,CSBS,R2023,3,CB23312,Computer Organization and Architecture,3,PC,,core
+Rajalakshmi Engineering College,REC,Computer Science and Business Systems,CSBS,R2023,3,CB23331,Computational Statistics,4,PC,,core
+Rajalakshmi Engineering College,REC,Computer Science and Business Systems,CSBS,R2023,3,CB23332,Software Engineering,4,PC,,core
+Rajalakshmi Engineering College,REC,Computer Science and Business Systems,CSBS,R2023,3,CB23333,Database Technology,4,PC,,core
+Rajalakshmi Engineering College,REC,Computer Science and Business Systems,CSBS,R2023,3,CS23333,Object Oriented Programming Using Java,4,PC,,core
+Rajalakshmi Engineering College,REC,Computer Science and Business Systems,CSBS,R2023,3,MC23313,Environmental Sciences,0,MC,,core
+Rajalakshmi Engineering College,REC,Computer Science and Business Systems,CSBS,R2023,4,CB23411,"Introduction to Innovation, IP Management and Entrepreneurship",3,EEC,,core
+Rajalakshmi Engineering College,REC,Computer Science and Business Systems,CSBS,R2023,4,BA23412,Fundamentals of Management,2,MS,,core
+Rajalakshmi Engineering College,REC,Computer Science and Business Systems,CSBS,R2023,4,CB23431,Operating System Concepts,4,PC,,core
+Rajalakshmi Engineering College,REC,Computer Science and Business Systems,CSBS,R2023,4,CB23432,Software Design with UML,3,PC,,core
+Rajalakshmi Engineering College,REC,Computer Science and Business Systems,CSBS,R2023,4,CB23433,Analysis of Algorithms and Design,4,PC,,core
+Rajalakshmi Engineering College,REC,Computer Science and Business Systems,CSBS,R2023,4,MA23437,Optimization Techniques,4,BS,,core
+Rajalakshmi Engineering College,REC,Computer Science and Business Systems,CSBS,R2023,4,HS23421,Business Communication and Value Science III,2,HS,,core
+Rajalakshmi Engineering College,REC,Computer Science and Business Systems,CSBS,R2023,4,GE23421,Soft Skills-I,1,EEC,,core
+Rajalakshmi Engineering College,REC,Computer Science and Business Systems,CSBS,R2023,5,BA23511,Principles of Financial Management,2,MS,,core
+Rajalakshmi Engineering College,REC,Computer Science and Business Systems,CSBS,R2023,5,,Open Elective I,3,OE,Open Elective,elective
+Rajalakshmi Engineering College,REC,Computer Science and Business Systems,CSBS,R2023,5,CB23531,Computer Network Technology,4,PC,,core
+Rajalakshmi Engineering College,REC,Computer Science and Business Systems,CSBS,R2023,5,CB23532,Artificial Intelligence,4,PC,,core
+Rajalakshmi Engineering College,REC,Computer Science and Business Systems,CSBS,R2023,5,,Professional Elective I,4,PE,Programme Elective,elective
+Rajalakshmi Engineering College,REC,Computer Science and Business Systems,CSBS,R2023,5,GE23627,Design Thinking and Innovation,2,PC,,core
+Rajalakshmi Engineering College,REC,Computer Science and Business Systems,CSBS,R2023,5,GE23521,Soft Skills-II,1,EEC,,core
+Rajalakshmi Engineering College,REC,Computer Science and Business Systems,CSBS,R2023,5,CB23621,Internship,1,EEC,,core
+Rajalakshmi Engineering College,REC,Computer Science and Business Systems,CSBS,R2023,6,BA23611,Financial and Cost Accounting,2,MS,,core
+Rajalakshmi Engineering College,REC,Computer Science and Business Systems,CSBS,R2023,6,BA23612,Business Strategy,2,MS,,core
+Rajalakshmi Engineering College,REC,Computer Science and Business Systems,CSBS,R2023,6,CB23631,Machine Learning,4,PC,,core
+Rajalakshmi Engineering College,REC,Computer Science and Business Systems,CSBS,R2023,6,CB23632,"Cloud, Micro services and Application",4,PC,,core
+Rajalakshmi Engineering College,REC,Computer Science and Business Systems,CSBS,R2023,6,CB23633,Usability Design of Software Applications,3,PC,,core
+Rajalakshmi Engineering College,REC,Computer Science and Business Systems,CSBS,R2023,6,,Professional Elective II,3,PE,Programme Elective,elective
+Rajalakshmi Engineering College,REC,Computer Science and Business Systems,CSBS,R2023,6,HS23621,Business Communication and Value Science IV,2,HS,,core
+Rajalakshmi Engineering College,REC,Computer Science and Business Systems,CSBS,R2023,6,GE23621,Problem Solving Techniques,1,EEC,,core
+Rajalakshmi Engineering College,REC,Computer Science and Business Systems,CSBS,R2023,7,,Open Elective II,3,OE,Open Elective,elective
+Rajalakshmi Engineering College,REC,Computer Science and Business Systems,CSBS,R2023,7,CB23731,Data Visualization Techniques,3,PC,,core
+Rajalakshmi Engineering College,REC,Computer Science and Business Systems,CSBS,R2023,7,CB23732,IT Project Management,3,PC,,core
+Rajalakshmi Engineering College,REC,Computer Science and Business Systems,CSBS,R2023,7,,Professional Elective III,4,PE,Programme Elective,elective
+Rajalakshmi Engineering College,REC,Computer Science and Business Systems,CSBS,R2023,7,,Professional Elective IV,4,PE,Programme Elective,elective
+Rajalakshmi Engineering College,REC,Computer Science and Business Systems,CSBS,R2023,7,CB23721,Project Evaluation I,2,EEC,,core
+Rajalakshmi Engineering College,REC,Computer Science and Business Systems,CSBS,R2023,8,,Professional Elective V,3,PE,Programme Elective,elective
+Rajalakshmi Engineering College,REC,Computer Science and Business Systems,CSBS,R2023,8,,Professional Elective VI,3,PE,Programme Elective,elective
+Rajalakshmi Engineering College,REC,Computer Science and Business Systems,CSBS,R2023,8,CB23821,Project Evaluation II,8,EEC,,core
+Rajalakshmi Engineering College,REC,Computer Science and Business Systems,CSBS,R2023,,MCB2301,Fundamentals of Business Statistics,3,Business Analytics,Programme Elective,option
+Rajalakshmi Engineering College,REC,Computer Science and Business Systems,CSBS,R2023,,MCB2302,Digital Marketing and Web Analytics,3,Business Analytics,Programme Elective,option
+Rajalakshmi Engineering College,REC,Computer Science and Business Systems,CSBS,R2023,,MCB2303,Operation and Supply Chain Analytics,3,Business Analytics,Programme Elective,option
+Rajalakshmi Engineering College,REC,Computer Science and Business Systems,CSBS,R2023,,CB23A11,Enterprise Resource planning and Development,3,Business Analytics,Programme Elective,option
+Rajalakshmi Engineering College,REC,Computer Science and Business Systems,CSBS,R2023,,MCB2341,Data Science for Business Analytics,4,Business Analytics,Programme Elective,option
+Rajalakshmi Engineering College,REC,Computer Science and Business Systems,CSBS,R2023,,MCB2342,Programming for Data Analytics,4,Business Analytics,Programme Elective,option
+Rajalakshmi Engineering College,REC,Computer Science and Business Systems,CSBS,R2023,,BA23B11,Behavioral Economics,3,Business Systems,Programme Elective,option
+Rajalakshmi Engineering College,REC,Computer Science and Business Systems,CSBS,R2023,,BA23B31,Computational Finance and Modeling,3,Business Systems,Programme Elective,option
+Rajalakshmi Engineering College,REC,Computer Science and Business Systems,CSBS,R2023,,BA23B12,Industrial Psychology,3,Business Systems,Programme Elective,option
+Rajalakshmi Engineering College,REC,Computer Science and Business Systems,CSBS,R2023,,BA23B13,Advance Finance,3,Business Systems,Programme Elective,option
+Rajalakshmi Engineering College,REC,Computer Science and Business Systems,CSBS,R2023,,BA23B14,Essentials of Human Resources Management,3,Business Systems,Programme Elective,option
+Rajalakshmi Engineering College,REC,Computer Science and Business Systems,CSBS,R2023,,BA23B15,Marketing Research and Marketing Management,3,Business Systems,Programme Elective,option
+Rajalakshmi Engineering College,REC,Computer Science and Business Systems,CSBS,R2023,,BA23P12,Fintech and Blockchain Applications in Finance,3,Business Systems,Programme Elective,option
+Rajalakshmi Engineering College,REC,Computer Science and Business Systems,CSBS,R2023,,BA23B16,"Services Science and Service Operational Management",3,Business Systems,Programme Elective,option
+Rajalakshmi Engineering College,REC,Computer Science and Business Systems,CSBS,R2023,,CB23C11,Cognitive Science and Analytics,3,AI Systems,Programme Elective,option
+Rajalakshmi Engineering College,REC,Computer Science and Business Systems,CSBS,R2023,,CB23C31,Image Processing and Pattern Recognition,3,AI Systems,Programme Elective,option
+Rajalakshmi Engineering College,REC,Computer Science and Business Systems,CSBS,R2023,,CB23C12,Generative Artificial Intelligence,3,AI Systems,Programme Elective,option
+Rajalakshmi Engineering College,REC,Computer Science and Business Systems,CSBS,R2023,,CB23C32,Conversational Systems,3,AI Systems,Programme Elective,option
+Rajalakshmi Engineering College,REC,Computer Science and Business Systems,CSBS,R2023,,CB23C33,Algorithmic Business Thinking,3,AI Systems,Programme Elective,option
+Rajalakshmi Engineering College,REC,Computer Science and Business Systems,CSBS,R2023,,AI23632,Natural Language Processing,4,AI Systems,Programme Elective,option
+Rajalakshmi Engineering College,REC,Computer Science and Business Systems,CSBS,R2023,,IT23531,Computer Vision,4,AI Systems,Programme Elective,option
+Rajalakshmi Engineering College,REC,Computer Science and Business Systems,CSBS,R2023,,CB23D31,Data Mining and Analytics,4,Data Analytics,Programme Elective,option
+Rajalakshmi Engineering College,REC,Computer Science and Business Systems,CSBS,R2023,,CB23D32,Decision Support Systems,4,Data Analytics,Programme Elective,option
+Rajalakshmi Engineering College,REC,Computer Science and Business Systems,CSBS,R2023,,CB23D33,"Advanced Social, Text and Media Analytics",4,Data Analytics,Programme Elective,option
+Rajalakshmi Engineering College,REC,Computer Science and Business Systems,CSBS,R2023,,AI23531,Deep Learning,4,Data Analytics,Programme Elective,option
+Rajalakshmi Engineering College,REC,Computer Science and Business Systems,CSBS,R2023,,AI23A36,Big Data Analytics,3,Data Analytics,Programme Elective,option
+Rajalakshmi Engineering College,REC,Computer Science and Business Systems,CSBS,R2023,,AD23A35,Healthcare Analytics,3,Data Analytics,Programme Elective,option
+Rajalakshmi Engineering College,REC,Computer Science and Business Systems,CSBS,R2023,,CB23E31,Information Security,4,Cloud IoT and Security,Programme Elective,option
+Rajalakshmi Engineering College,REC,Computer Science and Business Systems,CSBS,R2023,,CB23E32,Fundamentals of IoT,4,Cloud IoT and Security,Programme Elective,option
+Rajalakshmi Engineering College,REC,Computer Science and Business Systems,CSBS,R2023,,CB23E33,Mobile Computing,3,Cloud IoT and Security,Programme Elective,option
+Rajalakshmi Engineering College,REC,Computer Science and Business Systems,CSBS,R2023,,CB23E34,Cyber security for Business,3,Cloud IoT and Security,Programme Elective,option
+Rajalakshmi Engineering College,REC,Computer Science and Business Systems,CSBS,R2023,,CB23E35,Enterprise Systems,3,Cloud IoT and Security,Programme Elective,option
+Rajalakshmi Engineering College,REC,Computer Science and Business Systems,CSBS,R2023,,CR23A34,Security and Privacy in cloud,3,Cloud IoT and Security,Programme Elective,option
+Rajalakshmi Engineering College,REC,Computer Science and Business Systems,CSBS,R2023,,CB23E36,Cryptology,4,Cloud IoT and Security,Programme Elective,option
+Rajalakshmi Engineering College,REC,Computer Science and Business Systems,CSBS,R2023,,CB23F31,Modern Web Applications,3,Programming and Testing,Programme Elective,option
+Rajalakshmi Engineering College,REC,Computer Science and Business Systems,CSBS,R2023,,CB23F32,Scripting Languages,3,Programming and Testing,Programme Elective,option
+Rajalakshmi Engineering College,REC,Computer Science and Business Systems,CSBS,R2023,,IT23B31,C# and .Net programming,3,Programming and Testing,Programme Elective,option
+Rajalakshmi Engineering College,REC,Computer Science and Business Systems,CSBS,R2023,,IT23C31,Software Testing,3,Programming and Testing,Programme Elective,option
+Rajalakshmi Engineering College,REC,Computer Science and Business Systems,CSBS,R2023,,IT23B33,DevOps,3,Programming and Testing,Programme Elective,option
+Rajalakshmi Engineering College,REC,Computer Science and Business Systems,CSBS,R2023,,CB23F33,IT Workshop,3,Programming and Testing,Programme Elective,option
+Rajalakshmi Engineering College,REC,Computer Science and Business Systems,CSBS,R2023,,CB23F34,Compiler Design Techniques,4,Programming and Testing,Programme Elective,option
+Rajalakshmi Engineering College,REC,Computer Science and Business Systems,CSBS,R2023,,CB23G11,Quantum Computation and Quantum Information,3,Emerging Technologies,Programme Elective,option
+Rajalakshmi Engineering College,REC,Computer Science and Business Systems,CSBS,R2023,,CB23G31,Robotics and Embedded Systems,3,Emerging Technologies,Programme Elective,option
+Rajalakshmi Engineering College,REC,Computer Science and Business Systems,CSBS,R2023,,CS23A32,Robotic Process Automation,3,Emerging Technologies,Programme Elective,option
+Rajalakshmi Engineering College,REC,Computer Science and Business Systems,CSBS,R2023,,CR23A33,Cryptocurrency and Blockchain Technologies,3,Emerging Technologies,Programme Elective,option
+Rajalakshmi Engineering College,REC,Computer Science and Business Systems,CSBS,R2023,,CS23B31,Introduction to Metaverse,3,Emerging Technologies,Programme Elective,option
+Rajalakshmi Engineering College,REC,Computer Science and Business Systems,CSBS,R2023,,CS23A39,Game Development,3,Emerging Technologies,Programme Elective,option

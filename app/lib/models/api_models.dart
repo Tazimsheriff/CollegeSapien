@@ -19,6 +19,12 @@ class College {
       code: json['code'] as String? ?? '',
     );
   }
+
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'name': name,
+        'code': code,
+      };
 }
 
 class UserProfile {
@@ -216,6 +222,22 @@ class HubResource {
           [],
     );
   }
+
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'name': name,
+        'category': category,
+        'department': department,
+        'uploadedBy': uploadedBy,
+        'status': status,
+        'fileUrl': fileUrl,
+        'storagePath': storagePath,
+        'uploaderName': uploaderName,
+        'subjectId': subjectId,
+        'subjectName': subjectName,
+        'regulation': regulation,
+        'keywords': keywords,
+      };
 }
 
 class AdminReport {

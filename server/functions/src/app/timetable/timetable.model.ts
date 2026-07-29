@@ -9,7 +9,7 @@ import { z } from 'zod';
  *       properties:
  *         day:
  *           type: string
- *           enum: [MON, TUE, WED, THU, FRI, SAT]
+ *           enum: [MON, TUE, WED, THU, FRI, SAT, SUN]
  *         startTime:
  *           type: string
  *         endTime:
@@ -43,7 +43,7 @@ import { z } from 'zod';
  */
 
 export const TimetableClassSchema = z.object({
-  day: z.enum(['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT']),
+  day: z.enum(['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN']),
   startTime: z.string(),
   endTime: z.string(),
   room: z.string().optional(),

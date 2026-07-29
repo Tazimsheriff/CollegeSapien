@@ -1,0 +1,2169 @@
+{
+  "college": "RMD",
+  "college_code": "RMD",
+  "course": "Computer Science and Engineering",
+  "course_code": "CSE",
+  "regulation": "R2024",
+  "subjects": [
+    {
+      "semester": 1,
+      "subject_code": "24MA101",
+      "subject_name": "Matrices and Calculus",
+      "credits": 4,
+      "category": "BSC",
+      "elective_type": null,
+      "record_type": "core"
+    },
+    {
+      "semester": 1,
+      "subject_code": "24CS101",
+      "subject_name": "Programming in C++ (Lab Integrated)",
+      "credits": 4.5,
+      "category": "ESC",
+      "elective_type": null,
+      "record_type": "core"
+    },
+    {
+      "semester": 1,
+      "subject_code": "24CS102",
+      "subject_name": "Software Development Practices (Lab Integrated)",
+      "credits": 4.5,
+      "category": "ESC",
+      "elective_type": null,
+      "record_type": "core"
+    },
+    {
+      "semester": 1,
+      "subject_code": "24CH101",
+      "subject_name": "Engineering Chemistry (Lab Integrated)",
+      "credits": 4,
+      "category": "BSC",
+      "elective_type": null,
+      "record_type": "core"
+    },
+    {
+      "semester": 1,
+      "subject_code": "24EC101",
+      "subject_name": "Digital Principles and System Design (Lab Integrated)",
+      "credits": 4,
+      "category": "ESC",
+      "elective_type": null,
+      "record_type": "core"
+    },
+    {
+      "semester": 1,
+      "subject_code": "24GE101",
+      "subject_name": "Heritage of Tamils",
+      "credits": 1,
+      "category": "HSMC",
+      "elective_type": null,
+      "record_type": "core"
+    },
+    {
+      "semester": 1,
+      "subject_code": "24MC101",
+      "subject_name": "Students Induction Program (Non Credit)",
+      "credits": 0,
+      "category": "MC",
+      "elective_type": null,
+      "record_type": "core"
+    },
+    {
+      "semester": 1,
+      "subject_code": "24MC102",
+      "subject_name": "Programming in C (Non Credit)",
+      "credits": 0,
+      "category": "MC",
+      "elective_type": null,
+      "record_type": "core"
+    },
+    {
+      "semester": 1,
+      "subject_code": "24HS111",
+      "subject_name": "Interpersonal Skills, Psychometric Analysis and Career Development",
+      "credits": 1,
+      "category": "EEC",
+      "elective_type": null,
+      "record_type": "core"
+    },
+    {
+      "semester": 1,
+      "subject_code": "24GE111",
+      "subject_name": "Idea Lab I (Non Credit)",
+      "credits": 0,
+      "category": "EEC",
+      "elective_type": null,
+      "record_type": "core"
+    },
+    {
+      "semester": 2,
+      "subject_code": "24MA201",
+      "subject_name": "Linear Algebra and Applications (Lab Integrated)",
+      "credits": 4,
+      "category": "BSC",
+      "elective_type": null,
+      "record_type": "core"
+    },
+    {
+      "semester": 2,
+      "subject_code": "24CS201",
+      "subject_name": "Data Structures (Lab Integrated)",
+      "credits": 4.5,
+      "category": "ESC",
+      "elective_type": null,
+      "record_type": "core"
+    },
+    {
+      "semester": 2,
+      "subject_code": "24CS202",
+      "subject_name": "Java Programming (Lab Integrated)",
+      "credits": 4.5,
+      "category": "ESC",
+      "elective_type": null,
+      "record_type": "core"
+    },
+    {
+      "semester": 2,
+      "subject_code": "24PH201",
+      "subject_name": "Physics for Information Science (Lab Integrated)",
+      "credits": 4,
+      "category": "BSC",
+      "elective_type": null,
+      "record_type": "core"
+    },
+    {
+      "semester": 2,
+      "subject_code": "24AM201",
+      "subject_name": "Introduction to Artificial Intelligence (Lab Integrated)",
+      "credits": 3,
+      "category": "ESC",
+      "elective_type": null,
+      "record_type": "core"
+    },
+    {
+      "semester": 2,
+      "subject_code": "24GE201",
+      "subject_name": "Tamils and Technology",
+      "credits": 1,
+      "category": "HSMC",
+      "elective_type": null,
+      "record_type": "core"
+    },
+    {
+      "semester": 2,
+      "subject_code": "24GE211",
+      "subject_name": "Idea Lab II",
+      "credits": 1,
+      "category": "EEC",
+      "elective_type": null,
+      "record_type": "core"
+    },
+    {
+      "semester": 2,
+      "subject_code": "24HS211",
+      "subject_name": "Innovation and Creativity Skills Development",
+      "credits": 1,
+      "category": "EEC",
+      "elective_type": null,
+      "record_type": "core"
+    },
+    {
+      "semester": 2,
+      "subject_code": "24MC201",
+      "subject_name": "Yoga for Stress Management (Non Credit)",
+      "credits": 0,
+      "category": "AC",
+      "elective_type": null,
+      "record_type": "core"
+    },
+    {
+      "semester": 2,
+      "subject_code": "24CH102",
+      "subject_name": "Environmental Science & Sustainability (Non Credit)",
+      "credits": 0,
+      "category": "MC",
+      "elective_type": null,
+      "record_type": "core"
+    },
+    {
+      "semester": 3,
+      "subject_code": "24MA301",
+      "subject_name": "Discrete Mathematics",
+      "credits": 4,
+      "category": "BSC",
+      "elective_type": null,
+      "record_type": "core"
+    },
+    {
+      "semester": 3,
+      "subject_code": "24GE301",
+      "subject_name": "Universal Human Values II: Understanding Harmony",
+      "credits": 3,
+      "category": "HSMC",
+      "elective_type": null,
+      "record_type": "core"
+    },
+    {
+      "semester": 3,
+      "subject_code": "24CS301",
+      "subject_name": "Computer Organization and Architecture",
+      "credits": 3,
+      "category": "ESC",
+      "elective_type": null,
+      "record_type": "core"
+    },
+    {
+      "semester": 3,
+      "subject_code": "24CS302",
+      "subject_name": "Advanced Java Programming",
+      "credits": 4.5,
+      "category": "PCC",
+      "elective_type": null,
+      "record_type": "core"
+    },
+    {
+      "semester": 3,
+      "subject_code": "24CS303",
+      "subject_name": "Database Management Systems",
+      "credits": 4.5,
+      "category": "PCC",
+      "elective_type": null,
+      "record_type": "core"
+    },
+    {
+      "semester": 3,
+      "subject_code": "24CS304",
+      "subject_name": "Operating Systems",
+      "credits": 3,
+      "category": "PCC",
+      "elective_type": null,
+      "record_type": "core"
+    },
+    {
+      "semester": 3,
+      "subject_code": "24GE311",
+      "subject_name": "Product Development Lab - 1",
+      "credits": 1,
+      "category": "EEC",
+      "elective_type": null,
+      "record_type": "core"
+    },
+    {
+      "semester": 3,
+      "subject_code": "24CS311",
+      "subject_name": "Aptitude and Coding Skills I",
+      "credits": 1.5,
+      "category": "EEC",
+      "elective_type": null,
+      "record_type": "core"
+    },
+    {
+      "semester": 3,
+      "subject_code": "24CS312",
+      "subject_name": "Internship/Seminar (1 Week)",
+      "credits": 0.5,
+      "category": "EEC",
+      "elective_type": null,
+      "record_type": "core"
+    },
+    {
+      "semester": 3,
+      "subject_code": "24MC301",
+      "subject_name": "Indian Constitution (Non Credit)",
+      "credits": 0,
+      "category": "MC",
+      "elective_type": null,
+      "record_type": "core"
+    },
+    {
+      "semester": 4,
+      "subject_code": "24MA401",
+      "subject_name": "Probability and Statistics",
+      "credits": 4,
+      "category": "BSC",
+      "elective_type": null,
+      "record_type": "core"
+    },
+    {
+      "semester": 4,
+      "subject_code": "24CS401",
+      "subject_name": "Computer Networks",
+      "credits": 4,
+      "category": "PCC",
+      "elective_type": null,
+      "record_type": "core"
+    },
+    {
+      "semester": 4,
+      "subject_code": "24CS402",
+      "subject_name": "Design and Analysis of Algorithms",
+      "credits": 4,
+      "category": "PCC",
+      "elective_type": null,
+      "record_type": "core"
+    },
+    {
+      "semester": 4,
+      "subject_code": "24IT402",
+      "subject_name": "Web Development Frameworks",
+      "credits": 4.5,
+      "category": "PCC",
+      "elective_type": null,
+      "record_type": "core"
+    },
+    {
+      "semester": 4,
+      "subject_code": "24GE411",
+      "subject_name": "Product Development Lab - 2",
+      "credits": 1,
+      "category": "EEC",
+      "elective_type": null,
+      "record_type": "core"
+    },
+    {
+      "semester": 4,
+      "subject_code": "24CS411",
+      "subject_name": "Aptitude and Coding Skills II",
+      "credits": 1.5,
+      "category": "EEC",
+      "elective_type": null,
+      "record_type": "core"
+    },
+    {
+      "semester": 4,
+      "subject_code": null,
+      "subject_name": "Value Education (Non Credit)",
+      "credits": 0,
+      "category": "AC",
+      "elective_type": null,
+      "record_type": "core"
+    },
+    {
+      "semester": 5,
+      "subject_code": "24CS501",
+      "subject_name": "Theory of Computation",
+      "credits": 3,
+      "category": "PCC",
+      "elective_type": null,
+      "record_type": "core"
+    },
+    {
+      "semester": 5,
+      "subject_code": "24CS502",
+      "subject_name": "Distributed and Cloud Computing",
+      "credits": 4,
+      "category": "PCC",
+      "elective_type": null,
+      "record_type": "core"
+    },
+    {
+      "semester": 5,
+      "subject_code": null,
+      "subject_name": "Machine Learning",
+      "credits": 4,
+      "category": "PCC",
+      "elective_type": null,
+      "record_type": "core"
+    },
+    {
+      "semester": 5,
+      "subject_code": null,
+      "subject_name": "Professional Communication - I (TOEFL)",
+      "credits": 2,
+      "category": "HSMC",
+      "elective_type": null,
+      "record_type": "core"
+    },
+    {
+      "semester": 5,
+      "subject_code": "24GE511",
+      "subject_name": "Product Development Lab - 3",
+      "credits": 1,
+      "category": "EEC",
+      "elective_type": null,
+      "record_type": "core"
+    },
+    {
+      "semester": 5,
+      "subject_code": "24CS511",
+      "subject_name": "Advanced Aptitude and Coding Skills I",
+      "credits": 1.5,
+      "category": "EEC",
+      "elective_type": null,
+      "record_type": "core"
+    },
+    {
+      "semester": 5,
+      "subject_code": "24CS512",
+      "subject_name": "Internship/Seminar (2 Weeks)",
+      "credits": 1,
+      "category": "EEC",
+      "elective_type": null,
+      "record_type": "core"
+    },
+    {
+      "semester": 5,
+      "subject_code": null,
+      "subject_name": "Essence of Indian Traditional Knowledge (Non Credit)",
+      "credits": 0,
+      "category": "MC",
+      "elective_type": null,
+      "record_type": "core"
+    },
+    {
+      "semester": 6,
+      "subject_code": "24CS601",
+      "subject_name": "Compiler Design",
+      "credits": 4,
+      "category": "PCC",
+      "elective_type": null,
+      "record_type": "core"
+    },
+    {
+      "semester": 6,
+      "subject_code": "24CS602",
+      "subject_name": "Cryptography and Cyber Security",
+      "credits": 3,
+      "category": "PCC",
+      "elective_type": null,
+      "record_type": "core"
+    },
+    {
+      "semester": 6,
+      "subject_code": "24CS603",
+      "subject_name": "Object Oriented Software Engineering",
+      "credits": 3,
+      "category": "PCC",
+      "elective_type": null,
+      "record_type": "core"
+    },
+    {
+      "semester": 6,
+      "subject_code": null,
+      "subject_name": "Design Thinking",
+      "credits": 2,
+      "category": "HSMC",
+      "elective_type": null,
+      "record_type": "core"
+    },
+    {
+      "semester": 6,
+      "subject_code": null,
+      "subject_name": "Professional Communication - II (TOEFL)",
+      "credits": 1,
+      "category": "HSMC",
+      "elective_type": null,
+      "record_type": "core"
+    },
+    {
+      "semester": 6,
+      "subject_code": "24GE611",
+      "subject_name": "Product Development Lab - 4",
+      "credits": 1,
+      "category": "EEC",
+      "elective_type": null,
+      "record_type": "core"
+    },
+    {
+      "semester": 6,
+      "subject_code": "22CS611",
+      "subject_name": "Advanced Aptitude and Coding Skills II",
+      "credits": 1.5,
+      "category": "EEC",
+      "elective_type": null,
+      "record_type": "core"
+    },
+    {
+      "semester": 6,
+      "subject_code": null,
+      "subject_name": "Personality Development (Non Credit)",
+      "credits": 0,
+      "category": "AC",
+      "elective_type": null,
+      "record_type": "core"
+    },
+    {
+      "semester": 7,
+      "subject_code": "24CS701",
+      "subject_name": "Data Analytics",
+      "credits": 4,
+      "category": "PCC",
+      "elective_type": null,
+      "record_type": "core"
+    },
+    {
+      "semester": 7,
+      "subject_code": "24CS702",
+      "subject_name": "Mobile Computing",
+      "credits": 3,
+      "category": "PCC",
+      "elective_type": null,
+      "record_type": "core"
+    },
+    {
+      "semester": 7,
+      "subject_code": null,
+      "subject_name": "Internship/Seminar (4 weeks)",
+      "credits": 2,
+      "category": "EEC",
+      "elective_type": null,
+      "record_type": "core"
+    },
+    {
+      "semester": 8,
+      "subject_code": "24CS811",
+      "subject_name": "Project",
+      "credits": 8,
+      "category": "EEC",
+      "elective_type": null,
+      "record_type": "core"
+    },
+    {
+      "semester": 4,
+      "subject_code": "24CS901",
+      "subject_name": "Ethical Hacking (Lab Integrated) (Cyber Security Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective I",
+      "record_type": "option"
+    },
+    {
+      "semester": 4,
+      "subject_code": "24CS902",
+      "subject_name": "Social Network Security (Lab Integrated) (Cyber Security Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective I",
+      "record_type": "option"
+    },
+    {
+      "semester": 4,
+      "subject_code": "24CS903",
+      "subject_name": "Blockchain Technology (Lab Integrated) (Cyber Security Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective I",
+      "record_type": "option"
+    },
+    {
+      "semester": 4,
+      "subject_code": "24CS904",
+      "subject_name": "Cloud and Data Security (Cyber Security Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective I",
+      "record_type": "option"
+    },
+    {
+      "semester": 4,
+      "subject_code": "24CS905",
+      "subject_name": "Enterprise Cyber Security (Cyber Security Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective I",
+      "record_type": "option"
+    },
+    {
+      "semester": 4,
+      "subject_code": "24CS906",
+      "subject_name": "Digital and Mobile Forensics (Cyber Security Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective I",
+      "record_type": "option"
+    },
+    {
+      "semester": 4,
+      "subject_code": "24IT903",
+      "subject_name": "Rest Application Development using Spring Boot and JPA (Cyber Security Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective I",
+      "record_type": "option"
+    },
+    {
+      "semester": 4,
+      "subject_code": "24CS911",
+      "subject_name": "Cloud Foundations (Lab Integrated) (Cloud Computing Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective I",
+      "record_type": "option"
+    },
+    {
+      "semester": 4,
+      "subject_code": "24CS912",
+      "subject_name": "Virtualization (Cloud Computing Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective I",
+      "record_type": "option"
+    },
+    {
+      "semester": 4,
+      "subject_code": "24CS913",
+      "subject_name": "Data Engineering in Cloud (Cloud Computing Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective I",
+      "record_type": "option"
+    },
+    {
+      "semester": 4,
+      "subject_code": "24CS914",
+      "subject_name": "Devops (Lab Integrated) (Cloud Computing Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective I",
+      "record_type": "option"
+    },
+    {
+      "semester": 4,
+      "subject_code": "24CS915",
+      "subject_name": "Machine Learning for NLP in Cloud (Cloud Computing Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective I",
+      "record_type": "option"
+    },
+    {
+      "semester": 4,
+      "subject_code": "24CS916",
+      "subject_name": "Microservice Architecture (Cloud Computing Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective I",
+      "record_type": "option"
+    },
+    {
+      "semester": 4,
+      "subject_code": "24IT903",
+      "subject_name": "Rest Application Development using Spring Boot and JPA (Cloud Computing Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective I",
+      "record_type": "option"
+    },
+    {
+      "semester": 4,
+      "subject_code": "24CS921",
+      "subject_name": "UI/UX Design (Lab Integrated) (Full Stack Technology Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective I",
+      "record_type": "option"
+    },
+    {
+      "semester": 4,
+      "subject_code": "24CS922",
+      "subject_name": "Software Testing and Automation (Full Stack Technology Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective I",
+      "record_type": "option"
+    },
+    {
+      "semester": 4,
+      "subject_code": "24CS903",
+      "subject_name": "Blockchain Technology (Lab Integrated) (Full Stack Technology Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective I",
+      "record_type": "option"
+    },
+    {
+      "semester": 4,
+      "subject_code": "24CS923",
+      "subject_name": "Usability Design of Software Application (Full Stack Technology Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective I",
+      "record_type": "option"
+    },
+    {
+      "semester": 4,
+      "subject_code": "24CS914",
+      "subject_name": "Devops (Lab Integrated) (Full Stack Technology Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective I",
+      "record_type": "option"
+    },
+    {
+      "semester": 4,
+      "subject_code": "24CS916",
+      "subject_name": "Microservice Architecture (Full Stack Technology Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective I",
+      "record_type": "option"
+    },
+    {
+      "semester": 4,
+      "subject_code": "24IT903",
+      "subject_name": "Rest Application Development using Spring Boot and JPA (Full Stack Technology Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective I",
+      "record_type": "option"
+    },
+    {
+      "semester": 4,
+      "subject_code": null,
+      "subject_name": "Multimedia Computing (Emerging Technologies Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective I",
+      "record_type": "option"
+    },
+    {
+      "semester": 4,
+      "subject_code": "24CS930",
+      "subject_name": "GPU Computing (Emerging Technologies Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective I",
+      "record_type": "option"
+    },
+    {
+      "semester": 4,
+      "subject_code": "24CS931",
+      "subject_name": "Introduction to Augmented and Virtual Reality (Emerging Technologies Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective I",
+      "record_type": "option"
+    },
+    {
+      "semester": 4,
+      "subject_code": "24CS932",
+      "subject_name": "Digital Marketing (Emerging Technologies Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective I",
+      "record_type": "option"
+    },
+    {
+      "semester": 4,
+      "subject_code": "24CS933",
+      "subject_name": "Quantum Computing (Emerging Technologies Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective I",
+      "record_type": "option"
+    },
+    {
+      "semester": 4,
+      "subject_code": "24CS934",
+      "subject_name": "Intelligent Robots (Emerging Technologies Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective I",
+      "record_type": "option"
+    },
+    {
+      "semester": 4,
+      "subject_code": "24CS935",
+      "subject_name": "Next Gen Computing (Emerging Technologies Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective I",
+      "record_type": "option"
+    },
+    {
+      "semester": 4,
+      "subject_code": "24CS936",
+      "subject_name": "Principles of 3D Printing and Design (Emerging Technologies Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective I",
+      "record_type": "option"
+    },
+    {
+      "semester": 4,
+      "subject_code": "24CS937",
+      "subject_name": "High Performance Computing (Emerging Technologies Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective I",
+      "record_type": "option"
+    },
+    {
+      "semester": 5,
+      "subject_code": "24CS901",
+      "subject_name": "Ethical Hacking (Lab Integrated) (Cyber Security Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective II",
+      "record_type": "option"
+    },
+    {
+      "semester": 5,
+      "subject_code": "24CS902",
+      "subject_name": "Social Network Security (Lab Integrated) (Cyber Security Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective II",
+      "record_type": "option"
+    },
+    {
+      "semester": 5,
+      "subject_code": "24CS903",
+      "subject_name": "Blockchain Technology (Lab Integrated) (Cyber Security Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective II",
+      "record_type": "option"
+    },
+    {
+      "semester": 5,
+      "subject_code": "24CS904",
+      "subject_name": "Cloud and Data Security (Cyber Security Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective II",
+      "record_type": "option"
+    },
+    {
+      "semester": 5,
+      "subject_code": "24CS905",
+      "subject_name": "Enterprise Cyber Security (Cyber Security Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective II",
+      "record_type": "option"
+    },
+    {
+      "semester": 5,
+      "subject_code": "24CS906",
+      "subject_name": "Digital and Mobile Forensics (Cyber Security Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective II",
+      "record_type": "option"
+    },
+    {
+      "semester": 5,
+      "subject_code": "24IT903",
+      "subject_name": "Rest Application Development using Spring Boot and JPA (Cyber Security Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective II",
+      "record_type": "option"
+    },
+    {
+      "semester": 5,
+      "subject_code": "24CS911",
+      "subject_name": "Cloud Foundations (Lab Integrated) (Cloud Computing Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective II",
+      "record_type": "option"
+    },
+    {
+      "semester": 5,
+      "subject_code": "24CS912",
+      "subject_name": "Virtualization (Cloud Computing Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective II",
+      "record_type": "option"
+    },
+    {
+      "semester": 5,
+      "subject_code": "24CS913",
+      "subject_name": "Data Engineering in Cloud (Cloud Computing Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective II",
+      "record_type": "option"
+    },
+    {
+      "semester": 5,
+      "subject_code": "24CS914",
+      "subject_name": "Devops (Lab Integrated) (Cloud Computing Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective II",
+      "record_type": "option"
+    },
+    {
+      "semester": 5,
+      "subject_code": "24CS915",
+      "subject_name": "Machine Learning for NLP in Cloud (Cloud Computing Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective II",
+      "record_type": "option"
+    },
+    {
+      "semester": 5,
+      "subject_code": "24CS916",
+      "subject_name": "Microservice Architecture (Cloud Computing Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective II",
+      "record_type": "option"
+    },
+    {
+      "semester": 5,
+      "subject_code": "24IT903",
+      "subject_name": "Rest Application Development using Spring Boot and JPA (Cloud Computing Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective II",
+      "record_type": "option"
+    },
+    {
+      "semester": 5,
+      "subject_code": "24CS921",
+      "subject_name": "UI/UX Design (Lab Integrated) (Full Stack Technology Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective II",
+      "record_type": "option"
+    },
+    {
+      "semester": 5,
+      "subject_code": "24CS922",
+      "subject_name": "Software Testing and Automation (Full Stack Technology Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective II",
+      "record_type": "option"
+    },
+    {
+      "semester": 5,
+      "subject_code": "24CS903",
+      "subject_name": "Blockchain Technology (Lab Integrated) (Full Stack Technology Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective II",
+      "record_type": "option"
+    },
+    {
+      "semester": 5,
+      "subject_code": "24CS923",
+      "subject_name": "Usability Design of Software Application (Full Stack Technology Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective II",
+      "record_type": "option"
+    },
+    {
+      "semester": 5,
+      "subject_code": "24CS914",
+      "subject_name": "Devops (Lab Integrated) (Full Stack Technology Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective II",
+      "record_type": "option"
+    },
+    {
+      "semester": 5,
+      "subject_code": "24CS916",
+      "subject_name": "Microservice Architecture (Full Stack Technology Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective II",
+      "record_type": "option"
+    },
+    {
+      "semester": 5,
+      "subject_code": "24IT903",
+      "subject_name": "Rest Application Development using Spring Boot and JPA (Full Stack Technology Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective II",
+      "record_type": "option"
+    },
+    {
+      "semester": 5,
+      "subject_code": null,
+      "subject_name": "Multimedia Computing (Emerging Technologies Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective II",
+      "record_type": "option"
+    },
+    {
+      "semester": 5,
+      "subject_code": "24CS930",
+      "subject_name": "GPU Computing (Emerging Technologies Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective II",
+      "record_type": "option"
+    },
+    {
+      "semester": 5,
+      "subject_code": "24CS931",
+      "subject_name": "Introduction to Augmented and Virtual Reality (Emerging Technologies Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective II",
+      "record_type": "option"
+    },
+    {
+      "semester": 5,
+      "subject_code": "24CS932",
+      "subject_name": "Digital Marketing (Emerging Technologies Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective II",
+      "record_type": "option"
+    },
+    {
+      "semester": 5,
+      "subject_code": "24CS933",
+      "subject_name": "Quantum Computing (Emerging Technologies Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective II",
+      "record_type": "option"
+    },
+    {
+      "semester": 5,
+      "subject_code": "24CS934",
+      "subject_name": "Intelligent Robots (Emerging Technologies Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective II",
+      "record_type": "option"
+    },
+    {
+      "semester": 5,
+      "subject_code": "24CS935",
+      "subject_name": "Next Gen Computing (Emerging Technologies Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective II",
+      "record_type": "option"
+    },
+    {
+      "semester": 5,
+      "subject_code": "24CS936",
+      "subject_name": "Principles of 3D Printing and Design (Emerging Technologies Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective II",
+      "record_type": "option"
+    },
+    {
+      "semester": 5,
+      "subject_code": "24CS937",
+      "subject_name": "High Performance Computing (Emerging Technologies Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective II",
+      "record_type": "option"
+    },
+    {
+      "semester": 5,
+      "subject_code": "24CS901",
+      "subject_name": "Ethical Hacking (Lab Integrated) (Cyber Security Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective III",
+      "record_type": "option"
+    },
+    {
+      "semester": 5,
+      "subject_code": "24CS902",
+      "subject_name": "Social Network Security (Lab Integrated) (Cyber Security Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective III",
+      "record_type": "option"
+    },
+    {
+      "semester": 5,
+      "subject_code": "24CS903",
+      "subject_name": "Blockchain Technology (Lab Integrated) (Cyber Security Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective III",
+      "record_type": "option"
+    },
+    {
+      "semester": 5,
+      "subject_code": "24CS904",
+      "subject_name": "Cloud and Data Security (Cyber Security Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective III",
+      "record_type": "option"
+    },
+    {
+      "semester": 5,
+      "subject_code": "24CS905",
+      "subject_name": "Enterprise Cyber Security (Cyber Security Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective III",
+      "record_type": "option"
+    },
+    {
+      "semester": 5,
+      "subject_code": "24CS906",
+      "subject_name": "Digital and Mobile Forensics (Cyber Security Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective III",
+      "record_type": "option"
+    },
+    {
+      "semester": 5,
+      "subject_code": "24IT903",
+      "subject_name": "Rest Application Development using Spring Boot and JPA (Cyber Security Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective III",
+      "record_type": "option"
+    },
+    {
+      "semester": 5,
+      "subject_code": "24CS911",
+      "subject_name": "Cloud Foundations (Lab Integrated) (Cloud Computing Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective III",
+      "record_type": "option"
+    },
+    {
+      "semester": 5,
+      "subject_code": "24CS912",
+      "subject_name": "Virtualization (Cloud Computing Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective III",
+      "record_type": "option"
+    },
+    {
+      "semester": 5,
+      "subject_code": "24CS913",
+      "subject_name": "Data Engineering in Cloud (Cloud Computing Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective III",
+      "record_type": "option"
+    },
+    {
+      "semester": 5,
+      "subject_code": "24CS914",
+      "subject_name": "Devops (Lab Integrated) (Cloud Computing Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective III",
+      "record_type": "option"
+    },
+    {
+      "semester": 5,
+      "subject_code": "24CS915",
+      "subject_name": "Machine Learning for NLP in Cloud (Cloud Computing Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective III",
+      "record_type": "option"
+    },
+    {
+      "semester": 5,
+      "subject_code": "24CS916",
+      "subject_name": "Microservice Architecture (Cloud Computing Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective III",
+      "record_type": "option"
+    },
+    {
+      "semester": 5,
+      "subject_code": "24IT903",
+      "subject_name": "Rest Application Development using Spring Boot and JPA (Cloud Computing Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective III",
+      "record_type": "option"
+    },
+    {
+      "semester": 5,
+      "subject_code": "24CS921",
+      "subject_name": "UI/UX Design (Lab Integrated) (Full Stack Technology Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective III",
+      "record_type": "option"
+    },
+    {
+      "semester": 5,
+      "subject_code": "24CS922",
+      "subject_name": "Software Testing and Automation (Full Stack Technology Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective III",
+      "record_type": "option"
+    },
+    {
+      "semester": 5,
+      "subject_code": "24CS903",
+      "subject_name": "Blockchain Technology (Lab Integrated) (Full Stack Technology Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective III",
+      "record_type": "option"
+    },
+    {
+      "semester": 5,
+      "subject_code": "24CS923",
+      "subject_name": "Usability Design of Software Application (Full Stack Technology Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective III",
+      "record_type": "option"
+    },
+    {
+      "semester": 5,
+      "subject_code": "24CS914",
+      "subject_name": "Devops (Lab Integrated) (Full Stack Technology Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective III",
+      "record_type": "option"
+    },
+    {
+      "semester": 5,
+      "subject_code": "24CS916",
+      "subject_name": "Microservice Architecture (Full Stack Technology Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective III",
+      "record_type": "option"
+    },
+    {
+      "semester": 5,
+      "subject_code": "24IT903",
+      "subject_name": "Rest Application Development using Spring Boot and JPA (Full Stack Technology Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective III",
+      "record_type": "option"
+    },
+    {
+      "semester": 5,
+      "subject_code": null,
+      "subject_name": "Multimedia Computing (Emerging Technologies Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective III",
+      "record_type": "option"
+    },
+    {
+      "semester": 5,
+      "subject_code": "24CS930",
+      "subject_name": "GPU Computing (Emerging Technologies Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective III",
+      "record_type": "option"
+    },
+    {
+      "semester": 5,
+      "subject_code": "24CS931",
+      "subject_name": "Introduction to Augmented and Virtual Reality (Emerging Technologies Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective III",
+      "record_type": "option"
+    },
+    {
+      "semester": 5,
+      "subject_code": "24CS932",
+      "subject_name": "Digital Marketing (Emerging Technologies Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective III",
+      "record_type": "option"
+    },
+    {
+      "semester": 5,
+      "subject_code": "24CS933",
+      "subject_name": "Quantum Computing (Emerging Technologies Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective III",
+      "record_type": "option"
+    },
+    {
+      "semester": 5,
+      "subject_code": "24CS934",
+      "subject_name": "Intelligent Robots (Emerging Technologies Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective III",
+      "record_type": "option"
+    },
+    {
+      "semester": 5,
+      "subject_code": "24CS935",
+      "subject_name": "Next Gen Computing (Emerging Technologies Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective III",
+      "record_type": "option"
+    },
+    {
+      "semester": 5,
+      "subject_code": "24CS936",
+      "subject_name": "Principles of 3D Printing and Design (Emerging Technologies Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective III",
+      "record_type": "option"
+    },
+    {
+      "semester": 5,
+      "subject_code": "24CS937",
+      "subject_name": "High Performance Computing (Emerging Technologies Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective III",
+      "record_type": "option"
+    },
+    {
+      "semester": 6,
+      "subject_code": "24CS901",
+      "subject_name": "Ethical Hacking (Lab Integrated) (Cyber Security Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective IV",
+      "record_type": "option"
+    },
+    {
+      "semester": 6,
+      "subject_code": "24CS902",
+      "subject_name": "Social Network Security (Lab Integrated) (Cyber Security Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective IV",
+      "record_type": "option"
+    },
+    {
+      "semester": 6,
+      "subject_code": "24CS903",
+      "subject_name": "Blockchain Technology (Lab Integrated) (Cyber Security Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective IV",
+      "record_type": "option"
+    },
+    {
+      "semester": 6,
+      "subject_code": "24CS904",
+      "subject_name": "Cloud and Data Security (Cyber Security Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective IV",
+      "record_type": "option"
+    },
+    {
+      "semester": 6,
+      "subject_code": "24CS905",
+      "subject_name": "Enterprise Cyber Security (Cyber Security Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective IV",
+      "record_type": "option"
+    },
+    {
+      "semester": 6,
+      "subject_code": "24CS906",
+      "subject_name": "Digital and Mobile Forensics (Cyber Security Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective IV",
+      "record_type": "option"
+    },
+    {
+      "semester": 6,
+      "subject_code": "24IT903",
+      "subject_name": "Rest Application Development using Spring Boot and JPA (Cyber Security Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective IV",
+      "record_type": "option"
+    },
+    {
+      "semester": 6,
+      "subject_code": "24CS911",
+      "subject_name": "Cloud Foundations (Lab Integrated) (Cloud Computing Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective IV",
+      "record_type": "option"
+    },
+    {
+      "semester": 6,
+      "subject_code": "24CS912",
+      "subject_name": "Virtualization (Cloud Computing Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective IV",
+      "record_type": "option"
+    },
+    {
+      "semester": 6,
+      "subject_code": "24CS913",
+      "subject_name": "Data Engineering in Cloud (Cloud Computing Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective IV",
+      "record_type": "option"
+    },
+    {
+      "semester": 6,
+      "subject_code": "24CS914",
+      "subject_name": "Devops (Lab Integrated) (Cloud Computing Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective IV",
+      "record_type": "option"
+    },
+    {
+      "semester": 6,
+      "subject_code": "24CS915",
+      "subject_name": "Machine Learning for NLP in Cloud (Cloud Computing Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective IV",
+      "record_type": "option"
+    },
+    {
+      "semester": 6,
+      "subject_code": "24CS916",
+      "subject_name": "Microservice Architecture (Cloud Computing Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective IV",
+      "record_type": "option"
+    },
+    {
+      "semester": 6,
+      "subject_code": "24IT903",
+      "subject_name": "Rest Application Development using Spring Boot and JPA (Cloud Computing Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective IV",
+      "record_type": "option"
+    },
+    {
+      "semester": 6,
+      "subject_code": "24CS921",
+      "subject_name": "UI/UX Design (Lab Integrated) (Full Stack Technology Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective IV",
+      "record_type": "option"
+    },
+    {
+      "semester": 6,
+      "subject_code": "24CS922",
+      "subject_name": "Software Testing and Automation (Full Stack Technology Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective IV",
+      "record_type": "option"
+    },
+    {
+      "semester": 6,
+      "subject_code": "24CS903",
+      "subject_name": "Blockchain Technology (Lab Integrated) (Full Stack Technology Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective IV",
+      "record_type": "option"
+    },
+    {
+      "semester": 6,
+      "subject_code": "24CS923",
+      "subject_name": "Usability Design of Software Application (Full Stack Technology Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective IV",
+      "record_type": "option"
+    },
+    {
+      "semester": 6,
+      "subject_code": "24CS914",
+      "subject_name": "Devops (Lab Integrated) (Full Stack Technology Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective IV",
+      "record_type": "option"
+    },
+    {
+      "semester": 6,
+      "subject_code": "24CS916",
+      "subject_name": "Microservice Architecture (Full Stack Technology Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective IV",
+      "record_type": "option"
+    },
+    {
+      "semester": 6,
+      "subject_code": "24IT903",
+      "subject_name": "Rest Application Development using Spring Boot and JPA (Full Stack Technology Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective IV",
+      "record_type": "option"
+    },
+    {
+      "semester": 6,
+      "subject_code": null,
+      "subject_name": "Multimedia Computing (Emerging Technologies Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective IV",
+      "record_type": "option"
+    },
+    {
+      "semester": 6,
+      "subject_code": "24CS930",
+      "subject_name": "GPU Computing (Emerging Technologies Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective IV",
+      "record_type": "option"
+    },
+    {
+      "semester": 6,
+      "subject_code": "24CS931",
+      "subject_name": "Introduction to Augmented and Virtual Reality (Emerging Technologies Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective IV",
+      "record_type": "option"
+    },
+    {
+      "semester": 6,
+      "subject_code": "24CS932",
+      "subject_name": "Digital Marketing (Emerging Technologies Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective IV",
+      "record_type": "option"
+    },
+    {
+      "semester": 6,
+      "subject_code": "24CS933",
+      "subject_name": "Quantum Computing (Emerging Technologies Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective IV",
+      "record_type": "option"
+    },
+    {
+      "semester": 6,
+      "subject_code": "24CS934",
+      "subject_name": "Intelligent Robots (Emerging Technologies Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective IV",
+      "record_type": "option"
+    },
+    {
+      "semester": 6,
+      "subject_code": "24CS935",
+      "subject_name": "Next Gen Computing (Emerging Technologies Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective IV",
+      "record_type": "option"
+    },
+    {
+      "semester": 6,
+      "subject_code": "24CS936",
+      "subject_name": "Principles of 3D Printing and Design (Emerging Technologies Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective IV",
+      "record_type": "option"
+    },
+    {
+      "semester": 6,
+      "subject_code": "24CS937",
+      "subject_name": "High Performance Computing (Emerging Technologies Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective IV",
+      "record_type": "option"
+    },
+    {
+      "semester": 7,
+      "subject_code": "24CS901",
+      "subject_name": "Ethical Hacking (Lab Integrated) (Cyber Security Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective V",
+      "record_type": "option"
+    },
+    {
+      "semester": 7,
+      "subject_code": "24CS902",
+      "subject_name": "Social Network Security (Lab Integrated) (Cyber Security Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective V",
+      "record_type": "option"
+    },
+    {
+      "semester": 7,
+      "subject_code": "24CS903",
+      "subject_name": "Blockchain Technology (Lab Integrated) (Cyber Security Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective V",
+      "record_type": "option"
+    },
+    {
+      "semester": 7,
+      "subject_code": "24CS904",
+      "subject_name": "Cloud and Data Security (Cyber Security Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective V",
+      "record_type": "option"
+    },
+    {
+      "semester": 7,
+      "subject_code": "24CS905",
+      "subject_name": "Enterprise Cyber Security (Cyber Security Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective V",
+      "record_type": "option"
+    },
+    {
+      "semester": 7,
+      "subject_code": "24CS906",
+      "subject_name": "Digital and Mobile Forensics (Cyber Security Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective V",
+      "record_type": "option"
+    },
+    {
+      "semester": 7,
+      "subject_code": "24IT903",
+      "subject_name": "Rest Application Development using Spring Boot and JPA (Cyber Security Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective V",
+      "record_type": "option"
+    },
+    {
+      "semester": 7,
+      "subject_code": "24CS911",
+      "subject_name": "Cloud Foundations (Lab Integrated) (Cloud Computing Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective V",
+      "record_type": "option"
+    },
+    {
+      "semester": 7,
+      "subject_code": "24CS912",
+      "subject_name": "Virtualization (Cloud Computing Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective V",
+      "record_type": "option"
+    },
+    {
+      "semester": 7,
+      "subject_code": "24CS913",
+      "subject_name": "Data Engineering in Cloud (Cloud Computing Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective V",
+      "record_type": "option"
+    },
+    {
+      "semester": 7,
+      "subject_code": "24CS914",
+      "subject_name": "Devops (Lab Integrated) (Cloud Computing Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective V",
+      "record_type": "option"
+    },
+    {
+      "semester": 7,
+      "subject_code": "24CS915",
+      "subject_name": "Machine Learning for NLP in Cloud (Cloud Computing Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective V",
+      "record_type": "option"
+    },
+    {
+      "semester": 7,
+      "subject_code": "24CS916",
+      "subject_name": "Microservice Architecture (Cloud Computing Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective V",
+      "record_type": "option"
+    },
+    {
+      "semester": 7,
+      "subject_code": "24IT903",
+      "subject_name": "Rest Application Development using Spring Boot and JPA (Cloud Computing Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective V",
+      "record_type": "option"
+    },
+    {
+      "semester": 7,
+      "subject_code": "24CS921",
+      "subject_name": "UI/UX Design (Lab Integrated) (Full Stack Technology Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective V",
+      "record_type": "option"
+    },
+    {
+      "semester": 7,
+      "subject_code": "24CS922",
+      "subject_name": "Software Testing and Automation (Full Stack Technology Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective V",
+      "record_type": "option"
+    },
+    {
+      "semester": 7,
+      "subject_code": "24CS903",
+      "subject_name": "Blockchain Technology (Lab Integrated) (Full Stack Technology Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective V",
+      "record_type": "option"
+    },
+    {
+      "semester": 7,
+      "subject_code": "24CS923",
+      "subject_name": "Usability Design of Software Application (Full Stack Technology Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective V",
+      "record_type": "option"
+    },
+    {
+      "semester": 7,
+      "subject_code": "24CS914",
+      "subject_name": "Devops (Lab Integrated) (Full Stack Technology Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective V",
+      "record_type": "option"
+    },
+    {
+      "semester": 7,
+      "subject_code": "24CS916",
+      "subject_name": "Microservice Architecture (Full Stack Technology Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective V",
+      "record_type": "option"
+    },
+    {
+      "semester": 7,
+      "subject_code": "24IT903",
+      "subject_name": "Rest Application Development using Spring Boot and JPA (Full Stack Technology Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective V",
+      "record_type": "option"
+    },
+    {
+      "semester": 7,
+      "subject_code": null,
+      "subject_name": "Multimedia Computing (Emerging Technologies Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective V",
+      "record_type": "option"
+    },
+    {
+      "semester": 7,
+      "subject_code": "24CS930",
+      "subject_name": "GPU Computing (Emerging Technologies Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective V",
+      "record_type": "option"
+    },
+    {
+      "semester": 7,
+      "subject_code": "24CS931",
+      "subject_name": "Introduction to Augmented and Virtual Reality (Emerging Technologies Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective V",
+      "record_type": "option"
+    },
+    {
+      "semester": 7,
+      "subject_code": "24CS932",
+      "subject_name": "Digital Marketing (Emerging Technologies Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective V",
+      "record_type": "option"
+    },
+    {
+      "semester": 7,
+      "subject_code": "24CS933",
+      "subject_name": "Quantum Computing (Emerging Technologies Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective V",
+      "record_type": "option"
+    },
+    {
+      "semester": 7,
+      "subject_code": "24CS934",
+      "subject_name": "Intelligent Robots (Emerging Technologies Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective V",
+      "record_type": "option"
+    },
+    {
+      "semester": 7,
+      "subject_code": "24CS935",
+      "subject_name": "Next Gen Computing (Emerging Technologies Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective V",
+      "record_type": "option"
+    },
+    {
+      "semester": 7,
+      "subject_code": "24CS936",
+      "subject_name": "Principles of 3D Printing and Design (Emerging Technologies Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective V",
+      "record_type": "option"
+    },
+    {
+      "semester": 7,
+      "subject_code": "24CS937",
+      "subject_name": "High Performance Computing (Emerging Technologies Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective V",
+      "record_type": "option"
+    },
+    {
+      "semester": 7,
+      "subject_code": "24CS901",
+      "subject_name": "Ethical Hacking (Lab Integrated) (Cyber Security Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective VI",
+      "record_type": "option"
+    },
+    {
+      "semester": 7,
+      "subject_code": "24CS902",
+      "subject_name": "Social Network Security (Lab Integrated) (Cyber Security Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective VI",
+      "record_type": "option"
+    },
+    {
+      "semester": 7,
+      "subject_code": "24CS903",
+      "subject_name": "Blockchain Technology (Lab Integrated) (Cyber Security Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective VI",
+      "record_type": "option"
+    },
+    {
+      "semester": 7,
+      "subject_code": "24CS904",
+      "subject_name": "Cloud and Data Security (Cyber Security Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective VI",
+      "record_type": "option"
+    },
+    {
+      "semester": 7,
+      "subject_code": "24CS905",
+      "subject_name": "Enterprise Cyber Security (Cyber Security Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective VI",
+      "record_type": "option"
+    },
+    {
+      "semester": 7,
+      "subject_code": "24CS906",
+      "subject_name": "Digital and Mobile Forensics (Cyber Security Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective VI",
+      "record_type": "option"
+    },
+    {
+      "semester": 7,
+      "subject_code": "24IT903",
+      "subject_name": "Rest Application Development using Spring Boot and JPA (Cyber Security Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective VI",
+      "record_type": "option"
+    },
+    {
+      "semester": 7,
+      "subject_code": "24CS911",
+      "subject_name": "Cloud Foundations (Lab Integrated) (Cloud Computing Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective VI",
+      "record_type": "option"
+    },
+    {
+      "semester": 7,
+      "subject_code": "24CS912",
+      "subject_name": "Virtualization (Cloud Computing Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective VI",
+      "record_type": "option"
+    },
+    {
+      "semester": 7,
+      "subject_code": "24CS913",
+      "subject_name": "Data Engineering in Cloud (Cloud Computing Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective VI",
+      "record_type": "option"
+    },
+    {
+      "semester": 7,
+      "subject_code": "24CS914",
+      "subject_name": "Devops (Lab Integrated) (Cloud Computing Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective VI",
+      "record_type": "option"
+    },
+    {
+      "semester": 7,
+      "subject_code": "24CS915",
+      "subject_name": "Machine Learning for NLP in Cloud (Cloud Computing Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective VI",
+      "record_type": "option"
+    },
+    {
+      "semester": 7,
+      "subject_code": "24CS916",
+      "subject_name": "Microservice Architecture (Cloud Computing Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective VI",
+      "record_type": "option"
+    },
+    {
+      "semester": 7,
+      "subject_code": "24IT903",
+      "subject_name": "Rest Application Development using Spring Boot and JPA (Cloud Computing Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective VI",
+      "record_type": "option"
+    },
+    {
+      "semester": 7,
+      "subject_code": "24CS921",
+      "subject_name": "UI/UX Design (Lab Integrated) (Full Stack Technology Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective VI",
+      "record_type": "option"
+    },
+    {
+      "semester": 7,
+      "subject_code": "24CS922",
+      "subject_name": "Software Testing and Automation (Full Stack Technology Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective VI",
+      "record_type": "option"
+    },
+    {
+      "semester": 7,
+      "subject_code": "24CS903",
+      "subject_name": "Blockchain Technology (Lab Integrated) (Full Stack Technology Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective VI",
+      "record_type": "option"
+    },
+    {
+      "semester": 7,
+      "subject_code": "24CS923",
+      "subject_name": "Usability Design of Software Application (Full Stack Technology Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective VI",
+      "record_type": "option"
+    },
+    {
+      "semester": 7,
+      "subject_code": "24CS914",
+      "subject_name": "Devops (Lab Integrated) (Full Stack Technology Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective VI",
+      "record_type": "option"
+    },
+    {
+      "semester": 7,
+      "subject_code": "24CS916",
+      "subject_name": "Microservice Architecture (Full Stack Technology Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective VI",
+      "record_type": "option"
+    },
+    {
+      "semester": 7,
+      "subject_code": "24IT903",
+      "subject_name": "Rest Application Development using Spring Boot and JPA (Full Stack Technology Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective VI",
+      "record_type": "option"
+    },
+    {
+      "semester": 7,
+      "subject_code": null,
+      "subject_name": "Multimedia Computing (Emerging Technologies Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective VI",
+      "record_type": "option"
+    },
+    {
+      "semester": 7,
+      "subject_code": "24CS930",
+      "subject_name": "GPU Computing (Emerging Technologies Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective VI",
+      "record_type": "option"
+    },
+    {
+      "semester": 7,
+      "subject_code": "24CS931",
+      "subject_name": "Introduction to Augmented and Virtual Reality (Emerging Technologies Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective VI",
+      "record_type": "option"
+    },
+    {
+      "semester": 7,
+      "subject_code": "24CS932",
+      "subject_name": "Digital Marketing (Emerging Technologies Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective VI",
+      "record_type": "option"
+    },
+    {
+      "semester": 7,
+      "subject_code": "24CS933",
+      "subject_name": "Quantum Computing (Emerging Technologies Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective VI",
+      "record_type": "option"
+    },
+    {
+      "semester": 7,
+      "subject_code": "24CS934",
+      "subject_name": "Intelligent Robots (Emerging Technologies Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective VI",
+      "record_type": "option"
+    },
+    {
+      "semester": 7,
+      "subject_code": "24CS935",
+      "subject_name": "Next Gen Computing (Emerging Technologies Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective VI",
+      "record_type": "option"
+    },
+    {
+      "semester": 7,
+      "subject_code": "24CS936",
+      "subject_name": "Principles of 3D Printing and Design (Emerging Technologies Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective VI",
+      "record_type": "option"
+    },
+    {
+      "semester": 7,
+      "subject_code": "24CS937",
+      "subject_name": "High Performance Computing (Emerging Technologies Vertical)",
+      "credits": 3,
+      "category": "PEC",
+      "elective_type": "Professional Elective VI",
+      "record_type": "option"
+    },
+    {
+      "semester": 6,
+      "subject_code": null,
+      "subject_name": "Not published in department curriculum PDF -- sourced from Institute-wide Open Elective basket",
+      "credits": 3,
+      "category": "OEC",
+      "elective_type": "Open Elective I",
+      "record_type": "option"
+    },
+    {
+      "semester": 7,
+      "subject_code": null,
+      "subject_name": "Not published in department curriculum PDF -- sourced from Institute-wide Open Elective basket",
+      "credits": 3,
+      "category": "OEC",
+      "elective_type": "Open Elective II",
+      "record_type": "option"
+    },
+    {
+  "semester": 8,
+  "subject_code": "24CS811",
+  "subject_name": "Project",
+  "credits": 8,
+  "category": "EEC",
+  "elective_type": null,
+  "record_type": "core"
+    }
+  ]
+}

@@ -1,79 +1,32 @@
-import 'dart:convert';
-
-import 'package:shared_preferences/shared_preferences.dart';
-
 import '../models/syllabus_models.dart';
+import '../providers/reference_data_store.dart';
 import 'api_service.dart';
 
 class SyllabusService {
+  /// Curriculum bundles are non-user-specific reference data — cached
+  /// long-TTL and shared across the app via [ReferenceDataStore].
   Future<CurriculumBundle> getCurriculum({
     required String collegeCode,
     required String courseCode,
     String? regulation,
-  }) async {
-    final cacheKey =
-        'curriculum_${collegeCode}_${courseCode}_${regulation ?? 'latest'}';
-    final timestampKey = '${cacheKey}_timestamp';
-    final prefs = await SharedPreferences.getInstance();
+  }) =>
+      ReferenceDataStore.instance.getCurriculum(
+        collegeCode: collegeCode,
+        courseCode: courseCode,
+        regulation: regulation,
+      );
 
-    final cachedJson = prefs.getString(cacheKey);
-    final cachedTimestamp = prefs.getString(timestampKey);
-
-    if (cachedJson != null && cachedTimestamp != null) {
-      try {
-        final cachedTime = DateTime.parse(cachedTimestamp);
-        final difference = DateTime.now().difference(cachedTime);
-        if (difference.inDays < 1) {
-          return CurriculumBundle.fromJson(
-              jsonDecode(cachedJson) as Map<String, dynamic>);
-        }
-      } catch (_) {
-        // Ignore parse errors and fetch fresh data
-      }
-    }
-
-    try {
-      final query = StringBuffer(
-          '/curriculum?collegeCode=$collegeCode&courseCode=$courseCode');
-      if (regulation != null) query.write('&regulation=$regulation');
-
-      final json =
-          await ApiService.instance.get(query.toString()) as Map<String, dynamic>;
-      await prefs.setString(cacheKey, jsonEncode(json));
-      await prefs.setString(timestampKey, DateTime.now().toIso8601String());
-      return CurriculumBundle.fromJson(json);
-    } catch (e) {
-      if (cachedJson != null) {
-        return CurriculumBundle.fromJson(
-            jsonDecode(cachedJson) as Map<String, dynamic>);
-      }
-      rethrow;
-    }
-  }
-
-  Future<void> clearCache() async {
-    final prefs = await SharedPreferences.getInstance();
-    final keys = prefs.getKeys();
-    final curriculumKeys =
-        keys.where((key) => key.startsWith('curriculum_')).toList();
-    for (final key in curriculumKeys) {
-      await prefs.remove(key);
-    }
-  }
+  Future<void> clearCache() =>
+      ReferenceDataStore.instance.clearAllCurriculumCache();
 
   Future<void> clearCurriculumCache({
     required String collegeCode,
     required String courseCode,
-  }) async {
-    final prefs = await SharedPreferences.getInstance();
-    final keys = prefs.getKeys();
-    final prefix = 'curriculum_${collegeCode}_$courseCode';
-    for (final key in keys) {
-      if (key.startsWith(prefix)) {
-        await prefs.remove(key);
-      }
-    }
-  }
+  }) =>
+      ReferenceDataStore.instance.clearCurriculumCache(
+        collegeCode: collegeCode,
+        courseCode: courseCode,
+      );
 
   List<CurriculumSubject> getSubjectsForSemester(
     CurriculumBundle bundle, {
@@ -93,6 +46,10 @@ class SyllabusService {
         .toList();
   }
 
+  // Saved subjects are user-created data (what the student actually
+  // selected), not reference data — fetched directly from the API rather
+  // than through ReferenceDataStore. Callers that want this cached go
+  // through AppStateNotifier.savedSubjectsBox instead.
   Future<SavedSyllabus?> getSavedSyllabus(int semester) async {
     try {
       final json = await ApiService.instance

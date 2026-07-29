@@ -4,11 +4,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../models/api_models.dart';
-// import '../../services/api_service.dart'; // mod: mod endpoints removed
+import '../../providers/resources_cache_store.dart';
 import '../../services/app_capability_service.dart';
-import '../../services/cache_service.dart';
 import '../../services/resource_service.dart';
-import '../../utils/app_colors.dart';
 import '../../utils/app_theme.dart';
 import '../../widgets/responsive_layout.dart';
 import '../../widgets/resource_grid_section.dart';
@@ -29,14 +27,9 @@ class _QpHubScreenState extends State<QpHubScreen> {
   late Future<List<HubResource>> _future;
   bool _isUnlocked = false;
   bool _canBypassUnlock = false;
-  // mod: _isMod + _pending removed — moderation moved to web admin panel
-  // bool _isMod = false;
-  // List<HubResource> _pending = [];
   double? _uploadProgress;
-  String? _selectedDepartment;
   String? _selectedRegulation;
   final _subjectCodeController = TextEditingController();
-  final _departmentController = TextEditingController();
   final _regulationController = TextEditingController();
   final _titleController = TextEditingController();
 
@@ -45,22 +38,26 @@ class _QpHubScreenState extends State<QpHubScreen> {
   @override
   void initState() {
     super.initState();
-    final cached = CacheService.instance.get<List<HubResource>>('qp_hub');
-    _future = cached != null
-        ? Future.value(cached)
-        : _resourceService.listHubResources('QP');
+    _future = _initialLoad();
     _loadMeta();
     _fetchFresh();
+  }
+
+  Future<List<HubResource>> _initialLoad() async {
+    final box = ResourcesCacheStore.instance.qpBox;
+    if (!box.hasValue) await box.hydrate();
+    final cached = box.valueOrNull;
+    if (cached != null) return cached;
+    return _resourceService.listHubResources('QP');
   }
 
   Future<void> _fetchFresh() async {
     try {
       final fresh = await _resourceService.listHubResources(
         'QP',
-        department: _selectedDepartment,
         regulation: _selectedRegulation,
       );
-      CacheService.instance.set('qp_hub', fresh);
+      ResourcesCacheStore.instance.qpBox.set(fresh);
       if (mounted) {
         setState(() {
           _future = Future.value(fresh);
@@ -80,51 +77,33 @@ class _QpHubScreenState extends State<QpHubScreen> {
       if (mounted) {
         setState(() {
           _canBypassUnlock = capabilities.bypassResourceUnlock;
-          // mod: _isMod removed — pending queue moved to web admin panel
-          // _isMod = capabilities.canModerateResources;
         });
       }
 
-      // mod: pending resource fetch removed — moderation moved to web admin panel
-      // if (isMod) {
-      //   final raw = await ApiService.instance
-      //       .get('/admin/resources/pending?category=QP') as List<dynamic>;
-      //   if (mounted) {
-      //     setState(() {
-      //       _pending = raw
-      //           .map((item) =>
-      //               HubResource.fromJson(item as Map<String, dynamic>))
-      //           .toList();
-      //     });
-      //   }
-      // } else {
       final isUnlocked = await _resourceService.hasApprovedHubContribution();
       await prefs.setBool(_unlockPrefsKey, isUnlocked);
       if (mounted) {
         setState(() => _isUnlocked = isUnlocked);
       }
-      // }
     } catch (_) {}
   }
 
   void _refresh() {
-    CacheService.instance.invalidate('qp_hub');
+    ResourcesCacheStore.instance.qpBox.invalidate();
     setState(() {
       _future = _resourceService.listHubResources(
         'QP',
-        department: _selectedDepartment,
         regulation: _selectedRegulation,
       );
     });
     _future
-        .then((fresh) => CacheService.instance.set('qp_hub', fresh))
+        .then((fresh) => ResourcesCacheStore.instance.qpBox.set(fresh))
         .ignore();
     _loadMeta();
   }
 
   Future<void> _pickAndUpload() async {
     _subjectCodeController.clear();
-    _departmentController.clear();
     _regulationController.clear();
     _titleController.clear();
 
@@ -156,16 +135,7 @@ class _QpHubScreenState extends State<QpHubScreen> {
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(8)),
                 ),
-              ),
-              const SizedBox(height: 12),
-              TextField(
-                controller: _departmentController,
-                decoration: InputDecoration(
-                  labelText: 'Department',
-                  hintText: 'e.g., Computer Science',
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(8)),
-                ),
+                onChanged: (_) => setSheetState(() {}),
               ),
               const SizedBox(height: 12),
               TextField(
@@ -176,6 +146,7 @@ class _QpHubScreenState extends State<QpHubScreen> {
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(8)),
                 ),
+                onChanged: (_) => setSheetState(() {}),
               ),
               const SizedBox(height: 12),
               TextField(
@@ -196,12 +167,14 @@ class _QpHubScreenState extends State<QpHubScreen> {
                       child: const Text('Cancel')),
                   const SizedBox(width: 8),
                   ElevatedButton(
-                    onPressed: () => Navigator.pop(ctx, {
-                      'subjectCode': _subjectCodeController.text.trim(),
-                      'department': _departmentController.text.trim(),
-                      'regulation': _regulationController.text.trim(),
-                      'title': _titleController.text.trim(),
-                    }),
+                    onPressed: _subjectCodeController.text.trim().isEmpty ||
+                            _regulationController.text.trim().isEmpty
+                        ? null
+                        : () => Navigator.pop(ctx, {
+                              'subjectCode': _subjectCodeController.text.trim(),
+                              'regulation': _regulationController.text.trim(),
+                              'title': _titleController.text.trim(),
+                            }),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.black,
                       foregroundColor: Colors.white,
@@ -259,16 +232,10 @@ class _QpHubScreenState extends State<QpHubScreen> {
     }
   }
 
-  // mod: approve/reject/archive methods removed — moderation moved to web admin panel
-  // Future<void> _approveResource(String id) async { ... }
-  // Future<void> _rejectResource(String id) async { ... }
-  // Future<void> _archiveResource(String id) async { ... }
-
   @override
   void dispose() {
     _searchController.dispose();
     _subjectCodeController.dispose();
-    _departmentController.dispose();
     _regulationController.dispose();
     _titleController.dispose();
     super.dispose();
@@ -326,12 +293,6 @@ class _QpHubScreenState extends State<QpHubScreen> {
                   }
 
                   final allResources = snapshot.data ?? [];
-                  final departments = allResources
-                      .map((r) => r.department)
-                      .whereType<String>()
-                      .toSet()
-                      .toList()
-                    ..sort();
                   final regulations = allResources
                       .map((r) => r.regulation)
                       .whereType<String>()
@@ -343,11 +304,9 @@ class _QpHubScreenState extends State<QpHubScreen> {
                   final resources = allResources.where((r) {
                     final matchesSearch =
                         query.isEmpty || r.name.toLowerCase().contains(query);
-                    final matchesDept = _selectedDepartment == null ||
-                        r.department == _selectedDepartment;
                     final matchesReg = _selectedRegulation == null ||
                         r.regulation == _selectedRegulation;
-                    return matchesSearch && matchesDept && matchesReg;
+                    return matchesSearch && matchesReg;
                   }).toList();
 
                   return MaxWidthContent(
@@ -368,36 +327,6 @@ class _QpHubScreenState extends State<QpHubScreen> {
                         ),
                         onChanged: (_) => setState(() {}),
                       ),
-                      if (departments.isNotEmpty) ...[
-                        const SizedBox(height: 12),
-                        DropdownButtonFormField<String?>(
-                          initialValue: _selectedDepartment,
-                          decoration: InputDecoration(
-                            labelText: 'Department',
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(8)),
-                            filled: true,
-                            fillColor: Colors.white,
-                            contentPadding: const EdgeInsets.symmetric(
-                                horizontal: 12, vertical: 8),
-                          ),
-                          items: [
-                            const DropdownMenuItem<String?>(
-                              value: null,
-                              child: Text('All Departments'),
-                            ),
-                            ...departments.map(
-                              (dept) => DropdownMenuItem<String?>(
-                                value: dept,
-                                child:
-                                    Text(dept, overflow: TextOverflow.ellipsis),
-                              ),
-                            ),
-                          ],
-                          onChanged: (v) =>
-                              setState(() => _selectedDepartment = v),
-                        ),
-                      ],
                       if (regulations.isNotEmpty) ...[
                         const SizedBox(height: 12),
                         DropdownButtonFormField<String?>(
@@ -455,12 +384,6 @@ class _QpHubScreenState extends State<QpHubScreen> {
                         ),
                       ),
                       const SizedBox(height: 24),
-
-                      // mod: pending approval section removed — moderation moved to web admin panel
-                      // if (_isMod && _pending.isNotEmpty) ...[
-                      //   Container( ... 'Pending Approval' ... ),
-                      //   ..._pending.map((r) => _buildPendingCard(r)),
-                      // ],
 
                       if (resources.isEmpty)
                         Container(
@@ -541,14 +464,6 @@ class _QpHubScreenState extends State<QpHubScreen> {
               ],
             ],
           ),
-          // mod: Archive button removed — moderation moved to web admin panel
-          // if (_isMod) ...[
-          //   const SizedBox(height: 10),
-          //   OutlinedButton.icon(
-          //     onPressed: () => _archiveResource(resource.id),
-          //     ...
-          //   ),
-          // ],
         ],
       ),
     );
@@ -655,7 +570,4 @@ class _QpHubScreenState extends State<QpHubScreen> {
       }
     });
   }
-
-  // mod: _buildPendingCard removed — moderation moved to web admin panel
-  // Widget _buildPendingCard(HubResource resource) { ... }
 }

@@ -1,0 +1,96 @@
+college,college_code,course,course_code,regulation,semester,subject_code,subject_name,credits,category,elective_type,record_type
+Rajalakshmi Engineering College,REC,Artificial Intelligence and Data Science,AIDS,R2023,1,HS23111,Technical Communication I,2,HS,,core
+Rajalakshmi Engineering College,REC,Artificial Intelligence and Data Science,AIDS,R2023,1,MA23116,Mathematical Foundations for AI,4,BS,,core
+Rajalakshmi Engineering College,REC,Artificial Intelligence and Data Science,AIDS,R2023,1,GE23117,தமிழர் மரபு / Heritage of Tamils,1,HS,,core
+Rajalakshmi Engineering College,REC,Artificial Intelligence and Data Science,AIDS,R2023,1,PH23132,Physics for Information Science,4,BS,,core
+Rajalakshmi Engineering College,REC,Artificial Intelligence and Data Science,AIDS,R2023,1,GE23131,Programming using C,4,PC,,core
+Rajalakshmi Engineering College,REC,Artificial Intelligence and Data Science,AIDS,R2023,1,EE23133,Basic Electrical and Electronics Engineering,4,ES,,core
+Rajalakshmi Engineering College,REC,Artificial Intelligence and Data Science,AIDS,R2023,1,MC23111,Indian Constitution and Freedom Movement,0,MC,,core
+Rajalakshmi Engineering College,REC,Artificial Intelligence and Data Science,AIDS,R2023,2,MA23214,Probability and Inferential Statistics,4,BS,,core
+Rajalakshmi Engineering College,REC,Artificial Intelligence and Data Science,AIDS,R2023,2,GE23217,தமிழரும் தொழில்நுட்பமும் / Tamils and Technology,1,HS,,core
+Rajalakshmi Engineering College,REC,Artificial Intelligence and Data Science,AIDS,R2023,2,GE23111,Engineering Graphics,4,ES,,core
+Rajalakshmi Engineering College,REC,Artificial Intelligence and Data Science,AIDS,R2023,2,IT23231,Digital Principles and Computer Architecture,4,PC,,core
+Rajalakshmi Engineering College,REC,Artificial Intelligence and Data Science,AIDS,R2023,2,CS23231,Data Structures,5,PC,,core
+Rajalakshmi Engineering College,REC,Artificial Intelligence and Data Science,AIDS,R2023,2,HS23221,Technical Communication II / English for Professional Competence,1,HS,,core
+Rajalakshmi Engineering College,REC,Artificial Intelligence and Data Science,AIDS,R2023,2,GE23123,"Engineering Practices: Electrical, Electronics and Computer Systems",2,ES,,core
+Rajalakshmi Engineering College,REC,Artificial Intelligence and Data Science,AIDS,R2023,2,CS23221,Python Programming Lab,2,PC,,core
+Rajalakshmi Engineering College,REC,Artificial Intelligence and Data Science,AIDS,R2023,3,MA23313,Discrete Mathematics for AI,4,BS,,core
+Rajalakshmi Engineering College,REC,Artificial Intelligence and Data Science,AIDS,R2023,3,AI23231,Principles of Artificial Intelligence,4,ES,,core
+Rajalakshmi Engineering College,REC,Artificial Intelligence and Data Science,AIDS,R2023,3,CS23331,Design and Analysis of Algorithms,4,PC,,core
+Rajalakshmi Engineering College,REC,Artificial Intelligence and Data Science,AIDS,R2023,3,CS23332,Database Management Systems,5,PC,,core
+Rajalakshmi Engineering College,REC,Artificial Intelligence and Data Science,AIDS,R2023,3,CS23333,Object Oriented Programming Using JAVA,4,PC,,core
+Rajalakshmi Engineering College,REC,Artificial Intelligence and Data Science,AIDS,R2023,3,MC23112,Environmental Science and Engineering,0,MC,,core
+Rajalakshmi Engineering College,REC,Artificial Intelligence and Data Science,AIDS,R2023,4,MA23434,Optimization Techniques for AI,4,BS,,core
+Rajalakshmi Engineering College,REC,Artificial Intelligence and Data Science,AIDS,R2023,4,AI23331,Fundamentals of Machine Learning,4,PC,,core
+Rajalakshmi Engineering College,REC,Artificial Intelligence and Data Science,AIDS,R2023,4,AI23431,Web Technology and Mobile Application,3,PC,,core
+Rajalakshmi Engineering College,REC,Artificial Intelligence and Data Science,AIDS,R2023,4,AD23431,Statistical Analysis and Computing,3,PC,,core
+Rajalakshmi Engineering College,REC,Artificial Intelligence and Data Science,AIDS,R2023,4,CS23431,Operating Systems,5,PC,,core
+Rajalakshmi Engineering College,REC,Artificial Intelligence and Data Science,AIDS,R2023,4,CS23432,Software Construction,4,PC,,core
+Rajalakshmi Engineering College,REC,Artificial Intelligence and Data Science,AIDS,R2023,4,GE23421,Soft Skills I,1,EEC,,core
+Rajalakshmi Engineering College,REC,Artificial Intelligence and Data Science,AIDS,R2023,4,AD23421,Internship,1,EEC,,core
+Rajalakshmi Engineering College,REC,Artificial Intelligence and Data Science,AIDS,R2023,5,,Professional Elective I,3,PE,Programme Elective,elective
+Rajalakshmi Engineering College,REC,Artificial Intelligence and Data Science,AIDS,R2023,5,,Professional Elective II,3,PE,Programme Elective,elective
+Rajalakshmi Engineering College,REC,Artificial Intelligence and Data Science,AIDS,R2023,5,AD23531,Big Data Architecture,4,PC,,core
+Rajalakshmi Engineering College,REC,Artificial Intelligence and Data Science,AIDS,R2023,5,AD23532,Principles of Data Science,4,PC,,core
+Rajalakshmi Engineering College,REC,Artificial Intelligence and Data Science,AIDS,R2023,5,AI23531,Deep Learning,4,PC,,core
+Rajalakshmi Engineering College,REC,Artificial Intelligence and Data Science,AIDS,R2023,5,CS23532,Computer Networks,5,PC,,core
+Rajalakshmi Engineering College,REC,Artificial Intelligence and Data Science,AIDS,R2023,5,GE23521,Soft Skills II,1,EEC,,core
+Rajalakshmi Engineering College,REC,Artificial Intelligence and Data Science,AIDS,R2023,6,,Professional Elective III,3,PE,Programme Elective,elective
+Rajalakshmi Engineering College,REC,Artificial Intelligence and Data Science,AIDS,R2023,6,,Open Elective I,3,OE,Open Elective,elective
+Rajalakshmi Engineering College,REC,Artificial Intelligence and Data Science,AIDS,R2023,6,AD23631,Data Privacy and Security,4,PC,,core
+Rajalakshmi Engineering College,REC,Artificial Intelligence and Data Science,AIDS,R2023,6,AD23632,Framework for Data and Visual Analytics,4,PC,,core
+Rajalakshmi Engineering College,REC,Artificial Intelligence and Data Science,AIDS,R2023,6,AD23633,Generative AI,3,PC,,core
+Rajalakshmi Engineering College,REC,Artificial Intelligence and Data Science,AIDS,R2023,6,GE23627,Design Thinking and Innovation,2,EEC,,core
+Rajalakshmi Engineering College,REC,Artificial Intelligence and Data Science,AIDS,R2023,6,GE23621,Problem Solving Techniques,1,EEC,,core
+Rajalakshmi Engineering College,REC,Artificial Intelligence and Data Science,AIDS,R2023,7,,Professional Elective IV,3,PE,Programme Elective,elective
+Rajalakshmi Engineering College,REC,Artificial Intelligence and Data Science,AIDS,R2023,7,,Professional Elective V,3,PE,Programme Elective,elective
+Rajalakshmi Engineering College,REC,Artificial Intelligence and Data Science,AIDS,R2023,7,AD23731,Foundations of Agentic AI,3,PC,,core
+Rajalakshmi Engineering College,REC,Artificial Intelligence and Data Science,AIDS,R2023,7,,Open Elective II,3,OE,Open Elective,elective
+Rajalakshmi Engineering College,REC,Artificial Intelligence and Data Science,AIDS,R2023,7,CS23633,Cloud Computing,3,PC,,core
+Rajalakshmi Engineering College,REC,Artificial Intelligence and Data Science,AIDS,R2023,7,AD23722,Project Phase I,4,EEC,,core
+Rajalakshmi Engineering College,REC,Artificial Intelligence and Data Science,AIDS,R2023,8,,Professional Elective VI,3,PE,Programme Elective,elective
+Rajalakshmi Engineering College,REC,Artificial Intelligence and Data Science,AIDS,R2023,8,AD23821,Project Phase II,6,EEC,,core
+Rajalakshmi Engineering College,REC,Artificial Intelligence and Data Science,AIDS,R2023,,AD23A31,Customer Analytics and Opinion Mining,3,Data Science and Analytics,Programme Elective,option
+Rajalakshmi Engineering College,REC,Artificial Intelligence and Data Science,AIDS,R2023,,AD23A32,Explorative and Forecasting Analytics,3,Data Science and Analytics,Programme Elective,option
+Rajalakshmi Engineering College,REC,Artificial Intelligence and Data Science,AIDS,R2023,,AD23A33,Bio Informatics Systems,3,Data Science and Analytics,Programme Elective,option
+Rajalakshmi Engineering College,REC,Artificial Intelligence and Data Science,AIDS,R2023,,AD23A34,Predictive Analytics,3,Data Science and Analytics,Programme Elective,option
+Rajalakshmi Engineering College,REC,Artificial Intelligence and Data Science,AIDS,R2023,,AD23A35,Healthcare Analytics,3,Data Science and Analytics,Programme Elective,option
+Rajalakshmi Engineering College,REC,Artificial Intelligence and Data Science,AIDS,R2023,,AD23A36,Social Media Analytics,3,Data Science and Analytics,Programme Elective,option
+Rajalakshmi Engineering College,REC,Artificial Intelligence and Data Science,AIDS,R2023,,AD23A37,Image and Video Analytics,3,Data Science and Analytics,Programme Elective,option
+Rajalakshmi Engineering College,REC,Artificial Intelligence and Data Science,AIDS,R2023,,AD23A38,Manufacturing Analytics,3,Data Science and Analytics,Programme Elective,option
+Rajalakshmi Engineering College,REC,Artificial Intelligence and Data Science,AIDS,R2023,,AD23B31,Image Processing and Computer Vision,3,Data Science Techniques and Applications,Programme Elective,option
+Rajalakshmi Engineering College,REC,Artificial Intelligence and Data Science,AIDS,R2023,,AD23B32,Natural Language Processing Analytics,3,Data Science Techniques and Applications,Programme Elective,option
+Rajalakshmi Engineering College,REC,Artificial Intelligence and Data Science,AIDS,R2023,,AD23B33,Text and Speech Analysis,3,Data Science Techniques and Applications,Programme Elective,option
+Rajalakshmi Engineering College,REC,Artificial Intelligence and Data Science,AIDS,R2023,,AI23B11,Information Visualization,3,Data Science Techniques and Applications,Programme Elective,option
+Rajalakshmi Engineering College,REC,Artificial Intelligence and Data Science,AIDS,R2023,,AI23A33,AI for Game Programming,3,Data Science Techniques and Applications,Programme Elective,option
+Rajalakshmi Engineering College,REC,Artificial Intelligence and Data Science,AIDS,R2023,,AI23B34,Human Computer Interaction,3,Data Science Techniques and Applications,Programme Elective,option
+Rajalakshmi Engineering College,REC,Artificial Intelligence and Data Science,AIDS,R2023,,AI23B12,Cognitive Science,3,Data Science Techniques and Applications,Programme Elective,option
+Rajalakshmi Engineering College,REC,Artificial Intelligence and Data Science,AIDS,R2023,,IT23A11,Internet of Things,3,Emerging Technologies,Programme Elective,option
+Rajalakshmi Engineering College,REC,Artificial Intelligence and Data Science,AIDS,R2023,,CS23B32,Advanced Application Development with Oracle APEX,3,Emerging Technologies,Programme Elective,option
+Rajalakshmi Engineering College,REC,Artificial Intelligence and Data Science,AIDS,R2023,,CS23A32,Robotic Process Automation,3,Emerging Technologies,Programme Elective,option
+Rajalakshmi Engineering College,REC,Artificial Intelligence and Data Science,AIDS,R2023,,CB23G11,Quantum Computation and Quantum Information,3,Emerging Technologies,Programme Elective,option
+Rajalakshmi Engineering College,REC,Artificial Intelligence and Data Science,AIDS,R2023,,CR23A33,Cryptocurrency and Blockchain Technologies,3,Emerging Technologies,Programme Elective,option
+Rajalakshmi Engineering College,REC,Artificial Intelligence and Data Science,AIDS,R2023,,CS23A36,3D Printing and Design,3,Emerging Technologies,Programme Elective,option
+Rajalakshmi Engineering College,REC,Artificial Intelligence and Data Science,AIDS,R2023,,CS23A33,Cyber Security and Forensics,3,Emerging Technologies,Programme Elective,option
+Rajalakshmi Engineering College,REC,Artificial Intelligence and Data Science,AIDS,R2023,,IT23B31,C# and .Net Programming,3,Full Stack Development,Programme Elective,option
+Rajalakshmi Engineering College,REC,Artificial Intelligence and Data Science,AIDS,R2023,,IT23C17,Ubiquitous Computing,3,Full Stack Development,Programme Elective,option
+Rajalakshmi Engineering College,REC,Artificial Intelligence and Data Science,AIDS,R2023,,IT23C31,Software Testing,3,Full Stack Development,Programme Elective,option
+Rajalakshmi Engineering College,REC,Artificial Intelligence and Data Science,AIDS,R2023,,CS23A35,Web Application Security,3,Full Stack Development,Programme Elective,option
+Rajalakshmi Engineering College,REC,Artificial Intelligence and Data Science,AIDS,R2023,,IT23B33,DevOps,3,Full Stack Development,Programme Elective,option
+Rajalakshmi Engineering College,REC,Artificial Intelligence and Data Science,AIDS,R2023,,IT23C12,Software Project Management,3,Full Stack Development,Programme Elective,option
+Rajalakshmi Engineering College,REC,Artificial Intelligence and Data Science,AIDS,R2023,,CR23A11,Security Assessment and Risk Analysis,3,Cyber Security,Programme Elective,option
+Rajalakshmi Engineering College,REC,Artificial Intelligence and Data Science,AIDS,R2023,,CS23A11,Malware Detection and Analysis,3,Cyber Security,Programme Elective,option
+Rajalakshmi Engineering College,REC,Artificial Intelligence and Data Science,AIDS,R2023,,CR23A31,Ethical Hacking and Security,3,Cyber Security,Programme Elective,option
+Rajalakshmi Engineering College,REC,Artificial Intelligence and Data Science,AIDS,R2023,,CR23A32,Digital and Mobile Forensics,3,Cyber Security,Programme Elective,option
+Rajalakshmi Engineering College,REC,Artificial Intelligence and Data Science,AIDS,R2023,,CR23A33,Cryptocurrency and Blockchain Technologies,3,Cyber Security,Programme Elective,option
+Rajalakshmi Engineering College,REC,Artificial Intelligence and Data Science,AIDS,R2023,,CR23A34,Security and Privacy in Cloud,3,Cyber Security,Programme Elective,option
+Rajalakshmi Engineering College,REC,Artificial Intelligence and Data Science,AIDS,R2023,,CR23A35,Social Network Security,3,Cyber Security,Programme Elective,option
+Rajalakshmi Engineering College,REC,Artificial Intelligence and Data Science,AIDS,R2023,,CR23A36,Information Security and Management,3,Cyber Security,Programme Elective,option
+Rajalakshmi Engineering College,REC,Artificial Intelligence and Data Science,AIDS,R2023,,CS23A37,Augmented Reality and Virtual Reality,3,Virtual and Augmented Reality,Programme Elective,option
+Rajalakshmi Engineering College,REC,Artificial Intelligence and Data Science,AIDS,R2023,,CS23A39,Game Development,3,Virtual and Augmented Reality,Programme Elective,option
+Rajalakshmi Engineering College,REC,Artificial Intelligence and Data Science,AIDS,R2023,,CS23B31,Introduction to Metaverse,3,Virtual and Augmented Reality,Programme Elective,option
+Rajalakshmi Engineering College,REC,Artificial Intelligence and Data Science,AIDS,R2023,,IT23E31,Graphics and Multimedia,3,Virtual and Augmented Reality,Programme Elective,option
+Rajalakshmi Engineering College,REC,Artificial Intelligence and Data Science,AIDS,R2023,,CS23A38,Digital Marketing,3,Virtual and Augmented Reality,Programme Elective,option
+Rajalakshmi Engineering College,REC,Artificial Intelligence and Data Science,AIDS,R2023,,CD23731,Film Making and Radio podcasting,3,Virtual and Augmented Reality,Programme Elective,option
+Rajalakshmi Engineering College,REC,Artificial Intelligence and Data Science,AIDS,R2023,,AD23O11,Introduction to Data Science,3,Open Elective,Open Elective,option
+Rajalakshmi Engineering College,REC,Artificial Intelligence and Data Science,AIDS,R2023,,AD23O31,Data Visualization using Power BI,3,Open Elective,Open Elective,option

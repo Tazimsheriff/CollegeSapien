@@ -2,7 +2,7 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 
-import '../../utils/app_colors.dart';
+import '../../utils/app_theme.dart';
 import '../../utils/breakpoints.dart';
 import '../../services/attendance_notification_service.dart';
 import '../../services/timetable_service.dart';
@@ -60,6 +60,9 @@ class _MainNavigationState extends State<MainNavigation>
     try {
       await AttendanceNotificationService.instance.syncPendingActions();
       AttendanceNotificationService.instance.openPendingNavigation();
+      // Cache-aside via AppStateNotifier.timetableBox — if splash's
+      // /auth/sync already populated it within TTL, this reuses that value
+      // instead of firing a second /timetable request.
       final subjects = await TimetableService().getAllSubjects();
       await AttendanceNotificationService.instance
           .scheduleForTimetable(subjects);

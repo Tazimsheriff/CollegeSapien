@@ -1,262 +1,246 @@
-import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../core/cache/cache_box.dart';
 import '../models/api_models.dart';
+import '../models/cgpa_models.dart';
 import '../models/timetable_models.dart';
 import '../models/syllabus_models.dart';
-import '../models/cached_data.dart';
 import '../models/event_models.dart';
+import 'session_action.dart';
 
+/// Single source of truth for all user-created data: profile, attendance,
+/// timetable, saved subjects, events. Cache-first (instant paint from
+/// SharedPreferences), TTL-aware, updated optimistically after mutations.
+///
+/// A singleton so non-widget services (TimetableService, SyllabusService,
+/// etc.) can read/write it without threading BuildContext, same as
+/// AuthService.instance. Still registered in the widget tree via
+/// `ChangeNotifierProvider.value` so existing `Provider.of<AppStateNotifier>`
+/// call sites keep working unchanged.
 class AppStateNotifier extends ChangeNotifier {
-  CachedData<List<AttendanceSummary>>? _attendanceSummary;
-  CachedData<List<TimetableSubject>>? _timetableSubjects;
-  CachedData<UserProfile?>? _userProfile;
-  CachedData<List<SavedSubject>>? _savedSubjects;
-  // True when the cached saved subjects were seeded from the curriculum
-  // instead of the user's own saved selection — the home screen uses this
-  // to show the "tap to update with your electives" hint.
-  bool _savedSubjectsFromCurriculum = false;
-  CachedData<List<EventItem>>? _events;
+  AppStateNotifier._() {
+    for (final box in _boxes) {
+      box.addListener(notifyListeners);
+    }
+  }
+
+  static final AppStateNotifier instance = AppStateNotifier._();
 
   static const attendanceTtl = Duration(minutes: 5);
   static const timetableTtl = Duration(hours: 1);
   static const eventsTtl = Duration(minutes: 30);
   static const userProfileTtl = Duration(hours: 24);
   static const savedSubjectsTtl = Duration(hours: 1);
+  static const cgpaSemestersTtl = Duration(hours: 24);
+  static const filesUploadedStatTtl = Duration(minutes: 10);
 
-  // Cache Prefs Keys
-  static const _profileKey = 'cache_user_profile';
-  static const _attendanceKey = 'cache_attendance_summary';
-  static const _timetableKey = 'cache_timetable_subjects';
-  static const _savedSubjectsKey = 'cache_saved_subjects';
+  final userProfileBox = CacheBox<UserProfile?>(
+    prefsKey: 'cache_user_profile',
+    ttl: userProfileTtl,
+    decode: (json) =>
+        json == null ? null : UserProfile.fromJson(json as Map<String, dynamic>),
+    encode: (value) => value?.toJson(),
+  );
+
+  final attendanceBox = CacheBox<List<AttendanceSummary>>(
+    prefsKey: 'cache_attendance_summary',
+    ttl: attendanceTtl,
+    decode: (json) => (json as List<dynamic>)
+        .map((item) => AttendanceSummary.fromJson(item as Map<String, dynamic>))
+        .toList(),
+    encode: (value) => value.map((item) => item.toJson()).toList(),
+  );
+
+  final timetableBox = CacheBox<List<TimetableSubject>>(
+    prefsKey: 'cache_timetable_subjects',
+    ttl: timetableTtl,
+    decode: (json) => (json as List<dynamic>)
+        .map((item) => TimetableSubject.fromJson(item as Map<String, dynamic>))
+        .toList(),
+    encode: (value) => value.map((item) => item.toJson()).toList(),
+  );
+
+  // Small piece of metadata that rides along with the timetable fetch but
+  // isn't part of the subjects list itself — kept as its own box rather
+  // than folded into TimetableSubject so setTimetableSubjects()'s signature
+  // (used by /auth/sync callers) doesn't need to change.
+  final timetableTrackingStartDateBox = CacheBox<String?>(
+    prefsKey: 'cache_timetable_tracking_start_date',
+    ttl: timetableTtl,
+    decode: (json) => json as String?,
+    encode: (value) => value,
+  );
+
+  final savedSubjectsBox = CacheBox<List<SavedSubject>>(
+    prefsKey: 'cache_saved_subjects',
+    ttl: savedSubjectsTtl,
+    decode: (json) => (json as List<dynamic>)
+        .map((item) => SavedSubject.fromJson(item as Map<String, dynamic>))
+        .toList(),
+    encode: (value) => value.map((item) => item.toJson()).toList(),
+  );
+
+  final eventsBox = CacheBox<List<EventItem>>(
+    prefsKey: 'cache_events',
+    ttl: eventsTtl,
+    decode: (json) => (json as List<dynamic>)
+        .map((item) => EventItem.fromJson(item as Map<String, dynamic>))
+        .toList(),
+    encode: (value) => value.map((item) => item.toJson()).toList(),
+  );
+
+  // The user's own CGPA entries — source of truth for both the CGPA
+  // calculator screen and the profile screen's CGPA stat (derived from
+  // this rather than cached separately as a redundant formatted string).
+  final cgpaSemestersBox = CacheBox<List<CgpaSemesterEntry>>(
+    prefsKey: 'cache_cgpa_semesters',
+    ttl: cgpaSemestersTtl,
+    decode: (json) => (json as List<dynamic>)
+        .map((item) => CgpaSemesterEntry.fromJson(item as Map<String, dynamic>))
+        .toList(),
+    encode: (value) => value.map((item) => item.toJson()).toList(),
+  );
+
+  // No cheaper source of truth to derive this from locally (it's a live
+  // count over the resources hub), so it's cached as its own short-TTL stat.
+  final filesUploadedStatBox = CacheBox<String>(
+    prefsKey: 'cache_files_uploaded_stat',
+    ttl: filesUploadedStatTtl,
+    decode: (json) => json as String,
+    encode: (value) => value,
+  );
+
+  late final List<CacheBoxLike> _boxes = [
+    userProfileBox,
+    attendanceBox,
+    timetableBox,
+    timetableTrackingStartDateBox,
+    savedSubjectsBox,
+    eventsBox,
+    cgpaSemestersBox,
+    filesUploadedStatBox,
+  ];
+
+  // True when the cached saved subjects were seeded from the curriculum
+  // instead of the user's own saved selection — the home screen uses this
+  // to show the "tap to update with your electives" hint. Small/simple
+  // enough to keep as a plain flag rather than its own CacheBox.
+  bool _savedSubjectsFromCurriculum = false;
   static const _savedSubjectsFallbackKey = 'cache_saved_subjects_fallback';
-  static const _eventsKey = 'cache_events';
 
-  // Hydration from local storage
+  // Hydration from local storage — call once at startup.
   Future<void> loadFromLocalCache() async {
+    await Future.wait(_boxes.map((box) => box.hydrate()));
     try {
       final prefs = await SharedPreferences.getInstance();
-
-      // 1. User Profile
-      final profileStr = prefs.getString(_profileKey);
-      if (profileStr != null) {
-        try {
-          final data = UserProfile.fromJson(
-              jsonDecode(profileStr) as Map<String, dynamic>);
-          _userProfile = CachedData(data: data, ttl: userProfileTtl);
-        } catch (_) {}
-      }
-
-      // 2. Attendance Summary
-      final attendanceStr = prefs.getString(_attendanceKey);
-      if (attendanceStr != null) {
-        try {
-          final rawList = jsonDecode(attendanceStr) as List<dynamic>;
-          final list = rawList
-              .map((item) =>
-                  AttendanceSummary.fromJson(item as Map<String, dynamic>))
-              .toList();
-          _attendanceSummary = CachedData(data: list, ttl: attendanceTtl);
-        } catch (_) {}
-      }
-
-      // 3. Timetable Subjects
-      final timetableStr = prefs.getString(_timetableKey);
-      if (timetableStr != null) {
-        try {
-          final rawList = jsonDecode(timetableStr) as List<dynamic>;
-          final list = rawList
-              .map((item) =>
-                  TimetableSubject.fromJson(item as Map<String, dynamic>))
-              .toList();
-          _timetableSubjects = CachedData(data: list, ttl: timetableTtl);
-        } catch (_) {}
-      }
-
-      // 4. Saved Subjects
-      final savedStr = prefs.getString(_savedSubjectsKey);
-      if (savedStr != null) {
-        try {
-          final rawList = jsonDecode(savedStr) as List<dynamic>;
-          final list = rawList
-              .map((item) => SavedSubject.fromJson(item as Map<String, dynamic>))
-              .toList();
-          _savedSubjects = CachedData(data: list, ttl: savedSubjectsTtl);
-          _savedSubjectsFromCurriculum =
-              prefs.getBool(_savedSubjectsFallbackKey) ?? false;
-        } catch (_) {}
-      }
-
-      // 5. Events
-      final eventsStr = prefs.getString(_eventsKey);
-      if (eventsStr != null) {
-        try {
-          final rawList = jsonDecode(eventsStr) as List<dynamic>;
-          final list = rawList
-              .map((item) => EventItem.fromJson(item as Map<String, dynamic>))
-              .toList();
-          _events = CachedData(data: list, ttl: eventsTtl);
-        } catch (_) {}
-      }
-
-      notifyListeners();
+      _savedSubjectsFromCurriculum =
+          prefs.getBool(_savedSubjectsFallbackKey) ?? false;
     } catch (_) {}
+    notifyListeners();
   }
 
-  // Getters
-  List<AttendanceSummary>? get attendanceSummary {
-    if (_attendanceSummary?.isValid ?? false) {
-      return _attendanceSummary!.data;
-    }
-    return null;
-  }
+  // Getters (backward-compatible facade)
+  UserProfile? get userProfile => userProfileBox.valueOrNull;
 
-  List<TimetableSubject>? get timetableSubjects {
-    if (_timetableSubjects?.isValid ?? false) {
-      return _timetableSubjects!.data;
-    }
-    return null;
-  }
+  // Regardless of TTL — for offline-tolerant fallbacks. Replaces the old
+  // AuthService._profile secondary copy, which could drift from this one.
+  UserProfile? get userProfileStale => userProfileBox.staleValueOrNull;
 
-  UserProfile? get userProfile {
-    if (_userProfile?.isValid ?? false) {
-      return _userProfile!.data;
-    }
-    return null;
-  }
+  List<AttendanceSummary>? get attendanceSummary => attendanceBox.valueOrNull;
 
-  List<SavedSubject>? get savedSubjects {
-    if (_savedSubjects?.isValid ?? false) {
-      return _savedSubjects!.data;
-    }
-    return null;
-  }
+  List<TimetableSubject>? get timetableSubjects => timetableBox.valueOrNull;
+
+  List<SavedSubject>? get savedSubjects => savedSubjectsBox.valueOrNull;
 
   bool get savedSubjectsFromCurriculum => _savedSubjectsFromCurriculum;
 
-  List<EventItem>? get events {
-    if (_events?.isValid ?? false) {
-      return _events!.data;
-    }
-    return null;
-  }
+  List<EventItem>? get events => eventsBox.valueOrNull;
 
   // True once profile + attendance + timetable are all within their TTLs —
   // lets callers skip re-hitting /auth/sync when the cache is still good.
   bool get hasFreshHomeData =>
-      (_userProfile?.isValid ?? false) &&
-      (_attendanceSummary?.isValid ?? false) &&
-      (_timetableSubjects?.isValid ?? false);
+      userProfileBox.isValid && attendanceBox.isValid && timetableBox.isValid;
 
   // Setters
-  void setAttendanceSummary(List<AttendanceSummary> data) {
-    _attendanceSummary = CachedData(data: data, ttl: attendanceTtl);
-    notifyListeners();
-    _saveToPrefs(_attendanceKey,
-        jsonEncode(data.map((item) => item.toJson()).toList()));
-  }
+  void setUserProfile(UserProfile? data) => userProfileBox.set(data);
 
-  void setTimetableSubjects(List<TimetableSubject> data) {
-    _timetableSubjects = CachedData(data: data, ttl: timetableTtl);
-    notifyListeners();
-    _saveToPrefs(_timetableKey,
-        jsonEncode(data.map((item) => item.toJson()).toList()));
-  }
+  void setAttendanceSummary(List<AttendanceSummary> data) =>
+      attendanceBox.set(data);
 
-  void setUserProfile(UserProfile? data) {
-    _userProfile = CachedData(data: data, ttl: userProfileTtl);
-    notifyListeners();
-    if (data != null) {
-      _saveToPrefs(_profileKey, jsonEncode(data.toJson()));
-    } else {
-      _removeFromPrefs(_profileKey);
-    }
-  }
+  void setTimetableSubjects(List<TimetableSubject> data) =>
+      timetableBox.set(data);
 
-  void setSavedSubjects(List<SavedSubject> data,
-      {bool fromCurriculum = false}) {
-    _savedSubjects = CachedData(data: data, ttl: savedSubjectsTtl);
+  void setSavedSubjects(List<SavedSubject> data, {bool fromCurriculum = false}) {
+    savedSubjectsBox.set(data);
     _savedSubjectsFromCurriculum = fromCurriculum;
     notifyListeners();
-    _saveToPrefs(_savedSubjectsKey,
-        jsonEncode(data.map((item) => item.toJson()).toList()));
     _saveBoolToPrefs(_savedSubjectsFallbackKey, fromCurriculum);
   }
 
-  void setEvents(List<EventItem> data) {
-    _events = CachedData(data: data, ttl: eventsTtl);
-    notifyListeners();
-    _saveToPrefs(
-        _eventsKey, jsonEncode(data.map((item) => item.toJson()).toList()));
-  }
+  void setEvents(List<EventItem> data) => eventsBox.set(data);
 
   // Invalidation
-  void invalidateAttendanceSummary() {
-    _attendanceSummary = null;
-    notifyListeners();
-    _removeFromPrefs(_attendanceKey);
-  }
+  void invalidateAttendanceSummary() => attendanceBox.invalidate();
 
   void invalidateTimetableSubjects() {
-    _timetableSubjects = null;
-    notifyListeners();
-    _removeFromPrefs(_timetableKey);
+    timetableBox.invalidate();
+    timetableTrackingStartDateBox.invalidate();
   }
 
-  void invalidateUserProfile() {
-    _userProfile = null;
-    notifyListeners();
-    _removeFromPrefs(_profileKey);
-  }
+  void invalidateUserProfile() => userProfileBox.invalidate();
 
   void invalidateSavedSubjects() {
-    _savedSubjects = null;
+    savedSubjectsBox.invalidate();
     _savedSubjectsFromCurriculum = false;
     notifyListeners();
-    _removeFromPrefs(_savedSubjectsKey);
     _removeFromPrefs(_savedSubjectsFallbackKey);
   }
 
   // Clears everything tied to the user's college/department/semester —
   // used after a profile change wipes the academic data on the server.
   void invalidateAcademicData() {
-    _attendanceSummary = null;
-    _timetableSubjects = null;
-    _savedSubjects = null;
+    attendanceBox.invalidate();
+    timetableBox.invalidate();
+    timetableTrackingStartDateBox.invalidate();
+    savedSubjectsBox.invalidate();
     _savedSubjectsFromCurriculum = false;
     notifyListeners();
-    _removeFromPrefs(_attendanceKey);
-    _removeFromPrefs(_timetableKey);
-    _removeFromPrefs(_savedSubjectsKey);
     _removeFromPrefs(_savedSubjectsFallbackKey);
   }
 
-  void invalidateEvents() {
-    _events = null;
-    notifyListeners();
-    _removeFromPrefs(_eventsKey);
-  }
+  void invalidateEvents() => eventsBox.invalidate();
 
+  // Wipes every cached field — must be called on sign-out / account switch
+  // so a second account on the same device never inherits stale data.
   void invalidateAll() {
-    _attendanceSummary = null;
-    _timetableSubjects = null;
-    _userProfile = null;
-    _savedSubjects = null;
+    for (final box in _boxes) {
+      box.invalidate();
+    }
     _savedSubjectsFromCurriculum = false;
-    _events = null;
+    _pendingSessionAction = SessionAction.none;
     notifyListeners();
-    _clearAllCachePrefs();
+    _removeFromPrefs(_savedSubjectsFallbackKey);
   }
 
-  // Preferences helpers
-  Future<void> _saveToPrefs(String key, String value) async {
-    try {
-      final prefs = await SharedPreferences.getInstance();
-      await prefs.setString(key, value);
-    } catch (_) {}
+  // Session redirect mechanism — lets background work (e.g. splash screen's
+  // reconciliation sync) tell the app to bounce to Login/Onboarding even
+  // when a different screen is already showing. See SessionGuard.
+  SessionAction _pendingSessionAction = SessionAction.none;
+  SessionAction get pendingSessionAction => _pendingSessionAction;
+
+  void requestSessionAction(SessionAction action) {
+    if (action == _pendingSessionAction) return;
+    _pendingSessionAction = action;
+    notifyListeners();
   }
 
+  void clearSessionAction() {
+    _pendingSessionAction = SessionAction.none;
+  }
+
+  // Preferences helpers (only needed for the standalone bool flag above —
+  // everything else goes through CacheBox).
   Future<void> _saveBoolToPrefs(String key, bool value) async {
     try {
       final prefs = await SharedPreferences.getInstance();
@@ -268,26 +252,6 @@ class AppStateNotifier extends ChangeNotifier {
     try {
       final prefs = await SharedPreferences.getInstance();
       await prefs.remove(key);
-    } catch (_) {}
-  }
-
-  Future<void> _clearAllCachePrefs() async {
-    try {
-      final prefs = await SharedPreferences.getInstance();
-      await prefs.remove(_profileKey);
-      await prefs.remove(_attendanceKey);
-      await prefs.remove(_timetableKey);
-      await prefs.remove(_savedSubjectsKey);
-      await prefs.remove(_savedSubjectsFallbackKey);
-      await prefs.remove(_eventsKey);
-      
-      // Also clear all curriculum keys
-      final keys = prefs.getKeys();
-      final curriculumKeys =
-          keys.where((key) => key.startsWith('curriculum_')).toList();
-      for (final key in curriculumKeys) {
-        await prefs.remove(key);
-      }
     } catch (_) {}
   }
 }

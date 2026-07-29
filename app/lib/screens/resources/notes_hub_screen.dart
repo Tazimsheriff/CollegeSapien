@@ -4,11 +4,13 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../models/api_models.dart';
-// import '../../services/api_service.dart'; // mod: mod endpoints removed
+import '../../models/syllabus_models.dart';
+import '../../providers/reference_data_store.dart';
+import '../../providers/resources_cache_store.dart';
 import '../../services/app_capability_service.dart';
-import '../../services/cache_service.dart';
+import '../../services/auth_service.dart';
 import '../../services/resource_service.dart';
-import '../../utils/app_colors.dart';
+import '../../services/syllabus_service.dart';
 import '../../utils/app_theme.dart';
 import '../../widgets/responsive_layout.dart';
 import '../../widgets/resource_grid_section.dart';
@@ -24,37 +26,37 @@ class _NotesHubScreenState extends State<NotesHubScreen> {
   static const _unlockPrefsKey = 'has_approved_hub_upload';
 
   final _resourceService = ResourceService();
+  final _syllabusService = SyllabusService();
   final _capabilityService = AppCapabilityService.instance;
   final _searchController = TextEditingController();
   late Future<List<HubResource>> _future;
   bool _isUnlocked = false;
   bool _canBypassUnlock = false;
-  // mod: _isMod + _pending removed — moderation moved to web admin panel
-  // bool _isMod = false;
-  // List<HubResource> _pending = [];
   double? _uploadProgress;
   String? _selectedSubjectId;
-  final _subjectNameController = TextEditingController();
-  final _subjectCodeController = TextEditingController();
-  final _titleController = TextEditingController();
 
   bool get _downloadsUnlocked => _canBypassUnlock || _isUnlocked;
 
   @override
   void initState() {
     super.initState();
-    final cached = CacheService.instance.get<List<HubResource>>('notes_hub');
-    _future = cached != null
-        ? Future.value(cached)
-        : _resourceService.listHubResources('Notes');
+    _future = _initialLoad();
     _loadMeta();
     _fetchFresh();
+  }
+
+  Future<List<HubResource>> _initialLoad() async {
+    final box = ResourcesCacheStore.instance.notesBox;
+    if (!box.hasValue) await box.hydrate();
+    final cached = box.valueOrNull;
+    if (cached != null) return cached;
+    return _resourceService.listHubResources('Notes');
   }
 
   Future<void> _fetchFresh() async {
     try {
       final fresh = await _resourceService.listHubResources('Notes');
-      CacheService.instance.set('notes_hub', fresh);
+      ResourcesCacheStore.instance.notesBox.set(fresh);
       if (mounted) {
         setState(() {
           _future = Future.value(fresh);
@@ -74,50 +76,65 @@ class _NotesHubScreenState extends State<NotesHubScreen> {
       if (mounted) {
         setState(() {
           _canBypassUnlock = capabilities.bypassResourceUnlock;
-          // mod: _isMod removed — pending queue moved to web admin panel
-          // _isMod = capabilities.canModerateResources;
         });
       }
 
-      // mod: pending resource fetch removed — moderation moved to web admin panel
-      // if (isMod) {
-      //   final raw = await ApiService.instance
-      //       .get('/admin/resources/pending?category=Notes') as List<dynamic>;
-      //   if (mounted) {
-      //     setState(() {
-      //       _pending = raw
-      //           .map((item) =>
-      //               HubResource.fromJson(item as Map<String, dynamic>))
-      //           .toList();
-      //     });
-      //   }
-      // } else {
       final isUnlocked = await _resourceService.hasApprovedHubContribution();
       await prefs.setBool(_unlockPrefsKey, isUnlocked);
       if (mounted) {
         setState(() => _isUnlocked = isUnlocked);
       }
-      // }
     } catch (_) {}
   }
 
   void _refresh() {
-    CacheService.instance.invalidate('notes_hub');
+    ResourcesCacheStore.instance.notesBox.invalidate();
     setState(() {
       _future = _resourceService.listHubResources('Notes');
     });
     _future
-        .then((fresh) => CacheService.instance.set('notes_hub', fresh))
+        .then((fresh) => ResourcesCacheStore.instance.notesBox.set(fresh))
         .ignore();
     _loadMeta();
   }
 
   Future<void> _pickAndUpload() async {
-    _subjectNameController.clear();
-    _subjectCodeController.clear();
-    _titleController.clear();
+    CurriculumBundle? bundle;
+    int currentSemester = 1;
+    try {
+      final syncResult = await AuthService.instance.syncProfile();
+      final profile = syncResult.user;
+      if (profile != null) {
+        currentSemester = profile.semester;
+        final colleges = await ReferenceDataStore.instance.listColleges();
+        final departments = await ReferenceDataStore.instance.listDepartments();
+        final college =
+            colleges.where((c) => c.id == profile.collegeId).firstOrNull;
+        final deptObj =
+            departments.where((d) => d.name == profile.department).firstOrNull;
+        if (college != null && deptObj != null) {
+          bundle = await _syllabusService.getCurriculum(
+            collegeCode: college.code,
+            courseCode: deptObj.code,
+          );
+        }
+      }
+    } catch (_) {}
+    if (!mounted) return;
 
-    final uploadData = await showModalBottomSheet<Map<String, String>>(
+    final semesters = bundle == null
+        ? <int>[]
+        : (bundle.subjects.map((s) => s.semester).whereType<int>().toSet().toList()
+          ..sort());
+    int? selectedSemester =
+        semesters.contains(currentSemester) ? currentSemester : semesters.firstOrNull;
+    List<CurriculumSubject> subjectsForSemester = selectedSemester == null
+        ? []
+        : _syllabusService.getSubjectsForSemester(bundle!, semester: selectedSemester);
+    CurriculumSubject? selectedSubject =
+        subjectsForSemester.length == 1 ? subjectsForSemester.first : null;
+
+    final confirmed = await showModalBottomSheet<bool>(
       context: context,
       isScrollControlled: true,
       shape: const RoundedRectangleBorder(
@@ -137,35 +154,51 @@ class _NotesHubScreenState extends State<NotesHubScreen> {
                       fontSize: 16,
                       fontWeight: FontWeight.w600)),
               const SizedBox(height: 16),
-              TextField(
-                controller: _subjectNameController,
-                decoration: InputDecoration(
-                  labelText: 'Subject Name',
-                  hintText: 'e.g., Data Structures',
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(8)),
+              if (bundle == null)
+                const Text(
+                    'No curriculum found for your department, so a subject can\'t be selected. Notes are tagged to a subject and regulation, so upload isn\'t available right now.')
+              else ...[
+                DropdownButtonFormField<int>(
+                  initialValue: selectedSemester,
+                  decoration: InputDecoration(
+                    labelText: 'Semester',
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(8)),
+                  ),
+                  items: semesters
+                      .map((s) => DropdownMenuItem(
+                            value: s,
+                            child: Text('Semester $s'),
+                          ))
+                      .toList(),
+                  onChanged: (v) => setSheetState(() {
+                    selectedSemester = v;
+                    subjectsForSemester = v == null
+                        ? []
+                        : _syllabusService.getSubjectsForSemester(bundle!, semester: v);
+                    selectedSubject = subjectsForSemester.length == 1
+                        ? subjectsForSemester.first
+                        : null;
+                  }),
                 ),
-              ),
-              const SizedBox(height: 12),
-              TextField(
-                controller: _subjectCodeController,
-                decoration: InputDecoration(
-                  labelText: 'Subject Code',
-                  hintText: 'e.g., CS3401',
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(8)),
+                const SizedBox(height: 12),
+                DropdownButtonFormField<CurriculumSubject>(
+                  initialValue: selectedSubject,
+                  decoration: InputDecoration(
+                    labelText: 'Subject',
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(8)),
+                  ),
+                  items: subjectsForSemester
+                      .map((s) => DropdownMenuItem(
+                            value: s,
+                            child: Text('${s.subjectName} (${s.subjectCode})',
+                                overflow: TextOverflow.ellipsis),
+                          ))
+                      .toList(),
+                  onChanged: (v) => setSheetState(() => selectedSubject = v),
                 ),
-              ),
-              const SizedBox(height: 12),
-              TextField(
-                controller: _titleController,
-                decoration: InputDecoration(
-                  labelText: 'Document Title',
-                  hintText: 'e.g., Unit 1 Notes',
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(8)),
-                ),
-              ),
+              ],
               const SizedBox(height: 16),
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
@@ -175,11 +208,9 @@ class _NotesHubScreenState extends State<NotesHubScreen> {
                       child: const Text('Cancel')),
                   const SizedBox(width: 8),
                   ElevatedButton(
-                    onPressed: () => Navigator.pop(ctx, {
-                      'subjectName': _subjectNameController.text.trim(),
-                      'subjectCode': _subjectCodeController.text.trim(),
-                      'title': _titleController.text.trim(),
-                    }),
+                    onPressed: selectedSubject == null
+                        ? null
+                        : () => Navigator.pop(ctx, true),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.black,
                       foregroundColor: Colors.white,
@@ -194,7 +225,7 @@ class _NotesHubScreenState extends State<NotesHubScreen> {
       ),
     );
 
-    if (uploadData == null) return;
+    if (confirmed != true || selectedSubject == null) return;
 
     final result = await FilePicker.pickFiles(
       type: FileType.custom,
@@ -205,15 +236,16 @@ class _NotesHubScreenState extends State<NotesHubScreen> {
 
     if (mounted) setState(() => _uploadProgress = 0.0);
     try {
-      await _resourceService.uploadLocalFile(
+      final resourceId = await _resourceService.uploadLocalFile(
         file: file,
-        title: uploadData['title'] ?? file.name,
+        title: file.name,
         category: 'Notes',
         mimeType: file.extension == 'pdf'
             ? 'application/pdf'
             : 'image/${file.extension}',
-        subjectId: uploadData['subjectCode'],
-        subjectName: uploadData['subjectName'],
+        subjectId: selectedSubject!.subjectCode,
+        subjectName: selectedSubject!.subjectName,
+        regulation: bundle?.regulation,
         onProgress: (p) {
           if (mounted) setState(() => _uploadProgress = p);
         },
@@ -228,6 +260,7 @@ class _NotesHubScreenState extends State<NotesHubScreen> {
             backgroundColor: Colors.green),
       );
       _refresh();
+      await _maybeRename(resourceId, file.name);
     } catch (e) {
       if (mounted) setState(() => _uploadProgress = null);
       if (!mounted) return;
@@ -237,17 +270,51 @@ class _NotesHubScreenState extends State<NotesHubScreen> {
     }
   }
 
-  // mod: approve/reject/archive methods removed — moderation moved to web admin panel
-  // Future<void> _approveResource(String id) async { ... }
-  // Future<void> _rejectResource(String id) async { ... }
-  // Future<void> _archiveResource(String id) async { ... }
+  Future<void> _maybeRename(String resourceId, String currentName) async {
+    final controller = TextEditingController(text: currentName);
+    final newName = await showDialog<String>(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: const Text('Rename document?'),
+        content: TextField(
+          controller: controller,
+          autofocus: true,
+          decoration: const InputDecoration(labelText: 'Document title'),
+        ),
+        actions: [
+          TextButton(
+              onPressed: () => Navigator.pop(ctx),
+              child: const Text('Keep as is')),
+          ElevatedButton(
+            onPressed: () => Navigator.pop(ctx, controller.text.trim()),
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.black,
+              foregroundColor: Colors.white,
+            ),
+            child: const Text('Rename'),
+          ),
+        ],
+      ),
+    );
+    controller.dispose();
+
+    if (newName == null || newName.isEmpty || newName == currentName) return;
+
+    try {
+      await _resourceService.renameResource(
+          resourceId: resourceId, name: newName);
+      _refresh();
+    } catch (e) {
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(e.toString()), backgroundColor: Colors.red),
+      );
+    }
+  }
 
   @override
   void dispose() {
     _searchController.dispose();
-    _subjectNameController.dispose();
-    _subjectCodeController.dispose();
-    _titleController.dispose();
     super.dispose();
   }
 
@@ -389,22 +456,6 @@ class _NotesHubScreenState extends State<NotesHubScreen> {
                       _buildInfoBanner(),
                       const SizedBox(height: 24),
 
-                      // mod: pending approval section removed — moderation moved to web admin panel
-                      // if (_isMod && _pending.isNotEmpty) ...[
-                      //   Container(
-                      //     padding: const EdgeInsets.all(16),
-                      //     decoration: AppTheme.cardDecoration(color: AppColors.accentPink),
-                      //     child: const Row(
-                      //       children: [
-                      //         Icon(Icons.pending_actions, size: 20),
-                      //         SizedBox(width: 8),
-                      //         Text('Pending Approval', ...),
-                      //       ],
-                      //     ),
-                      //   ),
-                      //   ..._pending.map((r) => _buildPendingCard(r)),
-                      // ],
-
                       if (resources.isEmpty)
                         _buildEmptyState()
                       else
@@ -512,14 +563,6 @@ class _NotesHubScreenState extends State<NotesHubScreen> {
               ],
             ],
           ),
-          // mod: Archive button removed — moderation moved to web admin panel
-          // if (_isMod) ...[
-          //   const SizedBox(height: 10),
-          //   OutlinedButton.icon(
-          //     onPressed: () => _archiveResource(resource.id),
-          //     ...
-          //   ),
-          // ],
         ],
       ),
     );
@@ -626,9 +669,6 @@ class _NotesHubScreenState extends State<NotesHubScreen> {
       }
     });
   }
-
-  // mod: _buildPendingCard removed — moderation moved to web admin panel
-  // Widget _buildPendingCard(HubResource resource) { ... }
 }
 
 class _ErrorState extends StatelessWidget {
