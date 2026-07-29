@@ -3,7 +3,8 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>CollegeSapien — Open-Source Academic Platform</title>
+        <title>CodeSapiens — Explore. Evolve. Engineer.</title>
+        <link rel="icon" href="./assets/codesapiens_logo.png" type="image/png" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
             rel="preconnect"
@@ -43,12 +44,28 @@
             }
             html {
                 scroll-behavior: smooth;
+                scroll-snap-type: y mandatory;
+                scroll-padding-top: 60px;
             }
             body {
                 background: var(--bg);
                 color: var(--black);
                 font-family: "DM Sans", sans-serif;
                 overflow-x: hidden;
+            }
+            .snap-sec {
+                min-height: calc(100vh - 60px);
+                min-height: calc(100svh - 60px);
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                scroll-snap-align: start;
+            }
+            .grow {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
             }
             h1,
             h2,
@@ -150,61 +167,33 @@
             .nav-links a:hover {
                 opacity: 1;
             }
-
-            /* ── TICKER ── */
-            .ticker-outer {
-                background: var(--black);
-                border-bottom: var(--bdr);
-                overflow: hidden;
-                padding: 11px 0;
+            .nav-logo img {
+                height: 40px;
+                width: auto;
             }
-            .ticker-track {
-                display: flex;
-                white-space: nowrap;
-                animation: ticker 28s linear infinite;
-                width: max-content;
-            }
-            .ticker-item {
-                display: inline-flex;
-                align-items: center;
-                gap: 18px;
-                padding: 0 28px;
-                font-family: "Bricolage Grotesque", sans-serif;
-                font-size: 12px;
-                font-weight: 700;
-                color: var(--yellow);
-                letter-spacing: 0.06em;
-                text-transform: uppercase;
-            }
-            .ticker-sep {
-                width: 5px;
-                height: 5px;
-                background: var(--yellow);
-                border-radius: 50%;
-                opacity: 0.45;
-            }
-            @keyframes ticker {
-                from {
-                    transform: translateX(0);
-                }
-                to {
-                    transform: translateX(-50%);
-                }
+            .btn-nav {
+                padding: 9px 18px;
+                font-size: 13px;
             }
 
             /* ── HERO ── */
             .hero-wrap {
                 border-bottom: var(--bdr);
+                flex: 1;
+                display: flex;
             }
             .hero {
-                display: grid;
-                grid-template-columns: 1fr 1fr;
+                flex: 1;
+                display: flex;
+                flex-direction: column;
                 align-items: center;
-                gap: 40px;
-                padding: 72px 56px 88px;
-                max-width: 1360px;
+                justify-content: center;
+                text-align: center;
+                gap: 0;
+                padding: clamp(24px, 4vh, 64px) clamp(16px, 4vw, 56px);
+                max-width: 1000px;
                 margin: 0 auto;
-                min-height: calc(100vh - 92px);
+                width: 100%;
             }
             .hero-eyebrow {
                 display: inline-flex;
@@ -219,7 +208,8 @@
                 padding: 4px 12px;
                 border: var(--bdr);
                 box-shadow: 2px 2px 0 var(--black);
-                margin-bottom: 24px;
+                margin-bottom: clamp(14px, 3vh, 28px);
+                white-space: nowrap;
             }
             .hero-dot {
                 width: 6px;
@@ -228,162 +218,121 @@
                 border-radius: 50%;
             }
             .hero h1 {
-                font-size: clamp(38px, 4.6vw, 68px);
-                margin-bottom: 20px;
-                text-wrap: pretty;
+                font-size: clamp(40px, 12vw, 148px);
+                line-height: 0.98;
+                white-space: nowrap;
             }
-            .hero-sub {
-                font-size: 17px;
-                color: var(--ink);
-                line-height: 1.65;
-                margin-bottom: 36px;
-                max-width: 460px;
-            }
-            .hero-actions {
+            .hero-tags {
                 display: flex;
-                gap: 14px;
-                flex-wrap: wrap;
-            }
-            .hero-actions .btn {
-                padding: 13px 26px;
-                font-size: 15px;
-            }
-
-            /* Phone */
-            .hero-visual {
-                position: relative;
-                display: flex;
-                align-items: center;
+                gap: clamp(6px, 1.5vw, 10px);
+                flex-wrap: nowrap;
                 justify-content: center;
-                min-height: 560px;
+                margin-top: clamp(10px, 2vh, 14px);
+                margin-bottom: clamp(20px, 4vh, 32px);
             }
-            .phone {
-                width: 264px;
-                height: 536px;
-                border: 3px solid var(--black);
-                border-radius: 36px;
+            .htag {
+                font-family: "Bricolage Grotesque", sans-serif;
+                font-size: clamp(13px, 3.4vw, 22px);
+                font-weight: 700;
+                padding: clamp(4px, 0.8vh, 6px) clamp(8px, 2vw, 16px);
+                border: var(--bdr);
+                box-shadow: 2px 2px 0 var(--black);
+                white-space: nowrap;
+            }
+            .htag.a {
+                background: var(--green);
+            }
+            .htag.b {
+                background: var(--blue);
+            }
+            .htag.c {
+                background: var(--yellow);
+            }
+            .hero-btns {
+                display: flex;
+                gap: clamp(10px, 2vw, 14px);
+                flex-wrap: nowrap;
+                justify-content: center;
+                margin-bottom: clamp(28px, 7vh, 56px);
+            }
+            .btn-lg {
+                padding: clamp(10px, 1.6vh, 15px) clamp(12px, 2.6vw, 30px);
+                font-size: clamp(12px, 3vw, 15px);
+            }
+            .btn-light {
+                background: var(--bg2);
+                color: var(--black);
+                box-shadow: var(--sh);
+            }
+            .btn-light:hover {
                 box-shadow: var(--sh-lg);
-                overflow: hidden;
-                background: var(--dk-yellow);
-                position: relative;
-                flex-shrink: 0;
             }
-            .phone-notch {
-                position: absolute;
-                top: 12px;
-                left: 50%;
-                transform: translateX(-50%);
-                width: 78px;
-                height: 22px;
-                background: var(--black);
-                border-radius: 99px;
-                z-index: 2;
-            }
-            .phone-screen {
-                width: 100%;
-                height: 100%;
+            /* Stat row */
+            .hero-stats {
                 display: flex;
-                align-items: center;
+                gap: clamp(8px, 1.5vw, 10px);
+                flex-wrap: nowrap;
                 justify-content: center;
             }
-            .phone-ph {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                gap: 5px;
-                opacity: 0.35;
-            }
-            .phone-ph span {
-                font-family: monospace;
-                font-size: 11px;
-                text-align: center;
-                line-height: 1.5;
-            }
-
-            /* Float cards */
             .icard {
-                position: absolute;
                 border: var(--bdr);
                 box-shadow: var(--sh);
-                padding: 10px 14px;
+                padding: clamp(8px, 1.4vh, 12px) clamp(12px, 2.6vw, 22px);
                 border-radius: 3px;
                 font-family: "Bricolage Grotesque", sans-serif;
+                text-align: center;
+                flex: 0 1 auto;
             }
             .icard-label {
                 font-size: 9px;
                 font-weight: 700;
                 text-transform: uppercase;
-                letter-spacing: 0.07em;
+                letter-spacing: 0.06em;
                 opacity: 0.55;
-                margin-bottom: 3px;
+                margin-top: 2px;
             }
             .icard-val {
-                font-size: 17px;
+                font-size: clamp(16px, 3.2vw, 24px);
                 font-weight: 800;
+                white-space: nowrap;
             }
             .ic-a {
-                background: var(--green);
-                top: 72px;
-                right: 4px;
-                animation: flt 3.2s ease-in-out infinite;
+                background: var(--purple);
             }
             .ic-b {
                 background: var(--blue);
-                top: 48%;
-                left: 4px;
-                transform: translateY(-50%);
-                animation: fltm 3.8s ease-in-out infinite 0.4s;
             }
             .ic-c {
-                background: var(--pink);
-                bottom: 80px;
-                right: 4px;
-                animation: flt 2.9s ease-in-out infinite 0.8s;
-            }
-            @keyframes flt {
-                0%,
-                100% {
-                    transform: translateY(0);
-                }
-                50% {
-                    transform: translateY(-7px);
-                }
-            }
-            @keyframes fltm {
-                0%,
-                100% {
-                    transform: translateY(-50%);
-                }
-                50% {
-                    transform: translateY(calc(-50% - 7px));
-                }
+                background: var(--green);
             }
 
             /* ── VALUE STRIP ── */
             .value-strip {
                 background: var(--black);
                 border-bottom: var(--bdr);
-                padding: 36px 56px;
+                padding: clamp(14px, 2.5vh, 18px) 16px;
             }
             .value-strip p {
-                font-size: 18px;
+                font-size: clamp(10px, 2.6vw, 18px);
                 font-weight: 500;
-                line-height: 1.65;
+                line-height: 1.4;
                 color: var(--yellow);
-                max-width: 760px;
+                max-width: 100%;
                 margin: 0 auto;
                 text-align: center;
+                white-space: nowrap;
             }
 
             /* ── SECTIONS ── */
             .sec {
-                padding: 88px 56px;
+                padding: clamp(32px, 4vh, 88px) clamp(20px, 4vw, 56px);
                 max-width: 1360px;
                 margin: 0 auto;
+                width: 100%;
             }
             .sec-h {
                 font-size: clamp(28px, 3.5vw, 50px);
-                margin-bottom: 48px;
+                margin-bottom: clamp(20px, 4vh, 48px);
             }
 
             /* ── FEATURES ── */
@@ -393,7 +342,7 @@
                 border: var(--bdr);
             }
             .feat {
-                padding: 32px;
+                padding: clamp(20px, 3vh, 32px);
                 border-right: var(--bdr);
                 border-bottom: var(--bdr);
                 transition:
@@ -404,7 +353,7 @@
             .feat:nth-child(3n) {
                 border-right: none;
             }
-            .feat:nth-child(n + 4) {
+            .feat:nth-child(n) {
                 border-bottom: none;
             }
             .feat:hover {
@@ -450,54 +399,6 @@
                 line-height: 1.6;
             }
 
-            /* ── HOW IT WORKS ── */
-            .steps-out {
-                background: var(--black);
-                border-top: var(--bdr);
-                border-bottom: var(--bdr);
-                padding: 88px 56px;
-            }
-            .steps-in {
-                max-width: 1360px;
-                margin: 0 auto;
-            }
-            .steps-out .pill {
-                background: var(--yellow);
-            }
-            .steps-out .sec-h {
-                color: white;
-            }
-            .steps-grid {
-                display: grid;
-                grid-template-columns: repeat(3, 1fr);
-                gap: 20px;
-            }
-            .step {
-                background: var(--bg);
-                border: var(--bdr);
-                box-shadow: var(--sh);
-                padding: 32px;
-            }
-            .step-n {
-                font-family: "Bricolage Grotesque", sans-serif;
-                font-size: 54px;
-                font-weight: 800;
-                color: var(--yellow);
-                line-height: 1;
-                margin-bottom: 14px;
-            }
-            .step-t {
-                font-family: "Bricolage Grotesque", sans-serif;
-                font-size: 18px;
-                font-weight: 700;
-                margin-bottom: 8px;
-            }
-            .step p {
-                font-size: 14px;
-                color: var(--ink);
-                line-height: 1.6;
-            }
-
             /* ── SUITE ── */
             .suite-grid {
                 display: grid;
@@ -507,7 +408,7 @@
             .suite-card {
                 border: var(--bdr);
                 box-shadow: var(--sh);
-                padding: 32px;
+                padding: clamp(20px, 3vh, 32px);
                 background: var(--bg2);
                 transition:
                     transform 0.15s,
@@ -545,6 +446,24 @@
                 font-size: 14px;
                 color: var(--ink);
                 line-height: 1.6;
+            }
+
+            .suite-cta {
+                margin-top: clamp(20px, 4vh, 40px);
+                display: flex;
+                align-items: center;
+                gap: 18px;
+                flex-wrap: wrap;
+            }
+            .gh-btn {
+                display: inline-flex;
+                align-items: center;
+                gap: 10px;
+            }
+            .suite-cta-note {
+                font-size: 14px;
+                font-weight: 600;
+                opacity: 0.6;
             }
 
             /* ── OSS ── */
@@ -636,7 +555,7 @@
             /* ── FOOTER ── */
             .footer {
                 background: var(--black);
-                padding: 36px 56px;
+                padding: clamp(18px, 2.5vh, 36px) 56px;
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
@@ -665,6 +584,75 @@
             }
             .footer-links a:hover {
                 color: var(--yellow);
+            }
+            .footer-right {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-end;
+                gap: 14px;
+            }
+            .social-row {
+                display: flex;
+                gap: 10px;
+            }
+            .social-btn {
+                width: 34px;
+                height: 34px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background: var(--yellow);
+                color: var(--black);
+                border: var(--bdr);
+                border-radius: 3px;
+                transition: transform 0.12s;
+            }
+            .social-btn:hover {
+                transform: translate(-2px, -2px);
+            }
+
+            /* ── LETTER HEIST GAME ── */
+            .ch {
+                display: inline-block;
+                position: relative;
+            }
+            .ch.stolen {
+                visibility: hidden;
+            }
+            .ch.back {
+                animation: pop 0.35s cubic-bezier(0.2, 1.6, 0.4, 1);
+            }
+            @keyframes pop {
+                0% {
+                    transform: scale(2.1) rotate(-14deg);
+                }
+                100% {
+                    transform: scale(1) rotate(0);
+                }
+            }
+            #game {
+                position: fixed;
+                inset: 0;
+                z-index: 90;
+                pointer-events: none;
+            }
+            #score {
+                position: fixed;
+                top: 72px;
+                right: 16px;
+                z-index: 95;
+                display: none;
+                background: var(--yellow);
+                border: var(--bdr);
+                box-shadow: var(--sh);
+                padding: 6px 14px;
+                font-family: "Bricolage Grotesque", sans-serif;
+                font-weight: 800;
+                font-size: 15px;
+                pointer-events: none;
+            }
+            #score.bump {
+                animation: pop 0.35s cubic-bezier(0.2, 1.6, 0.4, 1);
             }
 
             /* ── REVEAL ── */
@@ -700,22 +688,77 @@
 
             /* ── RESPONSIVE ── */
             @media (max-width: 900px) {
+                /* sections stack taller than the viewport on mobile —
+                   mandatory snap would trap the footer, so relax it */
+                html {
+                    scroll-snap-type: y proximity;
+                }
+                .snap-sec {
+                    min-height: auto;
+                    scroll-snap-align: none;
+                    justify-content: flex-start;
+                }
+                #hero-section {
+                    min-height: calc(100svh - 60px);
+                }
+                .grow {
+                    flex: initial;
+                    justify-content: flex-start;
+                }
                 .nav {
-                    padding: 0 24px;
+                    padding: 0 16px;
                 }
                 .nav-links {
                     display: none;
                 }
-                .hero {
-                    grid-template-columns: 1fr;
-                    padding: 48px 24px;
-                    min-height: auto;
-                }
-                .hero-visual {
+                .gh-label {
                     display: none;
                 }
+                .nav-logo {
+                    font-size: 16px;
+                    gap: 8px !important;
+                }
+                .nav-logo img {
+                    height: 30px;
+                }
+                .btn-nav {
+                    padding: 8px 12px;
+                    font-size: 12px;
+                }
+                .hero {
+                    justify-content: flex-start;
+                    padding: clamp(34px, 6vh, 64px) 20px
+                        clamp(28px, 5vh, 72px);
+                }
+                .hero-eyebrow {
+                    margin-top: auto;
+                }
+                .hero h1 {
+                    font-size: clamp(38px, 11.5vw, 92px);
+                }
+                .hero-btns {
+                    flex-wrap: nowrap;
+                    margin-bottom: 0;
+                }
+                .hero-stats {
+                    margin-top: auto;
+                    width: min(100%, 420px);
+                }
+                .icard {
+                    flex: 1 1 0;
+                    min-width: 0;
+                    padding: 9px 10px;
+                }
                 .sec {
-                    padding: 64px 24px;
+                    padding: 56px 20px;
+                }
+                .sec-h {
+                    max-width: 760px;
+                    margin-bottom: 18px;
+                }
+                .oss-desc {
+                    font-size: 15px;
+                    line-height: 1.65;
                 }
                 .feat-grid {
                     grid-template-columns: 1fr;
@@ -727,17 +770,31 @@
                 .feat:last-child {
                     border-bottom: none;
                 }
-                .steps-out,
                 .oss-out,
                 .cta-out {
                     padding: 64px 24px;
                 }
                 .value-strip {
-                    padding: 28px 24px;
+                    padding: 14px 12px;
                 }
-                .steps-grid,
+                .value-strip p {
+                    max-width: 28rem;
+                    white-space: normal;
+                }
                 .suite-grid {
                     grid-template-columns: 1fr;
+                    gap: 16px;
+                }
+                .suite-card {
+                    padding: 22px;
+                }
+                .suite-cta {
+                    align-items: flex-start;
+                    gap: 12px;
+                }
+                .suite-cta-note {
+                    max-width: 28rem;
+                    line-height: 1.45;
                 }
                 .oss-in {
                     grid-template-columns: 1fr;
@@ -748,23 +805,102 @@
                     text-align: center;
                     padding: 28px 24px;
                 }
+                .footer-right {
+                    align-items: center;
+                }
+                .social-row {
+                    justify-content: center;
+                }
+            }
+
+            @media (max-width: 520px) {
+                .hero {
+                    padding-inline: 16px;
+                    padding-bottom: clamp(30px, 5vh, 58px);
+                }
+                .hero-eyebrow {
+                    margin-bottom: 18px;
+                }
+                .hero-tags {
+                    gap: 6px;
+                    margin-bottom: 22px;
+                }
+                .htag {
+                    font-size: clamp(12px, 3.6vw, 15px);
+                    padding: 4px 8px;
+                }
+                .hero-btns {
+                    width: min(100%, 360px);
+                    flex-wrap: nowrap;
+                }
+                .hero-btns .btn {
+                    flex: 1 1 0;
+                    justify-content: center;
+                    padding-inline: 10px;
+                }
+                .hero-stats {
+                    gap: 7px;
+                }
+                .icard-val {
+                    font-size: 17px;
+                }
+                .icard-label {
+                    font-size: 8px;
+                }
+                .sec {
+                    padding: 48px 16px;
+                }
+                .sec-h {
+                    font-size: clamp(30px, 9vw, 42px);
+                    line-height: 1;
+                }
+                .feat {
+                    padding: 22px 20px;
+                }
+                .feat-n {
+                    font-size: 34px;
+                    margin-bottom: 8px;
+                }
+                .suite-card {
+                    padding: 20px;
+                }
+                .suite-icon {
+                    width: 44px;
+                    height: 44px;
+                    margin-bottom: 14px;
+                }
+                .suite-cta .btn {
+                    width: 100%;
+                    justify-content: center;
+                }
             }
         </style>
     </head>
     <body>
         <!-- NAV -->
         <nav class="nav">
-            <a href="#" class="nav-logo">CollegeSapien</a>
+            <a
+                href="#"
+                class="nav-logo"
+                style="display: inline-flex; align-items: center; gap: 10px"
+            >
+                <img
+                    src="./assets/codesapiens_logo.png"
+                    alt="CodeSapiens logo"
+                />
+                CodeSapiens
+            </a>
             <ul class="nav-links">
-                <li><a href="#features">Features</a></li>
-                <li><a href="#how-it-works">How it works</a></li>
-                <li><a href="#open-source">Open source</a></li>
+                <li><a href="#community">Community</a></li>
+                <li><a href="./events.html">Meetups</a></li>
+                <li><a href="#collegesapien">CollegeSapien</a></li>
             </ul>
             <div style="display: flex; gap: 12px; align-items: center">
                 <a
-                    href="https://github.com/codesapiens-in/collegesapien"
-                    class="btn btn-dark"
-                    style="padding: 9px 18px; font-size: 13px"
+                    href="https://github.com/CodeSapiens-in/CollegeSapien"
+                    target="_blank"
+                    rel="noopener"
+                    class="btn btn-dark btn-nav"
                 >
                     <svg
                         width="15"
@@ -776,161 +912,53 @@
                             d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"
                         />
                     </svg>
-                    GitHub
+                    <span class="gh-label">GitHub</span>
                 </a>
+                <a
+                    href="https://college.codesapiens.in"
+                    class="btn btn-dark btn-nav"
+                    >Get Started</a
+                >
             </div>
         </nav>
 
-        <!-- TICKER -->
-        <div class="ticker-outer">
-            <div class="ticker-track" id="ticker">
-                <span class="ticker-item"
-                    >Open Source<span class="ticker-sep"></span
-                ></span>
-                <span class="ticker-item"
-                    >MIT License<span class="ticker-sep"></span
-                ></span>
-                <span class="ticker-item"
-                    >Flutter<span class="ticker-sep"></span
-                ></span>
-                <span class="ticker-item"
-                    >Nuxt 3<span class="ticker-sep"></span
-                ></span>
-                <span class="ticker-item"
-                    >Firebase<span class="ticker-sep"></span
-                ></span>
-                <span class="ticker-item"
-                    >Node.js<span class="ticker-sep"></span
-                ></span>
-                <span class="ticker-item"
-                    >Learn by Building<span class="ticker-sep"></span
-                ></span>
-                <span class="ticker-item"
-                    >Student-First<span class="ticker-sep"></span
-                ></span>
-                <!-- duplicate for seamless loop -->
-                <span class="ticker-item"
-                    >Open Source<span class="ticker-sep"></span
-                ></span>
-                <span class="ticker-item"
-                    >MIT License<span class="ticker-sep"></span
-                ></span>
-                <span class="ticker-item"
-                    >Flutter<span class="ticker-sep"></span
-                ></span>
-                <span class="ticker-item"
-                    >Nuxt 3<span class="ticker-sep"></span
-                ></span>
-                <span class="ticker-item"
-                    >Firebase<span class="ticker-sep"></span
-                ></span>
-                <span class="ticker-item"
-                    >Node.js<span class="ticker-sep"></span
-                ></span>
-                <span class="ticker-item"
-                    >Learn by Building<span class="ticker-sep"></span
-                ></span>
-                <span class="ticker-item"
-                    >Student-First<span class="ticker-sep"></span
-                ></span>
-            </div>
-        </div>
-
         <!-- HERO -->
+        <div class="snap-sec" id="hero-section">
         <div class="hero-wrap">
             <div class="hero">
-                <div>
-                    <div class="hero-eyebrow">
-                        <span class="hero-dot"></span> Open Source · MIT License
-                    </div>
-                    <h1>
-                        Build the future of campus life—open&nbsp;source &amp;
-                        student&#8209;first.
-                    </h1>
-                    <p class="hero-sub">
-                        CollegeSapien is an open‑source platform for
-                        universities, combining a modern mobile app, admin
-                        dashboard, and secure backend—built by the community,
-                        for the community.
-                    </p>
-                    <div class="hero-actions">
-                        <a
-                            href="https://github.com/codesapiens-in/collegesapien"
-                            class="btn btn-dark"
-                        >
-                            <svg
-                                width="15"
-                                height="15"
-                                viewBox="0 0 24 24"
-                                fill="currentColor"
-                            >
-                                <path
-                                    d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"
-                                />
-                            </svg>
-                            View on GitHub
-                        </a>
-                        <a href="#" class="btn btn-ghost">Get the App</a>
-                    </div>
+                <div class="hero-eyebrow">
+                    <span class="hero-dot"></span> Students Community
+                </div>
+                <h1 data-steal>CodeSapiens</h1>
+                <div class="hero-tags">
+                    <span class="htag a" data-steal>Explore.</span>
+                    <span class="htag b" data-steal>Evolve.</span>
+                    <span class="htag c" data-steal>Engineer.</span>
                 </div>
 
-                <div class="hero-visual">
-                    <div class="phone">
-                        <div class="phone-notch"></div>
-                        <div class="phone-screen">
-                            <div class="phone-ph">
-                                <svg
-                                    width="40"
-                                    height="40"
-                                    viewBox="0 0 40 40"
-                                    fill="none"
-                                >
-                                    <rect
-                                        width="40"
-                                        height="40"
-                                        rx="8"
-                                        fill="rgba(0,0,0,0.08)"
-                                    />
-                                    <rect
-                                        x="8"
-                                        y="8"
-                                        width="24"
-                                        height="4"
-                                        rx="2"
-                                        fill="rgba(0,0,0,0.15)"
-                                    />
-                                    <rect
-                                        x="8"
-                                        y="16"
-                                        width="16"
-                                        height="3"
-                                        rx="1.5"
-                                        fill="rgba(0,0,0,0.1)"
-                                    />
-                                    <rect
-                                        x="8"
-                                        y="22"
-                                        width="20"
-                                        height="3"
-                                        rx="1.5"
-                                        fill="rgba(0,0,0,0.1)"
-                                    />
-                                </svg>
-                                <span>app screenshot<br />goes here</span>
-                            </div>
-                        </div>
-                    </div>
+                <div class="hero-btns">
+                    <a
+                        href="https://college.codesapiens.in"
+                        class="btn btn-dark btn-lg"
+                        >Get Started</a
+                    >
+                    <a href="#community" class="btn btn-light btn-lg"
+                        >Meet the community</a
+                    >
+                </div>
+
+                <div class="hero-stats">
                     <div class="icard ic-a">
-                        <div class="icard-label">Attendance</div>
-                        <div class="icard-val">87%</div>
+                        <div class="icard-val">2500+</div>
+                        <div class="icard-label">Members</div>
                     </div>
                     <div class="icard ic-b">
-                        <div class="icard-label">Next Class</div>
-                        <div class="icard-val">10:30 AM</div>
+                        <div class="icard-val">20+</div>
+                        <div class="icard-label">Events</div>
                     </div>
                     <div class="icard ic-c">
-                        <div class="icard-label">Predicted</div>
-                        <div class="icard-val">Grade A</div>
+                        <div class="icard-val">50+</div>
+                        <div class="icard-label">Colleges</div>
                     </div>
                 </div>
             </div>
@@ -938,109 +966,155 @@
 
         <!-- VALUE STRIP -->
         <div class="value-strip">
-            <p>
-                Make academic life simpler: track attendance, see today's
-                schedule at a glance, access notes and question papers, and stay
-                connected to your campus community.
-            </p>
+            <p>The only non-profit inter-college students community.</p>
+        </div>
         </div>
 
-        <!-- FEATURES -->
-        <section class="sec" id="features">
-            <div class="pill">Features</div>
-            <h2 class="sec-h">Everything a student needs.</h2>
+        <!-- COMMUNITY / VISION -->
+        <section class="sec snap-sec" id="community">
+            <div class="pill">Our Vision</div>
+            <h2 class="sec-h">By the students, for the students.</h2>
+            <p class="oss-desc" style="max-width: 640px; margin-bottom: clamp(20px, 4vh, 40px)">
+                Our vision is to bring students together to collaborate,
+                share, and grow. We envision a platform managed by students,
+                for students — where you can build your career based on your
+                interests.
+            </p>
             <div class="feat-grid">
                 <div class="feat r">
                     <div class="feat-n">01</div>
-                    <div class="feat-t">Attendance Tracking</div>
+                    <div class="feat-t">Explore</div>
                     <p class="feat-d">
-                        Real‑time attendance percentages with clear visual
-                        progress so you always know where you stand.
+                        Network beyond your campus and explore knowledge you
+                        won't find in a classroom.
                     </p>
                 </div>
                 <div class="feat r rd2">
                     <div class="feat-n">02</div>
-                    <div class="feat-t">Smart Timetable</div>
+                    <div class="feat-t">Evolve</div>
                     <p class="feat-d">
-                        Color‑coded class cards and today's schedule view keep
-                        your day organized at a glance.
+                        Discover who you are, and evolve into a better version
+                        of yourself.
                     </p>
                 </div>
                 <div class="feat r rd3">
                     <div class="feat-n">03</div>
-                    <div class="feat-t">Next Class Preview</div>
+                    <div class="feat-t">Engineer</div>
                     <p class="feat-d">
-                        Quick look at the upcoming class, room, and time —
-                        always one step ahead.
-                    </p>
-                </div>
-                <div class="feat r rd1">
-                    <div class="feat-n">04</div>
-                    <div class="feat-t">Community Feed</div>
-                    <p class="feat-d">
-                        Share notes and resources with classmates. Learning is
-                        always better together.
-                    </p>
-                </div>
-                <div class="feat r rd2">
-                    <div class="feat-n">05</div>
-                    <div class="feat-t">Resources Hub</div>
-                    <p class="feat-d">
-                        Syllabus, question papers, and study materials all in
-                        one accessible place.
-                    </p>
-                </div>
-                <div class="feat r rd3">
-                    <div class="feat-n">06</div>
-                    <div class="feat-t">Grade Prediction</div>
-                    <p class="feat-d">
-                        Estimate required external marks from internal
-                        performance. Plan with confidence.
+                        Build real projects and showcase what you create to
+                        the community.
                     </p>
                 </div>
             </div>
         </section>
 
-        <!-- HOW IT WORKS -->
-        <div class="steps-out" id="how-it-works">
-            <div class="steps-in">
-                <div class="pill">How it works</div>
-                <h2 class="sec-h">Up and running in minutes.</h2>
-                <div class="steps-grid">
-                    <div class="step r">
-                        <div class="step-n">01</div>
-                        <div class="step-t">Sign in with college email</div>
-                        <p>
-                            Verify with your institutional email for secure,
-                            campus‑specific access.
-                        </p>
-                    </div>
-                    <div class="step r rd2">
-                        <div class="step-n">02</div>
-                        <div class="step-t">
-                            Set up subjects &amp; timetable
-                        </div>
-                        <p>
-                            Configure your subjects and weekly schedule for the
-                            current semester in minutes.
-                        </p>
-                    </div>
-                    <div class="step r rd4">
-                        <div class="step-n">03</div>
-                        <div class="step-t">Stay ahead all semester</div>
-                        <p>
-                            Track attendance and access resources daily — never
-                            miss a beat.
-                        </p>
-                    </div>
+        <!-- COMMUNITY MEETUPS PREVIEW SECTION -->
+        <section class="sec snap-sec" id="meetups">
+            <div style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 16px; margin-bottom: clamp(20px, 4vh, 36px)">
+                <div>
+                    <div class="pill" style="background: var(--blue);">Monthly Meetups</div>
+                    <h2 class="sec-h" style="margin-bottom: 8px;">See our meetups so far.</h2>
+                    <p class="oss-desc" style="max-width: 600px; margin-bottom: 0;">
+                        Every month Sapiens assemble across campuses to learn, share project demos, and network.
+                    </p>
                 </div>
+                <a href="./events.html" class="btn btn-dark btn-lg">View All Meetups &amp; Gallery →</a>
             </div>
-        </div>
 
-        <!-- SUITE -->
-        <section class="sec">
-            <div class="pill">Product Suite</div>
-            <h2 class="sec-h">Three layers, one platform.</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px;">
+                <!-- JUNE -->
+                <a href="./events.html" style="text-decoration: none; color: inherit;">
+                    <div style="background: var(--bg2); border: var(--bdr); box-shadow: var(--sh); overflow: hidden; transition: transform 0.15s;" onmouseover="this.style.transform='translate(-2px,-2px)'" onmouseout="this.style.transform='none'">
+                        <div style="position: relative; aspect-ratio: 16/9; background: #000; overflow: hidden; border-bottom: var(--bdr);">
+                            <span style="position: absolute; top: 8px; left: 8px; background: var(--yellow); border: var(--bdr); font-family: 'Bricolage Grotesque'; font-weight: 800; font-size: 10px; padding: 2px 6px; text-transform: uppercase;">JUN 2026</span>
+                            <img src="./assets/meetups/june-meetup.jpg" alt="June Meetup" style="width: 100%; height: 100%; object-fit: cover;" />
+                        </div>
+                        <div style="padding: 12px;">
+                            <h3 style="font-size: 15px; margin-bottom: 4px;">June Alumni Meetup</h3>
+                            <p style="font-size: 12px; color: var(--ink);">Tech Lounge · 90+ Sapiens</p>
+                        </div>
+                    </div>
+                </a>
+                <!-- MAY -->
+                <a href="./events.html" style="text-decoration: none; color: inherit;">
+                    <div style="background: var(--bg2); border: var(--bdr); box-shadow: var(--sh); overflow: hidden; transition: transform 0.15s;" onmouseover="this.style.transform='translate(-2px,-2px)'" onmouseout="this.style.transform='none'">
+                        <div style="position: relative; aspect-ratio: 16/9; background: #000; overflow: hidden; border-bottom: var(--bdr);">
+                            <span style="position: absolute; top: 8px; left: 8px; background: var(--green); border: var(--bdr); font-family: 'Bricolage Grotesque'; font-weight: 800; font-size: 10px; padding: 2px 6px; text-transform: uppercase;">MAY 2026</span>
+                            <img src="./assets/meetups/may-meetup.jpg" alt="May Meetup" style="width: 100%; height: 100%; object-fit: cover;" />
+                        </div>
+                        <div style="padding: 12px;">
+                            <h3 style="font-size: 15px; margin-bottom: 4px;">Summer Fest 2026</h3>
+                            <p style="font-size: 12px; color: var(--ink);">Online Fest · 150+ Sapiens</p>
+                        </div>
+                    </div>
+                </a>
+                <!-- APR -->
+                <a href="./events.html" style="text-decoration: none; color: inherit;">
+                    <div style="background: var(--bg2); border: var(--bdr); box-shadow: var(--sh); overflow: hidden; transition: transform 0.15s;" onmouseover="this.style.transform='translate(-2px,-2px)'" onmouseout="this.style.transform='none'">
+                        <div style="position: relative; aspect-ratio: 16/9; background: #000; overflow: hidden; border-bottom: var(--bdr);">
+                            <span style="position: absolute; top: 8px; left: 8px; background: var(--blue); border: var(--bdr); font-family: 'Bricolage Grotesque'; font-weight: 800; font-size: 10px; padding: 2px 6px; text-transform: uppercase;">APR 2026</span>
+                            <img src="./assets/meetups/april-meetup.jpg" alt="April Meetup" style="width: 100%; height: 100%; object-fit: cover;" />
+                        </div>
+                        <div style="padding: 12px;">
+                            <h3 style="font-size: 15px; margin-bottom: 4px;">Mega Meetup @ ONE M2P</h3>
+                            <p style="font-size: 12px; color: var(--ink);">Auditorium · 120+ Sapiens</p>
+                        </div>
+                    </div>
+                </a>
+                <!-- MAR -->
+                <a href="./events.html" style="text-decoration: none; color: inherit;">
+                    <div style="background: var(--bg2); border: var(--bdr); box-shadow: var(--sh); overflow: hidden; transition: transform 0.15s;" onmouseover="this.style.transform='translate(-2px,-2px)'" onmouseout="this.style.transform='none'">
+                        <div style="position: relative; aspect-ratio: 16/9; background: #000; overflow: hidden; border-bottom: var(--bdr);">
+                            <span style="position: absolute; top: 8px; left: 8px; background: var(--pink); border: var(--bdr); font-family: 'Bricolage Grotesque'; font-weight: 800; font-size: 10px; padding: 2px 6px; text-transform: uppercase;">MAR 2026</span>
+                            <img src="./assets/meetups/march-meetup.jpg" alt="March Meetup" style="width: 100%; height: 100%; object-fit: cover;" />
+                        </div>
+                        <div style="padding: 12px;">
+                            <h3 style="font-size: 15px; margin-bottom: 4px;">Spring Builder Gathering</h3>
+                            <p style="font-size: 12px; color: var(--ink);">Tech Hub · 75+ Sapiens</p>
+                        </div>
+                    </div>
+                </a>
+                <!-- FEB -->
+                <a href="./events.html" style="text-decoration: none; color: inherit;">
+                    <div style="background: var(--bg2); border: var(--bdr); box-shadow: var(--sh); overflow: hidden; transition: transform 0.15s;" onmouseover="this.style.transform='translate(-2px,-2px)'" onmouseout="this.style.transform='none'">
+                        <div style="position: relative; aspect-ratio: 16/9; background: #000; overflow: hidden; border-bottom: var(--bdr);">
+                            <span style="position: absolute; top: 8px; left: 8px; background: var(--purple); border: var(--bdr); font-family: 'Bricolage Grotesque'; font-weight: 800; font-size: 10px; padding: 2px 6px; text-transform: uppercase;">FEB 2026</span>
+                            <img src="./assets/meetups/february-meetup.jpg" alt="February Meetup" style="width: 100%; height: 100%; object-fit: cover;" />
+                        </div>
+                        <div style="padding: 12px;">
+                            <h3 style="font-size: 15px; margin-bottom: 4px;">Vanakkam Sapiens!</h3>
+                            <p style="font-size: 12px; color: var(--ink);">Innovation Lab · 60+ Sapiens</p>
+                        </div>
+                    </div>
+                </a>
+                <!-- JAN -->
+                <a href="./events.html" style="text-decoration: none; color: inherit;">
+                    <div style="background: var(--bg2); border: var(--bdr); box-shadow: var(--sh); overflow: hidden; transition: transform 0.15s;" onmouseover="this.style.transform='translate(-2px,-2px)'" onmouseout="this.style.transform='none'">
+                        <div style="position: relative; aspect-ratio: 16/9; background: #000; overflow: hidden; border-bottom: var(--bdr);">
+                            <span style="position: absolute; top: 8px; left: 8px; background: var(--yellow); border: var(--bdr); font-family: 'Bricolage Grotesque'; font-weight: 800; font-size: 10px; padding: 2px 6px; text-transform: uppercase;">JAN 2026</span>
+                            <img src="./assets/meetups/january-meetup.png" alt="January Meetup" style="width: 100%; height: 100%; object-fit: cover;" />
+                        </div>
+                        <div style="padding: 12px;">
+                            <h3 style="font-size: 15px; margin-bottom: 4px;">Jan Kickoff Meetup</h3>
+                            <p style="font-size: 12px; color: var(--ink);">Co-working Space · 45+ Sapiens</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- COLLEGESAPIEN + FOOTER -->
+        <div class="snap-sec">
+        <section class="sec grow" id="collegesapien">
+            <div class="pill">Open Source Project</div>
+            <h2 class="sec-h">CollegeSapien, built by the community.</h2>
+            <p class="oss-desc" style="max-width: 760px; margin-bottom: clamp(20px, 4vh, 40px)">
+                Your open‑source student companion — everything for your
+                college life in one app. No more messy attendance sheets,
+                scattered syllabus PDFs, or missed events. Built in the open
+                by students like you. Come join us — let's build the best
+                student companion together.
+            </p>
             <div class="suite-grid">
                 <div class="suite-card r">
                     <div class="suite-icon">
@@ -1058,12 +1132,12 @@
                             <line x1="12" y1="18" x2="12" y2="18.01" />
                         </svg>
                     </div>
-                    <div class="suite-badge">Flutter</div>
-                    <h3>Mobile App</h3>
+                    <div class="suite-badge">Study</div>
+                    <h3>Syllabus &amp; Subject Content</h3>
                     <p>
-                        A pixel‑perfect student app built from Figma specs.
-                        Thenable, responsive, and fast — attendance, timetable,
-                        and resources in your pocket.
+                        Your syllabus with the right subject content — notes,
+                        question papers, and resources mapped to what you
+                        actually study.
                     </p>
                 </div>
                 <div class="suite-card r rd2">
@@ -1083,11 +1157,12 @@
                             <line x1="12" y1="17" x2="12" y2="21" />
                         </svg>
                     </div>
-                    <div class="suite-badge">Nuxt 3</div>
-                    <h3>Admin Dashboard</h3>
+                    <div class="suite-badge">Track</div>
+                    <h3>Attendance, Timetable &amp; GPA</h3>
                     <p>
-                        Manage colleges, users, subjects, and resource reports
-                        from a single dashboard with audit‑friendly workflows.
+                        Track your attendance, plan your day with your
+                        timetable, and calculate your GPA — all in your
+                        pocket.
                     </p>
                 </div>
                 <div class="suite-card r rd4">
@@ -1106,136 +1181,141 @@
                             <polyline points="8 6 2 12 8 18" />
                         </svg>
                     </div>
-                    <div class="suite-badge">Node.js + Firebase</div>
-                    <h3>Backend API</h3>
+                    <div class="suite-badge">Connect</div>
+                    <h3>College &amp; Community Events</h3>
                     <p>
-                        Secure, scalable data management with Firebase
-                        Functions. Built to handle real campus‑scale usage with
-                        confidence.
+                        Never miss what's happening — college and community
+                        events, workshops, and much more in one feed.
                     </p>
                 </div>
             </div>
-        </section>
-
-        <!-- OSS -->
-        <div class="oss-out" id="open-source">
-            <div class="oss-in">
-                <div>
-                    <div class="pill">Open Source</div>
-                    <h2 class="sec-h">Contribute, learn, and ship.</h2>
-                    <p class="oss-desc">
-                        Transparent, extensible, and welcoming to contributors —
-                        CollegeSapien is a hands‑on project for learners and
-                        builders who want real impact.
-                    </p>
-                    <a
-                        href="https://github.com/codesapiens-in/collegesapien"
-                        class="btn btn-dark"
-                    >
-                        <svg
-                            width="15"
-                            height="15"
-                            viewBox="0 0 24 24"
-                            fill="currentColor"
-                        >
-                            <path
-                                d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"
-                            />
-                        </svg>
-                        Star on GitHub
-                    </a>
-                </div>
-                <div class="oss-list">
-                    <div class="oss-item r">
-                        <div class="oss-num">01</div>
-                        <div>
-                            <div class="oss-item-t">Learn by building</div>
-                            <p>
-                                Contribute to a real‑world monorepo spanning
-                                Flutter, Nuxt 3, and Firebase.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="oss-item r rd1">
-                        <div class="oss-num">02</div>
-                        <div>
-                            <div class="oss-item-t">
-                                Community‑driven roadmap
-                            </div>
-                            <p>
-                                Features shaped by students, developers, and
-                                campus teams worldwide.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="oss-item r rd2">
-                        <div class="oss-num">03</div>
-                        <div>
-                            <div class="oss-item-t">Modular by design</div>
-                            <p>
-                                Extend the mobile app, admin dashboard, or
-                                backend independently.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="oss-item r rd3">
-                        <div class="oss-num">04</div>
-                        <div>
-                            <div class="oss-item-t">Documentation‑first</div>
-                            <p>
-                                Clear setup guides and contributor workflows for
-                                all experience levels.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- CTA -->
-        <div class="cta-out">
-            <h2>Bring CollegeSapien to your campus.</h2>
-            <p>
-                Join a growing OSS community improving attendance, timetables,
-                and academic resources for campuses everywhere.
-            </p>
-            <div class="cta-btns">
+            <div class="suite-cta">
                 <a
-                    href="https://github.com/codesapiens-in/collegesapien"
-                    class="btn btn-dark"
+                    href="https://github.com/CodeSapiens-in/CollegeSapien"
+                    target="_blank"
+                    rel="noopener"
+                    class="btn btn-dark btn-lg gh-btn"
                 >
-                    <svg
-                        width="15"
-                        height="15"
-                        viewBox="0 0 24 24"
-                        fill="currentColor"
-                    >
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                         <path
-                            d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"
+                            d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.2.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.4-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.2 1.2a11 11 0 0 1 5.8 0c2.2-1.5 3.2-1.2 3.2-1.2.6 1.6.2 2.8.1 3.1.7.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .4.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"
                         />
                     </svg>
-                    View on GitHub
+                    Contribute on GitHub
                 </a>
-                <a href="#" class="btn btn-ghost">Get the App</a>
+                <span class="suite-cta-note">
+                    Star the repo, pick an issue, ship your first PR.
+                </span>
             </div>
-        </div>
+        </section>
+        <!-- /snap-sec closed after footer -->
+
+        <!-- LETTER HEIST GAME (ambient, auto-plays, no UI) -->
+        <div id="score"></div>
+        <canvas id="game"></canvas>
 
         <!-- FOOTER -->
         <footer class="footer">
-            <div class="footer-logo">CollegeSapien</div>
-            <p class="footer-note">
-                Licensed under MIT · Open to contributors of all experience
-                levels.
-            </p>
-            <div class="footer-links">
-                <a href="https://github.com/codesapiens-in/collegesapien"
-                    >GitHub</a
+            <div>
+                <div class="footer-logo">CodeSapiens</div>
+                <p class="footer-note">
+                    Licensed under MIT · Open to contributors of all
+                    experience levels.
+                </p>
+            </div>
+            <div class="footer-right">
+                <div class="social-row">
+                <a
+                    class="social-btn"
+                    href="https://github.com/Codesapiens-in"
+                    aria-label="Instagram"
+                    title="Instagram"
+                    ><svg
+                        width="18"
+                        height="18"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        style="vertical-align: middle"
+                    >
+                        <rect x="2" y="2" width="20" height="20" rx="5" />
+                        <circle cx="12" cy="12" r="4" />
+                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+                    </svg></a
                 >
-                <a href="./privacy.html">Privacy Policy</a>
-                <a href="./terms.html">Terms of Service</a>
-                <a href="./app/data/delete">Delete Account</a>
+                <a
+                    class="social-btn"
+                    href="https://youtube.com/@codesapiens-in?si=90EaPMYHcSZIHtMi"
+                    aria-label="YouTube"
+                    title="YouTube"
+                    ><svg
+                        width="18"
+                        height="18"
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                        style="vertical-align: middle"
+                    >
+                        <path
+                            d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31.3 31.3 0 0 0 0 12a31.3 31.3 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31.3 31.3 0 0 0 24 12a31.3 31.3 0 0 0-.5-5.8zM9.6 15.6V8.4L15.8 12l-6.2 3.6z"
+                        />
+                    </svg></a
+                >
+                <a
+                    class="social-btn"
+                    href="https://chat.whatsapp.com/IiaPFDThmGk9UEoYzvoXWU"
+                    aria-label="WhatsApp"
+                    title="WhatsApp"
+                    ><svg
+                        width="18"
+                        height="18"
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                        style="vertical-align: middle"
+                    >
+                        <path
+                            d="M17.5 14.4c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07a8.2 8.2 0 0 1-2.4-1.48 9 9 0 0 1-1.66-2.07c-.17-.3-.02-.46.13-.61.14-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.68-1.62-.93-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.5 0 1.47 1.07 2.9 1.22 3.1.15.2 2.1 3.2 5.1 4.49.71.3 1.27.49 1.7.63.72.23 1.37.2 1.88.12.58-.09 1.76-.72 2-1.42.25-.7.25-1.3.18-1.42-.08-.13-.28-.2-.58-.35zM12.04 21.8h-.01a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 1 1 8.38 4.62zM20.5 3.5A11.8 11.8 0 0 0 12.04 0C5.46 0 .1 5.35.1 11.93c0 2.1.55 4.16 1.6 5.97L0 24l6.25-1.64a11.93 11.93 0 0 0 5.78 1.47h.01c6.58 0 11.93-5.35 11.93-11.93 0-3.19-1.24-6.18-3.47-8.4z"
+                        />
+                    </svg></a
+                >
+                <a
+                    class="social-btn"
+                    href="https://www.linkedin.com/company/codesapiens-community/posts/"
+                    aria-label="LinkedIn"
+                    title="LinkedIn"
+                    ><svg
+                        width="18"
+                        height="18"
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                        style="vertical-align: middle"
+                    >
+                        <path
+                            d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05a3.74 3.74 0 0 1 3.37-1.85c3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.55C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.72C24 .77 23.2 0 22.22 0z"
+                        />
+                    </svg></a
+                >
+                </div>
+                <div
+                    class="footer-links"
+                    style="flex-wrap: wrap; justify-content: center"
+                >
+                    <a href="./events.html">Meetups</a>
+                    <a
+                        href="https://github.com/CodeSapiens-in/CollegeSapien"
+                        target="_blank"
+                        rel="noopener"
+                        >GitHub</a
+                    >
+                    <a href="./privacy.html">Privacy Policy</a>
+                    <a href="./terms.html">Terms of Service</a>
+                    <a href="./app/data/delete/index.html">Delete Account</a>
+                </div>
             </div>
         </footer>
+        </div>
 
         <!-- React + Babel for Tweaks panel only -->
         <div id="tweaks-root"></div>
@@ -1259,7 +1339,6 @@
         <script type="text/babel">
             const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/ {
                 theme: "yellow",
-                tickerSpeed: "normal",
                 showFloatingCards: true,
             }; /*EDITMODE-END*/
 
@@ -1314,14 +1393,6 @@
                 r.setProperty("--blue", c.blue);
                 r.setProperty("--lt-blue", c.ltBlue);
                 r.setProperty("--tag-purple", c.tagPurple);
-                document.querySelector(".oss-out").style.background = c.ossBg;
-            }
-
-            function applyTickerSpeed(s) {
-                const dur = s === "slow" ? "42s" : s === "fast" ? "14s" : "28s";
-                document.querySelector(
-                    ".ticker-track",
-                ).style.animationDuration = dur;
             }
 
             function applyCards(show) {
@@ -1336,9 +1407,6 @@
                 React.useEffect(() => {
                     applyTheme(tweaks.theme);
                 }, [tweaks.theme]);
-                React.useEffect(() => {
-                    applyTickerSpeed(tweaks.tickerSpeed);
-                }, [tweaks.tickerSpeed]);
                 React.useEffect(() => {
                     applyCards(tweaks.showFloatingCards);
                 }, [tweaks.showFloatingCards]);
@@ -1427,14 +1495,6 @@
                             </div>
                         </TweakSection>
 
-                        <TweakSection label="Ticker Speed">
-                            <TweakRadio
-                                value={tweaks.tickerSpeed}
-                                options={["slow", "normal", "fast"]}
-                                onChange={(v) => setTweak("tickerSpeed", v)}
-                            />
-                        </TweakSection>
-
                         <TweakSection label="Hero Cards">
                             <TweakToggle
                                 label="Show floating cards"
@@ -1454,6 +1514,752 @@
         </script>
 
         <script>
+            // ── Letter Heist ──
+            (() => {
+                "use strict";
+                const C = {
+                    ink: "#0a0a0a",
+                    yellow: "#ffd966",
+                    green: "#d2ffb6",
+                    pink: "#ffc0b6",
+                    purple: "#9191ff",
+                    paper: "#fefcf5",
+                };
+
+                /* letters — split into spans on first play */
+                let letters = null;
+                function splitLetters() {
+                    letters = [];
+                    document.querySelectorAll("[data-steal]").forEach((block) => {
+                        const text = block.textContent;
+                        block.textContent = "";
+                        for (const ch of text) {
+                            if (ch.trim() === "") {
+                                block.appendChild(document.createTextNode(ch));
+                            } else {
+                                const s = document.createElement("span");
+                                s.className = "ch";
+                                s.textContent = ch;
+                                block.appendChild(s);
+                                letters.push({ el: s, char: ch, stolen: false });
+                            }
+                        }
+                    });
+                }
+                let rectsDirty = true;
+                function refreshRects() {
+                    for (const L of letters) {
+                        const r = L.el.getBoundingClientRect();
+                        L.x = r.left + r.width / 2;
+                        L.y = r.top + r.height / 2;
+                    }
+                    rectsDirty = false;
+                }
+                addEventListener("resize", () => (rectsDirty = true));
+                addEventListener("scroll", () => (rectsDirty = true), {
+                    passive: true,
+                });
+
+                /* canvas */
+                const canvas = document.getElementById("game");
+                const ctx = canvas.getContext("2d");
+                let W = 0,
+                    H = 0;
+                function resize() {
+                    const DPR = Math.min(devicePixelRatio || 1, 2);
+                    W = innerWidth;
+                    H = innerHeight;
+                    canvas.width = W * DPR;
+                    canvas.height = H * DPR;
+                    canvas.style.width = W + "px";
+                    canvas.style.height = H + "px";
+                    ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+                }
+                resize();
+                addEventListener("resize", resize);
+
+                /* tiny audio */
+                let AC = null;
+                function beep(freq, dur = 0.09, type = "square", vol = 0.05) {
+                    try {
+                        AC =
+                            AC ||
+                            new (window.AudioContext ||
+                                window.webkitAudioContext)();
+                        const o = AC.createOscillator(),
+                            g = AC.createGain();
+                        o.type = type;
+                        o.frequency.value = freq;
+                        g.gain.setValueAtTime(vol, AC.currentTime);
+                        g.gain.exponentialRampToValueAtTime(
+                            0.0001,
+                            AC.currentTime + dur,
+                        );
+                        o.connect(g);
+                        g.connect(AC.destination);
+                        o.start();
+                        o.stop(AC.currentTime + dur);
+                    } catch (e) {}
+                }
+
+                /* state — alternates forever: steal all letters, then
+                   return them all, each half starting slow and ramping up */
+                let monkeys = [],
+                    flights = [],
+                    sparks = [];
+                let phase = "steal",
+                    phaseElapsed = 0,
+                    spawnTimer = 0.6;
+
+                const STATES = { SEEK: 0, FLEE: 1, DIZZY: 2, SCARED: 3 };
+
+                function edgeSpawnPoint() {
+                    const side = Math.floor(Math.random() * 4);
+                    if (side === 0)
+                        return { x: -60, y: 60 + Math.random() * (H - 120) };
+                    if (side === 1)
+                        return { x: W + 60, y: 60 + Math.random() * (H - 120) };
+                    if (side === 2)
+                        return { x: 60 + Math.random() * (W - 120), y: -60 };
+                    return { x: 60 + Math.random() * (W - 120), y: H + 60 };
+                }
+                function nearestExit(x, y) {
+                    const d = [
+                        { x: -90, y },
+                        { x: W + 90, y },
+                        { x, y: -90 },
+                        { x, y: H + 90 },
+                    ];
+                    d.sort(
+                        (a, b) =>
+                            Math.hypot(a.x - x, a.y - y) -
+                            Math.hypot(b.x - x, b.y - y),
+                    );
+                    return d[0];
+                }
+                function pickToSteal() {
+                    const avail = letters.filter(
+                        (L) => !L.stolen && !L.reserved,
+                    );
+                    if (!avail.length) return null;
+                    return avail[Math.floor(Math.random() * avail.length)];
+                }
+                function pickToReturn() {
+                    const avail = letters.filter(
+                        (L) => L.stolen && !L.reserved,
+                    );
+                    if (!avail.length) return null;
+                    return avail[Math.floor(Math.random() * avail.length)];
+                }
+
+                function spawnMonkey() {
+                    const mode = phase;
+                    const target =
+                        mode === "steal" ? pickToSteal() : pickToReturn();
+                    if (!target) return;
+                    if (rectsDirty) refreshRects();
+                    target.reserved = true;
+                    const p = edgeSpawnPoint();
+                    const speed = 105 + phaseElapsed * 2.2 + Math.random() * 40;
+                    monkeys.push({
+                        x: p.x,
+                        y: p.y,
+                        scale: 0.8 + Math.random() * 0.35,
+                        speed: Math.min(speed, 300),
+                        state: STATES.SEEK,
+                        mode,
+                        target,
+                        carrying: mode === "return" ? target : null,
+                        hop: Math.random() * Math.PI,
+                        face: 1,
+                        dizzyT: 0,
+                        blink: Math.random() * 3,
+                        wink: 2 + Math.random() * 4,
+                        emote: null,
+                        emoteT: 0,
+                        flip: 0,
+                    });
+                }
+
+                let score = 0;
+                const scoreEl = document.getElementById("score");
+                function bonk(m) {
+                    if (m.state === STATES.DIZZY) return;
+                    score++;
+                    scoreEl.textContent = "🐒 Bonks: " + score;
+                    scoreEl.style.display = "block";
+                    scoreEl.classList.remove("bump");
+                    void scoreEl.offsetWidth;
+                    scoreEl.classList.add("bump");
+                    beep(180, 0.12, "sawtooth", 0.07);
+                    beep(90, 0.18, "square", 0.06);
+                    burst(m.x, m.y - 20, C.yellow, 12);
+                    if (m.carrying) {
+                        flights.push({
+                            char: m.carrying.char,
+                            L: m.carrying,
+                            x: m.x,
+                            y: m.y - 30,
+                            t: 0,
+                            dur: 0.55,
+                        });
+                        m.carrying = null;
+                    }
+                    if (m.target) {
+                        m.target.reserved = false;
+                        m.target = null;
+                    }
+                    m.state = STATES.DIZZY;
+                    m.dizzyT = 0.55;
+                }
+
+                function updateMonkey(m, dt) {
+                    m.hop += dt * (6 + m.speed / 40);
+                    m.blink -= dt;
+                    if (m.blink < -0.12) m.blink = 2 + Math.random() * 3;
+                    m.wink -= dt;
+                    if (m.wink < -0.5) m.wink = 2.5 + Math.random() * 4;
+                    if (m.flip > 0) m.flip = Math.max(m.flip - dt, 0);
+
+                    if (m.state === STATES.DIZZY) {
+                        m.dizzyT -= dt;
+                        if (m.dizzyT <= 0) {
+                            m.state = STATES.SCARED;
+                            m.exit = nearestExit(m.x, m.y);
+                        }
+                        return;
+                    }
+
+                    if (m.emote) {
+                        m.emoteT -= dt;
+                        if (m.emoteT <= 0) m.emote = null;
+                    } else if (
+                        m.state === STATES.FLEE &&
+                        Math.random() < dt * 0.4
+                    ) {
+                        m.emote = "taunt";
+                        m.emoteT = 0.9;
+                    } else if (
+                        m.state === STATES.SEEK &&
+                        m.flip === 0 &&
+                        Math.random() < dt * 0.18
+                    ) {
+                        m.flip = 0.5;
+                    }
+                    if (m.emote === "taunt") {
+                        m.face = W / 2 - m.x >= 0 ? 1 : -1;
+                        return;
+                    }
+
+                    let tx, ty, spd = m.speed;
+                    if (m.state === STATES.SEEK) {
+                        const lost =
+                            m.mode === "steal"
+                                ? !m.target || m.target.stolen
+                                : !m.target || !m.target.stolen;
+                        if (lost) {
+                            m.target && (m.target.reserved = false);
+                            m.target =
+                                m.mode === "steal"
+                                    ? pickToSteal()
+                                    : pickToReturn();
+                            if (m.target) {
+                                m.target.reserved = true;
+                                if (m.mode === "return") m.carrying = m.target;
+                            } else {
+                                m.carrying = null;
+                            }
+                        }
+                        if (!m.target) {
+                            m.state = STATES.SCARED;
+                            m.exit = nearestExit(m.x, m.y);
+                            return;
+                        }
+                        if (rectsDirty) refreshRects();
+                        tx = m.target.x;
+                        ty = m.target.y;
+                    } else if (m.state === STATES.FLEE) {
+                        tx = m.exit.x;
+                        ty = m.exit.y;
+                        spd = m.speed * 1.35;
+                    } else {
+                        tx = m.exit.x;
+                        ty = m.exit.y;
+                        spd = m.speed * 1.8;
+                    }
+
+                    const dx = tx - m.x,
+                        dy = ty - m.y;
+                    const dist = Math.hypot(dx, dy) || 1;
+                    m.face = dx >= 0 ? 1 : -1;
+                    m.x += (dx / dist) * spd * dt;
+                    m.y += (dy / dist) * spd * dt;
+
+                    if (m.state === STATES.SEEK && dist < 14) {
+                        if (m.mode === "steal") {
+                            m.target.stolen = true;
+                            m.target.el.classList.add("stolen");
+                            m.target.el.classList.remove("back");
+                            m.carrying = m.target;
+                            m.target.reserved = false;
+                            m.target = null;
+                            beep(520, 0.07, "triangle", 0.05);
+                            burst(m.x, m.y, C.ink, 6);
+                        } else {
+                            flights.push({
+                                char: m.carrying.char,
+                                L: m.carrying,
+                                x: m.x,
+                                y: m.y - 30,
+                                t: 0,
+                                dur: 0.55,
+                            });
+                            m.carrying = null;
+                            m.target.reserved = false;
+                            m.target = null;
+                            beep(760, 0.08, "triangle", 0.05);
+                            burst(m.x, m.y, C.purple, 6);
+                        }
+                        m.state = STATES.FLEE;
+                        m.exit = nearestExit(m.x, m.y);
+                    }
+
+                    if (
+                        (m.state === STATES.FLEE ||
+                            m.state === STATES.SCARED) &&
+                        (m.x < -80 || m.x > W + 80 || m.y < -80 || m.y > H + 80)
+                    ) {
+                        if (m.carrying) beep(140, 0.2, "sine", 0.06);
+                        m.dead = true;
+                    }
+                }
+
+                function updateFlights(dt) {
+                    for (const f of flights) {
+                        f.t += dt / f.dur;
+                        if (f.t >= 1) {
+                            f.done = true;
+                            f.L.stolen = false;
+                            f.L.el.classList.remove("stolen");
+                            f.L.el.classList.add("back");
+                            burst(f.L.x, f.L.y, C.purple, 8);
+                            beep(760, 0.08, "triangle", 0.05);
+                        }
+                    }
+                    flights = flights.filter((f) => !f.done);
+                }
+                function burst(x, y, color, n) {
+                    for (let i = 0; i < n; i++) {
+                        const a = Math.random() * Math.PI * 2,
+                            s = 60 + Math.random() * 140;
+                        sparks.push({
+                            x,
+                            y,
+                            vx: Math.cos(a) * s,
+                            vy: Math.sin(a) * s - 40,
+                            life: 0.5 + Math.random() * 0.3,
+                            color,
+                        });
+                    }
+                }
+                function updateSparks(dt) {
+                    for (const p of sparks) {
+                        p.life -= dt;
+                        p.x += p.vx * dt;
+                        p.y += p.vy * dt;
+                        p.vy += 300 * dt;
+                    }
+                    sparks = sparks.filter((p) => p.life > 0);
+                }
+
+                /* drawing — neo-brutalist monkey: flat fills, thick ink outlines */
+                function drawMonkey(m) {
+                    const bounce = Math.abs(Math.sin(m.hop)) * 14;
+                    const squash = 1 + Math.sin(m.hop * 2) * 0.05;
+                    const taunt = m.emote === "taunt";
+                    const wig = taunt ? Math.sin((0.9 - m.emoteT) * 24) : 0;
+
+                    // hard offset shadow instead of soft ellipse
+                    ctx.fillStyle = "rgba(10,10,10,.2)";
+                    ctx.fillRect(
+                        m.x - 20 * m.scale + 4,
+                        m.y + 32 * m.scale + 4,
+                        40 * m.scale,
+                        7 * m.scale,
+                    );
+
+                    ctx.save();
+                    ctx.translate(m.x, m.y - (taunt ? 3 : bounce));
+                    let spin = 0;
+                    if (m.state === STATES.DIZZY)
+                        spin = Math.sin((0.55 - m.dizzyT) * 22) * 0.35;
+                    if (m.flip > 0)
+                        spin += ((0.5 - m.flip) / 0.5) * Math.PI * 2;
+                    ctx.rotate(spin + wig * 0.07);
+                    ctx.scale(m.scale * m.face, m.scale * squash);
+
+                    const fur = "#4a3226";
+                    const skin = "#f2d6ae";
+                    const ink = C.ink;
+                    const hip = wig * 3;
+                    const outline = (fill, path) => {
+                        ctx.fillStyle = fill;
+                        ctx.beginPath();
+                        path();
+                        ctx.fill();
+                        ctx.strokeStyle = ink;
+                        ctx.lineWidth = 2.5;
+                        ctx.stroke();
+                    };
+
+                    // tail
+                    ctx.strokeStyle = ink;
+                    ctx.lineCap = "round";
+                    ctx.lineWidth = 7;
+                    ctx.beginPath();
+                    ctx.moveTo(-12, 20 + hip * 0.3);
+                    ctx.quadraticCurveTo(-26, 18, -27, 8);
+                    ctx.stroke();
+                    ctx.strokeStyle = fur;
+                    ctx.lineWidth = 4;
+                    ctx.beginPath();
+                    ctx.moveTo(-12, 20 + hip * 0.3);
+                    ctx.quadraticCurveTo(-26, 18, -27, 8);
+                    ctx.stroke();
+                    ctx.beginPath();
+                    ctx.arc(-27, 3.5, 4.5, 0.3, Math.PI * 1.7);
+                    ctx.stroke();
+
+                    // legs
+                    const leg = Math.sin(m.hop) * 5;
+                    ctx.strokeStyle = ink;
+                    ctx.lineWidth = 11;
+                    ctx.beginPath();
+                    ctx.moveTo(-7 + hip, 24);
+                    ctx.lineTo(-10 + hip, 33 + leg);
+                    ctx.stroke();
+                    ctx.beginPath();
+                    ctx.moveTo(7 + hip, 24);
+                    ctx.lineTo(10 + hip, 33 - leg);
+                    ctx.stroke();
+                    ctx.strokeStyle = fur;
+                    ctx.lineWidth = 7;
+                    ctx.beginPath();
+                    ctx.moveTo(-7 + hip, 24);
+                    ctx.lineTo(-10 + hip, 33 + leg);
+                    ctx.stroke();
+                    ctx.beginPath();
+                    ctx.moveTo(7 + hip, 24);
+                    ctx.lineTo(10 + hip, 33 - leg);
+                    ctx.stroke();
+
+                    // body + tummy
+                    outline(fur, () =>
+                        ctx.ellipse(hip, 20, 14.5, 13, 0, 0, Math.PI * 2),
+                    );
+                    ctx.fillStyle = skin;
+                    ctx.beginPath();
+                    ctx.ellipse(hip, 22, 8.5, 7.5, 0, 0, Math.PI * 2);
+                    ctx.fill();
+
+                    // arms (ink underlay for outline, fur on top)
+                    const arm = (x1, y1, x2, y2) => {
+                        ctx.strokeStyle = ink;
+                        ctx.lineWidth = 10;
+                        ctx.beginPath();
+                        ctx.moveTo(x1, y1);
+                        ctx.lineTo(x2, y2);
+                        ctx.stroke();
+                        ctx.strokeStyle = fur;
+                        ctx.lineWidth = 6;
+                        ctx.beginPath();
+                        ctx.moveTo(x1, y1);
+                        ctx.lineTo(x2, y2);
+                        ctx.stroke();
+                    };
+                    if (m.carrying && taunt) {
+                        arm(7 + hip, 14, 19, -16);
+                        arm(-7 + hip, 14, -18, -2 - wig * 2);
+                    } else if (m.carrying) {
+                        arm(7 + hip, 14, 19, -16);
+                        arm(-7 + hip, 14, -16, 23 + leg);
+                    } else if (taunt) {
+                        arm(7 + hip, 14, 18, -2 + wig * 2);
+                        arm(-7 + hip, 14, -18, -2 - wig * 2);
+                    } else {
+                        arm(7 + hip, 14, 16, 23 - leg);
+                        arm(-7 + hip, 14, -16, 23 + leg);
+                    }
+
+                    // ears
+                    outline(fur, () => ctx.arc(-23, -16, 10.5, 0, Math.PI * 2));
+                    outline(fur, () => ctx.arc(23, -16, 10.5, 0, Math.PI * 2));
+                    ctx.fillStyle = skin;
+                    ctx.beginPath();
+                    ctx.arc(-23, -16, 5.5, 0, Math.PI * 2);
+                    ctx.fill();
+                    ctx.beginPath();
+                    ctx.arc(23, -16, 5.5, 0, Math.PI * 2);
+                    ctx.fill();
+
+                    // head
+                    outline(fur, () => ctx.arc(0, -16, 23, 0, Math.PI * 2));
+
+                    // face patch
+                    ctx.fillStyle = skin;
+                    ctx.beginPath();
+                    ctx.arc(-8, -18, 10, 0, Math.PI * 2);
+                    ctx.fill();
+                    ctx.beginPath();
+                    ctx.arc(8, -18, 10, 0, Math.PI * 2);
+                    ctx.fill();
+                    ctx.beginPath();
+                    ctx.ellipse(0, -8, 13, 9, 0, 0, Math.PI * 2);
+                    ctx.fill();
+
+                    // hair curl
+                    ctx.strokeStyle = ink;
+                    ctx.lineWidth = 4;
+                    ctx.beginPath();
+                    ctx.moveTo(0, -38);
+                    ctx.quadraticCurveTo(4 + wig, -46, 10, -42);
+                    ctx.stroke();
+
+                    // blush
+                    ctx.fillStyle = "rgba(255,122,144,.45)";
+                    ctx.beginPath();
+                    ctx.ellipse(-13, -6, 4.2, 2.8, 0, 0, Math.PI * 2);
+                    ctx.fill();
+                    ctx.beginPath();
+                    ctx.ellipse(13, -6, 4.2, 2.8, 0, 0, Math.PI * 2);
+                    ctx.fill();
+
+                    // glasses
+                    ctx.fillStyle = C.paper;
+                    ctx.beginPath();
+                    ctx.arc(-8, -19, 8, 0, Math.PI * 2);
+                    ctx.fill();
+                    ctx.beginPath();
+                    ctx.arc(8, -19, 8, 0, Math.PI * 2);
+                    ctx.fill();
+                    ctx.strokeStyle = ink;
+                    ctx.lineWidth = 2.6;
+                    ctx.beginPath();
+                    ctx.arc(-8, -19, 8, 0, Math.PI * 2);
+                    ctx.stroke();
+                    ctx.beginPath();
+                    ctx.arc(8, -19, 8, 0, Math.PI * 2);
+                    ctx.stroke();
+                    ctx.beginPath();
+                    ctx.moveTo(-1.2, -19);
+                    ctx.lineTo(1.2, -19);
+                    ctx.stroke();
+
+                    // eyes
+                    const blink = m.blink < 0;
+                    const wink = m.wink < 0 && !blink;
+                    ctx.lineWidth = 2.2;
+                    ctx.strokeStyle = ink;
+                    const happyEye = (x) => {
+                        ctx.beginPath();
+                        ctx.arc(x, -17.5, 3.6, Math.PI * 1.12, Math.PI * 1.88);
+                        ctx.stroke();
+                    };
+                    const openEye = (x) => {
+                        ctx.fillStyle = ink;
+                        ctx.beginPath();
+                        ctx.arc(x, -19, 3.7, 0, Math.PI * 2);
+                        ctx.fill();
+                        ctx.fillStyle = C.paper;
+                        ctx.beginPath();
+                        ctx.arc(x + 1.2, -20.4, 1.4, 0, Math.PI * 2);
+                        ctx.fill();
+                    };
+                    if (m.state === STATES.DIZZY) {
+                        ctx.fillStyle = ink;
+                        ctx.font = "bold 9px sans-serif";
+                        ctx.textAlign = "center";
+                        ctx.textBaseline = "middle";
+                        ctx.fillText("×", -8, -19);
+                        ctx.fillText("×", 8, -19);
+                    } else if (blink) {
+                        happyEye(-8);
+                        happyEye(8);
+                    } else if (wink || taunt) {
+                        openEye(-8);
+                        happyEye(8);
+                    } else {
+                        openEye(-8);
+                        openEye(8);
+                    }
+
+                    // mouth
+                    ctx.strokeStyle = ink;
+                    ctx.lineWidth = 2;
+                    if (taunt) {
+                        ctx.fillStyle = ink;
+                        ctx.beginPath();
+                        ctx.arc(0, -7, 4.5, 0, Math.PI);
+                        ctx.fill();
+                        ctx.fillStyle = "#f2788c";
+                        ctx.beginPath();
+                        ctx.ellipse(
+                            0,
+                            -2.5 + Math.abs(wig) * 0.6,
+                            2.8,
+                            3.4,
+                            0,
+                            0,
+                            Math.PI * 2,
+                        );
+                        ctx.fill();
+                    } else {
+                        ctx.beginPath();
+                        ctx.arc(0, -8, 4.5, Math.PI * 0.15, Math.PI * 0.85);
+                        ctx.stroke();
+                    }
+
+                    // freckles
+                    ctx.fillStyle = ink;
+                    ctx.beginPath();
+                    ctx.arc(-2, -12, 0.8, 0, Math.PI * 2);
+                    ctx.fill();
+                    ctx.beginPath();
+                    ctx.arc(2, -12, 0.8, 0, Math.PI * 2);
+                    ctx.fill();
+
+                    // dizzy stars
+                    if (m.state === STATES.DIZZY) {
+                        const t = (0.55 - m.dizzyT) * 10;
+                        ctx.fillStyle = C.yellow;
+                        ctx.strokeStyle = ink;
+                        ctx.font = "800 12px 'Bricolage Grotesque', sans-serif";
+                        ctx.textAlign = "center";
+                        ctx.textBaseline = "middle";
+                        for (let i = 0; i < 3; i++) {
+                            const a = t + i * ((Math.PI * 2) / 3);
+                            ctx.fillText(
+                                "★",
+                                Math.cos(a) * 26,
+                                -38 + Math.sin(a) * 6,
+                            );
+                        }
+                    }
+
+                    // carried letter badge — square tile, hard shadow
+                    if (m.carrying) {
+                        ctx.save();
+                        ctx.translate(22, -26);
+                        ctx.rotate(Math.sin(m.hop) * 0.18 + wig * 0.1);
+                        ctx.scale(m.face, 1);
+                        ctx.fillStyle = ink;
+                        ctx.fillRect(-9, -9, 22, 22); // offset shadow
+                        ctx.fillStyle = C.yellow;
+                        ctx.fillRect(-12, -12, 22, 22);
+                        ctx.strokeStyle = ink;
+                        ctx.lineWidth = 2.5;
+                        ctx.strokeRect(-12, -12, 22, 22);
+                        ctx.fillStyle = ink;
+                        ctx.font = "800 14px 'Bricolage Grotesque', sans-serif";
+                        ctx.textAlign = "center";
+                        ctx.textBaseline = "middle";
+                        ctx.fillText(m.carrying.char, -1, 0);
+                        ctx.restore();
+                    }
+                    ctx.restore();
+                }
+
+                function drawFlight(f) {
+                    const e = 1 - Math.pow(1 - f.t, 3);
+                    if (rectsDirty) refreshRects();
+                    const x = f.x + (f.L.x - f.x) * e;
+                    const y =
+                        f.y +
+                        (f.L.y - f.y) * e -
+                        Math.sin(f.t * Math.PI) * 70;
+                    ctx.save();
+                    ctx.translate(x, y);
+                    ctx.rotate((1 - f.t) * 3);
+                    ctx.fillStyle = C.ink;
+                    ctx.font = "800 22px 'Bricolage Grotesque', sans-serif";
+                    ctx.textAlign = "center";
+                    ctx.textBaseline = "middle";
+                    ctx.fillText(f.char, 0, 0);
+                    ctx.restore();
+                }
+
+                function draw() {
+                    ctx.clearRect(0, 0, W, H);
+                    for (const p of sparks) {
+                        ctx.globalAlpha = Math.max(p.life * 2, 0);
+                        ctx.fillStyle = p.color;
+                        ctx.fillRect(p.x - 3, p.y - 3, 6, 6); // square sparks
+                    }
+                    ctx.globalAlpha = 1;
+                    for (const f of flights) drawFlight(f);
+                    monkeys.sort((a, b) => a.y - b.y);
+                    for (const m of monkeys) drawMonkey(m);
+                }
+
+                /* input — listens on window, not the canvas, so the canvas
+                   (pointer-events: none) never blocks clicks on real links */
+                window.addEventListener("pointerdown", (e) => {
+                    const px = e.clientX,
+                        py = e.clientY;
+                    let best = null,
+                        bestD = 1e9;
+                    for (const m of monkeys) {
+                        const r = 44 * m.scale;
+                        const d = Math.hypot(m.x - px, m.y - py - 10);
+                        if (d < r && d < bestD) {
+                            best = m;
+                            bestD = d;
+                        }
+                    }
+                    if (best) bonk(best);
+                });
+
+                /* loop */
+                let last = 0;
+                function frame(t) {
+                    requestAnimationFrame(frame);
+                    const dt = Math.min((t - last) / 1000, 0.05);
+                    last = t;
+                    phaseElapsed += dt;
+                    spawnTimer -= dt;
+                    const interval = Math.max(2.6 - phaseElapsed * 0.035, 0.75);
+                    const cap = Math.min(3 + Math.floor(phaseElapsed / 10), 9);
+                    if (spawnTimer <= 0 && monkeys.length < cap) {
+                        spawnMonkey();
+                        spawnTimer = interval * (0.7 + Math.random() * 0.6);
+                    }
+                    for (const m of monkeys) updateMonkey(m, dt);
+                    monkeys = monkeys.filter((m) => !m.dead);
+                    updateFlights(dt);
+                    updateSparks(dt);
+                    // board fully clear + every letter matches the phase's
+                    // goal → flip direction and reset pacing back to slow
+                    if (!monkeys.length && !flights.length) {
+                        if (phase === "steal" && letters.every((L) => L.stolen)) {
+                            phase = "return";
+                            phaseElapsed = 0;
+                            spawnTimer = 0.6;
+                        } else if (
+                            phase === "return" &&
+                            letters.every((L) => !L.stolen)
+                        ) {
+                            phase = "steal";
+                            phaseElapsed = 0;
+                            spawnTimer = 0.6;
+                        }
+                    }
+                    draw();
+                }
+                /* auto-start — ambient, no UI, runs until every letter is gone */
+                splitLetters();
+                requestAnimationFrame(frame);
+            })();
+
             // Scroll reveal
             const obs = new IntersectionObserver(
                 (entries) => {
